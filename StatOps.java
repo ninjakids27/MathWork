@@ -268,7 +268,13 @@ public class StatOps {
            return z;
     }
     public static void five_number_summary(double[] vector){
-    
+        System.out.println("5 number summary:");
+        double[] D = sort(vector);
+        System.out.println("Min: "+D[0]);
+        System.out.println("Q1: "+getQ1(D));
+        System.out.println("Median: "+median(D));
+        System.out.println("Q3: "+getQ3(D));
+        System.out.println("Max: "+D[D.length-1]);
     }
     
     
