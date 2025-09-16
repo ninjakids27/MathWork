@@ -249,9 +249,13 @@ public class StatOps {
         System.out.println("Q3: "+getQ3(D));
         System.out.println("Max: "+D[D.length-1]);
     }
+    
+    
     private static double rounding(double num, int decimal){
         return Math.round(Math.pow(10, decimal)*num)/Math.pow(10, decimal);
     }
+    
+    
     public static double[] roundingVector(double[] num, int decimal){
         double[] roundedVector = new double[num.length];
             for(int i = 0; i < num.length; i++){
@@ -260,9 +264,22 @@ public class StatOps {
             return roundedVector;
     }
 
-    
+    // IQR test not rigoriously used
+    // prob gonna get rid of this code later and actually make a better outlier test
     public static void outlier_test(double[] vector){
-        
+        double q1 = getQ1(vector);
+        double q3 = getQ3(vector);
+        double IQR =  q3 - q1;
+        double low_bound = q1-1.5*IQR;
+        double high_bound = q3+1.5*IQR;
+        for(int i = 0; i < vector.length; i++){
+            if(vector[i] > high_bound){
+                System.out.println("High outlier found at "+i+" outlier is "+vector[i]);
+            }
+            if(vector[i] < low_bound){
+                System.out.println("Low outlier found at "+i+" outlier is "+vector[i]);
+            }
+        }
     }
 
 
@@ -353,7 +370,6 @@ public class StatOps {
            return z;
     }
 
-
     public static double Ztest(double observedVal,double[] vector,boolean isSample,int decimal){
         double z;
         if(isSample){
@@ -363,7 +379,6 @@ public class StatOps {
         }
         return rounding(z, decimal);
     }
-
 
     public static double Ztest(double observedVal,double[] vector,int decimal){
         double z;
@@ -404,7 +419,7 @@ public class StatOps {
         MatrixOps.Print_Vector(roundingVector(mode(vector),decimal));
     }
     
-
+    
     public static void OneVarStat(double[] vector){
         
     }

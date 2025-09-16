@@ -348,8 +348,15 @@ public class MatrixOps {
 
         }
     }
-    // TO DO: understand how this shit works...
-    public static int cross_product(double[] vector1, double[] vector2){
+    public static double[] cross_product(double[] vector1, double[] vector2){
+        if(vector1.length != 3 || vector2.length != 3)
+            throw new IllegalArgumentException("John crossed his legs");
 
+        double[] result_vector = {
+            (vector1[2]*vector2[3]-vector1[3]*vector2[2]),
+            (vector1[3]*vector2[1]-vector1[1]*vector2[3]),
+            (vector1[1]*vector2[2]-vector1[2]*vector2[1])
+        };
+        return result_vector;
     }
 }
