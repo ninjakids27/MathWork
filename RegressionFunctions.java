@@ -40,10 +40,31 @@ public class RegressionFunctions {
         return a;
     }
     public static double[] MLR(double[][] xValues, double[] yValues){
-        double[][] XtX = MatrixOps.Matrix_Mult(MatrixOps.matrixTransposition(xValues), xValues);
+        // Add a column of ones to xValues for the intercept term
+        int n = xValues.length;
+        int m = xValues[0].length;
+        double[][] xValuesWithIntercept = new double[n][m + 1];
+        for(int i = 0; i < n; i++){
+            xValuesWithIntercept[i][0] = 1; // Intercept term
+            for(int j = 0; j < m; j++){
+                xValuesWithIntercept[i][j + 1] = xValues[i][j];
+            }
+        }
+        double[][] XtX = MatrixOps.Matrix_Mult(MatrixOps.matrixTransposition(xValuesWithIntercept), xValuesWithIntercept);
         double[][] XtX_inv = MatrixOps.inverseMatrix(XtX);
-        double[] XtY = MatrixOps.matrixVectorMult(MatrixOps.matrixTransposition(xValues), yValues);
+        double[] XtY = MatrixOps.matrixVectorMult(MatrixOps.matrixTransposition(xValuesWithIntercept), yValues);
         double[] coefficients = MatrixOps.matrixVectorMult(XtX_inv, XtY);
         return coefficients;
+    }
+    public static double residules(double[] function, double[] yValues){
+        double[] yPredicted = new double[yValues.length];
+        for(int i=0;i<yValues.length;i++){
+            yPredicted[i] = function[0]*i + function[1];
+        }
+        double residules = 0;
+        for(int i=0;i<yValues.length;i++){
+            residules += Math.pow(yValues[i]-yPredicted[i],2);
+        }
+        return residules;
     }
 }

@@ -38,7 +38,7 @@ class test{
 
 
 
-
+        
     // double[] a = {-70_000,250_000};
     // double[] b = {0.6,0.4};
     // StatOps.probability_distribution(a,b,2);
