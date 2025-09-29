@@ -343,8 +343,16 @@ public class MatrixOps {
         return tempVector;
     }
 
-    public static double[][] matrixVectorMult(double[][] matrix, double[] vector){
+    public static double[] matrixVectorMult(double[][] matrix, double[] vector){
+        if(matrix[0].length != vector.length){
+            throw new IllegalArgumentException(ColorText.errorFormat("Incompatible matrix and vector dimensions"));
+        }
 
+        double[] result = new double[matrix.length];
+        for (int i = 0; i < matrix.length; i++) {
+            result[i] = dot_product(matrix[i], vector);
+        }
+        return result;
     }
     
     public static double dot_product(double[] vector1,double[] vector2, boolean debug){
@@ -493,7 +501,12 @@ public class MatrixOps {
         int n = Matrix.length;
 
         if(n == 2){
-            
+            double det = determinant(Matrix);
+            double[][] inverse = {
+                {Matrix[1][1]/det, -Matrix[0][1]/det},
+                {-Matrix[1][0]/det, Matrix[0][0]/det}
+            };
+            return inverse;
         }
         int numRows = Matrix.length;
         int numCols = Matrix[0].length;

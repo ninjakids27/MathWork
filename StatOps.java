@@ -455,4 +455,120 @@ public class StatOps {
         five_number_summary(vector);
 
     }
+    public static double mean_of_probability_distribution(double[] x, double[] p){
+        if(sum(p) != 1){
+            throw new IllegalArgumentException(ColorText.errorFormat("Probabilities do not sum to 1"));
+        }
+        return weighted_mean(x, p,false);
+    }
+
+    public static double variance_of_probability_distribution(double[] x, double[] p){
+        if(sum(p) != 1){
+            throw new IllegalArgumentException(ColorText.errorFormat("Probabilities do not sum to 1"));
+        }
+        double mean = mean_of_probability_distribution(x, p);
+        double[] x_minus_mean = vectorAdd(Arrays.copyOf(x, x.length), -mean);
+        double[] x_minus_mean_squared = vectorPow(x_minus_mean, 2);
+        return weighted_mean(x_minus_mean_squared, p,false);
+    }
+
+    public static double std_of_probability_distribution(double[] x, double[] p){
+        return Math.sqrt(variance_of_probability_distribution(x, p));
+    }
+
+    public static double mean_of_probability_distribution(double[] x, double[] p,int decimal){
+        if(sum(p) != 1){
+            throw new IllegalArgumentException(ColorText.errorFormat("Probabilities do not sum to 1"));
+        }
+        return rounding(weighted_mean(x, p,false), decimal);
+    }
+
+    public static double variance_of_probability_distribution(double[] x, double[] p,int decimal){
+        if(sum(p) != 1){
+            throw new IllegalArgumentException(ColorText.errorFormat("Probabilities do not sum to 1"));
+        }
+        double mean = mean_of_probability_distribution(x, p);
+        double[] x_minus_mean = vectorAdd(Arrays.copyOf(x, x.length), -mean);
+        double[] x_minus_mean_squared = vectorPow(x_minus_mean, 2);
+        return rounding(weighted_mean(x_minus_mean_squared, p,false), decimal);
+    }
+
+    public static double std_of_probability_distribution(double[] x, double[] p,int decimal){
+        return rounding(Math.sqrt(variance_of_probability_distribution(x, p)), decimal);
+    }
+
+
+    public static void probability_distribution(double[] x, double[] p){
+        System.out.println("Probability Distribution:");
+        System.out.println("Mean: "+mean_of_probability_distribution(x, p));
+        System.out.println("Variance: "+variance_of_probability_distribution(x, p));
+        System.out.println("Standard Deviation: "+std_of_probability_distribution(x, p));
+    }
+
+    public static void probability_distribution(double[] x, double[] p,int decimal){
+        System.out.println("Probability Distribution:");
+        System.out.println("Mean: "+mean_of_probability_distribution(x, p, decimal));
+        System.out.println("Variance: "+variance_of_probability_distribution(x, p, decimal));
+        System.out.println("Standard Deviation: "+std_of_probability_distribution(x, p, decimal));
+    }
+
+    // heres also the other functions to ignore the floating point error
+    public static double mean_of_probability_distribution(double[] x, double[] p, boolean ignore){
+        if(!ignore){
+            if(sum(p) != 1){
+                throw new IllegalArgumentException(ColorText.errorFormat("Probabilities do not sum to 1"));
+            }
+        }
+        return weighted_mean(x, p,false);
+    }
+    public static double variance_of_probability_distribution(double[] x, double[] p, boolean ignore){
+        if(!ignore){
+            if(sum(p) != 1){
+                throw new IllegalArgumentException(ColorText.errorFormat("Probabilities do not sum to 1"));
+            }
+        }
+        double mean = mean_of_probability_distribution(x, p, ignore);
+        double[] x_minus_mean = vectorAdd(Arrays.copyOf(x, x.length), -mean);
+        double[] x_minus_mean_squared = vectorPow(x_minus_mean, 2);
+        return weighted_mean(x_minus_mean_squared, p,false);
+    }
+    public static double std_of_probability_distribution(double[] x, double[] p, boolean ignore){
+        return Math.sqrt(variance_of_probability_distribution(x, p, ignore));
+    }
+    // heres ignore and rounding
+    public static double mean_of_probability_distribution(double[] x, double[] p,int decimal, boolean ignore){
+        if(!ignore){
+            if(rounding(sum(p),decimal) != 1){
+                throw new IllegalArgumentException(ColorText.errorFormat("Probabilities do not sum to 1"));
+            }
+        }
+        return rounding(weighted_mean(x, p,false), decimal);
+    }
+    public static double variance_of_probability_distribution(double[] x, double[] p,int decimal, boolean ignore){
+        if(!ignore){
+            if(rounding(sum(p),decimal) != 1){
+                throw new IllegalArgumentException(ColorText.errorFormat("Probabilities do not sum to 1"));
+            }
+        }
+        double mean = mean_of_probability_distribution(x, p, ignore);
+        double[] x_minus_mean = vectorAdd(Arrays.copyOf(x, x.length), -mean);
+        double[] x_minus_mean_squared = vectorPow(x_minus_mean, 2);
+        return rounding(weighted_mean(x_minus_mean_squared, p,false), decimal);
+    }
+    public static double std_of_probability_distribution(double[] x, double[] p,int decimal, boolean ignore){
+        return rounding(Math.sqrt(variance_of_probability_distribution(x, p, ignore)), decimal);
+    }
+    // heres the probability distribution with ignore and rounding
+    public static void probability_distribution(double[] x, double[] p, int decimal, boolean ignore){
+        if(!ignore){
+            if(rounding(sum(p),decimal) != 1){
+                throw new IllegalArgumentException(ColorText.errorFormat("Probabilities do not sum to 1"));
+            }
+        }
+        System.out.println("Probability Distribution:");
+        System.out.println("Mean: "+mean_of_probability_distribution(x, p, decimal, ignore));
+        System.out.println("Variance: "+variance_of_probability_distribution(x, p, decimal, ignore));
+        System.out.println("Standard Deviation: "+std_of_probability_distribution(x, p, decimal, ignore));
+    }
+
 }

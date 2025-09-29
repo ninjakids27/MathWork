@@ -1,12 +1,46 @@
 class test{
   public static void main(String[] args){
-    // double[][] x = {{5,8,2,10,3,9,6,1,7,4},{15,10,25,5,20,12,18,30,14,22},{3,5,1,4,6,2,7,8,9,0}};
-    // double[] y   = {43,46,51,40,53,44,57,64,63,40};
+    // Independent variables (features)
+        double[][] independentVariables = {
+            {2.5, 5.0},
+            {3.1, 5.8},
+            {4.2, 7.1},
+            {5.5, 9.3},
+            {6.8, 11.2},
+            {7.9, 13.0},
+            {8.5, 14.5},
+            {9.0, 15.1},
+            {10.1, 16.8},
+            {11.5, 18.5}
+        };
 
-    // RegressionFunctions.MLR(x, y);
+        // Dependent variable (target)
+        double[] dependentVariable = {
+            12.6,
+            15.5,
+            19.8,
+            24.1,
+            29.5,
+            34.0,
+            38.5,
+            40.2,
+            45.1,
+            49.8
+        };
+    // System.out.println(MatrixOps.determinant(independentVariables));
+    MatrixOps.Print_Vector(RegressionFunctions.MLR(independentVariables, dependentVariable));
 
-    double[][] a = MatrixOps.generate_Matrix(10, 10);
-    MatrixOps.inverseMatrix(a,true);
+    // double[][] a = MatrixOps.generate_Matrix(10, 10);
+    // MatrixOps.inverseMatrix(a,true);
 
+
+
+
+
+
+
+    // double[] a = {-70_000,250_000};
+    // double[] b = {0.6,0.4};
+    // StatOps.probability_distribution(a,b,2);
   }
 }

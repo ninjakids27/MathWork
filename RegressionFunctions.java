@@ -39,7 +39,11 @@ public class RegressionFunctions {
         double[] a = {m,b};
         return a;
     }
-    public static void MLR(double[][] xValues, double[] yValues){
-        MatrixOps.inverseMatrix(MatrixOps.Matrix_Mult(MatrixOps.matrixTransposition(xValues), xValues))
+    public static double[] MLR(double[][] xValues, double[] yValues){
+        double[][] XtX = MatrixOps.Matrix_Mult(MatrixOps.matrixTransposition(xValues), xValues);
+        double[][] XtX_inv = MatrixOps.inverseMatrix(XtX);
+        double[] XtY = MatrixOps.matrixVectorMult(MatrixOps.matrixTransposition(xValues), yValues);
+        double[] coefficients = MatrixOps.matrixVectorMult(XtX_inv, XtY);
+        return coefficients;
     }
 }
