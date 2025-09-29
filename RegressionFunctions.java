@@ -56,15 +56,41 @@ public class RegressionFunctions {
         double[] coefficients = MatrixOps.matrixVectorMult(XtX_inv, XtY);
         return coefficients;
     }
-    public static double residules(double[] function, double[] yValues){
-        double[] yPredicted = new double[yValues.length];
-        for(int i=0;i<yValues.length;i++){
-            yPredicted[i] = function[0]*i + function[1];
+    public static double[] residules(double[][] xValues, double[] yValues, double[] coefficients){
+        int n = xValues.length;
+        int m = xValues[0].length;
+        double[][] xValuesWithIntercept = new double[n][m + 1];
+        for(int i = 0; i < n; i++){
+            xValuesWithIntercept[i][0] = 1; // Intercept term
+            for(int j = 0; j < m; j++){
+                xValuesWithIntercept[i][j + 1] = xValues[i][j];
+            }
         }
-        double residules = 0;
-        for(int i=0;i<yValues.length;i++){
-            residules += Math.pow(yValues[i]-yPredicted[i],2);
+        double[] predictedY = MatrixOps.matrixVectorMult(xValuesWithIntercept, coefficients);
+        double[] residuals = new double[n];
+        for(int i = 0; i < n; i++){
+            residuals[i] = yValues[i] - predictedY[i];
         }
-        return residules;
+        return residuals;
+    }
+    public static double[] polynomialRegression(double[] xValues, double[] yValues, int degree){
+        double[][] xValuesPoly = new double[xValues.length][degree + 1];
+        for(int i =0; i < xValues.length; i++){
+            for(int j = 0; j <= degree; j++){
+                xValuesPoly[i][j] = Math.pow(xValues[i], j);
+            }
+        }
+        double[] coefficients = MLR(xValuesPoly, yValues);
+        return coefficients;
+    }
+    // mlr with a stopwatch
+    public static double[] MLR(double[][] xValues, double[] yValues, boolean timer){
+        long startTime = System.nanoTime();
+        double[] coefficients = MLR(xValues, yValues);
+        long endTime = System.nanoTime();
+        long duration = endTime - startTime;
+        System.out.println("MLR took: " + String.format("%.9f",MatrixOps.nanoToSeconds(duration)) + " seconds");
+        return coefficients;
     }
 }
+        
