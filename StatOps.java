@@ -75,7 +75,19 @@ public class StatOps {
         }
         return vector;
     }
-
+    public static int random(int lowBound, int highBound){
+        return (int) Math.floor(Math.random()*(highBound-lowBound+1)+lowBound);
+    }
+    public static double[] freqList(double[] vector1, double[] vector2){
+        double[] tempVector = new double[sumD(vector2)];
+        int idx = 0;
+        for(int i = 0; i < vector2.length; i++){
+            for(int k = 0; k < vector2[i]; k++){
+                tempVector[idx++] = vector1[i];
+            }
+        }
+        return tempVector;
+    }
 
     public static double[] vectorMult(double[] vector, double factor){
         for(int i = 0; i<vector.length; i++){
@@ -84,7 +96,7 @@ public class StatOps {
         return vector;
     }
 
-
+    // x vector returns y vector where y1 = x1^factor
     public static double[] vectorPow(double[] vector, double factor){
         for(int i = 0; i<vector.length; i++){
             vector[i] = Math.pow(vector[i], factor);
@@ -92,6 +104,17 @@ public class StatOps {
         return vector;
     }
 
+    // imagine a vector x and y basically it represents vector z as z1 = x1*y1 and so on
+    public static double[] vectorProduct(double[] vector1, double[] vector2){
+        double[] tempVector = new double[vector1.length];
+        if(vector1.length != vector2.length){
+            throw new IllegalArgumentException(ColorText.errorFormat("Fucked up lengths"));
+        }
+        for(int i = 0; i<vector1.length; i++){
+            tempVector[i] = vector1[i]*vector2[i];
+        }
+        return tempVector;
+    }
 
     public static int[] findMax(double[] vector){
         double Max = vector[0];
@@ -421,6 +444,15 @@ public class StatOps {
     
     
     public static void OneVarStat(double[] vector){
-        
+        System.out.println("Mean: "+mean(vector));
+        System.out.println("Median: "+median(vector));
+        System.out.println("Mode: "+mode(vector));
+        System.out.println("Sum: "+sum(vector));
+        System.out.println("Sum^2: "+vectorPow(vector, 2));
+        System.out.println("Sam deviation: "+samDeviation(vector));
+        System.out.println("Std Deviation: "+stdDeviation(vector));
+        System.out.println("Length: "+vector.length);
+        five_number_summary(vector);
+
     }
 }
