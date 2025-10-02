@@ -1,4 +1,9 @@
 public class RegressionFunctions {
+    /**
+     * Performs standard linear regression on the given x and y values and prints the equation in the form y=mx+b.
+     * @param xValues the input x values
+     * @param yValues the output y values
+     */
     public static void stdLinearRegression(double[] xValues, double[] yValues){
        int n = xValues.length;
         double[] xValuesCopy = xValues.clone();
@@ -27,6 +32,13 @@ public class RegressionFunctions {
         double[] a = {m};
         return a;
     }
+    /**
+     * Performs linear regression on the given x and y values. It uses the formula instead of actual linear algebra
+     * @param xValues the input x values
+     * @param yValues the output y values
+     * @param onlyLinear if true, only returns the slope (m), if false returns both slope (m) and intercept (b) (returns array of size 1 or 2)
+     * @return the coefficients of the linear regression (slope and intercept)
+     */
     public static double[] linearRegression(double[] xValues, double[] yValues){
        int n = xValues.length;
         double[] xValuesCopy = xValues.clone();
@@ -57,7 +69,14 @@ public class RegressionFunctions {
         double[] coefficients = MatrixOps.matrixVectorMult(XtX_inv, XtY);
         return coefficients;
     }
-    public static double[] residules(double[][] xValues, double[] yValues, double[] coefficients){
+    /**
+     * Calculates the residuals of a multiple linear regression model.
+     * @param xValues the input x values
+     * @param yValues the output y values
+     * @param coefficients the coefficients of the regression model
+     * @return the residuals of the model
+     */
+    public static double[] residuals(double[][] xValues, double[] yValues, double[] coefficients){
         int n = xValues.length;
         int m = xValues[0].length;
         double[][] xValuesWithIntercept = new double[n][m + 1];
@@ -74,6 +93,14 @@ public class RegressionFunctions {
         }
         return residuals;
     }
+    /**
+     * Performs polynomial regression by transforming the input xValues into polynomial features
+     * and then applying multiple linear regression (MLR) to find the coefficients.
+     * @param xValues the input x values
+     * @param yValues the output y values
+     * @param degree the degree of the polynomial
+     * @return the coefficients of the polynomial regression
+     */
     public static double[] polynomialRegression(double[] xValues, double[] yValues, int degree){
         double[][] xValuesPoly = new double[xValues.length][degree + 1];
         for(int i =0; i < xValues.length; i++){
@@ -85,11 +112,11 @@ public class RegressionFunctions {
         return coefficients;
     }
     /**
-     * 
+     * Multiple Linear Regression with optional timing for benchmarking.
      * @param xValues Data of xValues
-     * @param yValues
-     * @param timer
-     * @return
+     * @param yValues Data of yValues
+     * @param timer Flag to enable timing
+     * @return Coefficients of the regression model
      */
     public static double[] MLR(double[][] xValues, double[] yValues, boolean timer){
         long startTime = System.nanoTime();

@@ -1,12 +1,20 @@
 import java.util.Random;
 
 public class MatrixOps {
+    // epsilon for numerical stability
     private static final double epsilon = 1e-9; 
+    // rounding function (need to implement for other functions)
     private static double rounding(double num, int decimal){
         return Math.round(Math.pow(10, decimal)*num)/Math.pow(10, decimal);
     }
 
-
+    /**
+     * Generates a random augmented matrix with the specified number of columns.
+     * The number of rows will be one less than the number of columns.
+     * Each element in the matrix is a random integer between 0 and 9.
+     * @param num_columns the number of columns in the augmented matrix
+     * @return a 2D array representing the augmented matrix
+     */
     public static double[][] generate_Augmented_Matrix(int num_columns) {
         Random random = new Random();
         int num_rows = num_columns - 1;
@@ -19,7 +27,11 @@ public class MatrixOps {
         return Matrix_Name;
     }
 
-
+    /**
+     * Generates a random vector of the specified length.
+     * @param length the length of the vector
+     * @return a 1D array representing the random vector
+     */
     public static double[] generate_Random_vector(int length){
         Random random = new Random();
         double[] vector = new double[length];
@@ -29,7 +41,10 @@ public class MatrixOps {
         return vector;
     }
 
-
+    /**
+     * Prints the given matrix to the console.
+     * @param Matrix_Name
+     */
     public static void Print_Matrix(double[][] Matrix_Name) {
         int num_rows = Matrix_Name.length;
         int num_columns = Matrix_Name[0].length;
@@ -41,7 +56,12 @@ public class MatrixOps {
         }
     }
 
-
+    /**
+     * Accesses a specific row of the given matrix.
+     * @param Matrix the input matrix
+     * @param row_index the index of the row to access (0-based)
+     * @return the specified row as a 1D array
+     */
     public static double[] access_row(double[][] Matrix, int row_index) {
         int num_cols = Matrix[0].length;
         double[] temp = new double[num_cols];
@@ -51,7 +71,12 @@ public class MatrixOps {
         return temp;
     }
 
-
+    /**
+     * Accesses a specific column of the given matrix.
+     * @param Matrix the input matrix
+     * @param column_index the index of the column to access (0-based)
+     * @return the specified column as a 1D array
+     */
     public static double[] access_column(double[][] Matrix, int column_index) {
         int num_rows = Matrix.length;
         double[] temp = new double[num_rows];
@@ -61,7 +86,13 @@ public class MatrixOps {
         return temp;
     }
 
-
+    /**
+     * Switches two rows in the given matrix and returns a new matrix with the rows swapped.
+     * @param Matrix the input matrix
+     * @param row1_index the index of the first row to swap (0-based)
+     * @param row2_index the index of the second row to swap (0-based)
+     * @return a new matrix with the specified rows swapped
+     */
     public static double[][] switch_rows(double[][] Matrix, int row1_index, int row2_index) {
         // Clone the matrix
         int numRows = Matrix.length;
@@ -81,7 +112,14 @@ public class MatrixOps {
         return temp_Matrix;
     }
 
-
+    /**
+     * Replaces a row in the matrix by adding a multiple of another row to it.
+     * @param matrix the input matrix
+     * @param replacedRow the index of the row to replace (0-based)
+     * @param rowAdded the index of the row to add (0-based)
+     * @param factor the factor by which to multiply the added row
+     * @return a new matrix with the specified row replaced
+     */
     public static double[][] replacement(double[][] matrix, int replacedRow, int rowAdded, double factor) {
         double[] tempRowAdded = access_row(matrix, rowAdded);
         int numRows = matrix.length;
@@ -102,8 +140,13 @@ public class MatrixOps {
         return tempMatrix;
     }
 
-
-    	public static double[] scalarVector(double a,double[] vector){
+    /**
+     * Multiplies a scalar with a vector.
+     * @param a the scalar value
+     * @param vector the input vector
+     * @return the resulting vector after multiplication
+     */
+    public static double[] scalarVector(double a,double[] vector){
 		double[] tempVector = new double[vector.length];
 		for(int i = 0; i < vector.length;i++){
 			tempVector[i] = a*vector[i];
@@ -111,7 +154,12 @@ public class MatrixOps {
 		return tempVector;
 	}
 
-
+    /**
+     * Multiplies a scalar with a matrix.
+     * @param a the scalar value
+     * @param matrix the input matrix
+     * @return the resulting matrix after multiplication
+     */
 	public static double[][] scalarMatrix(double a, double[][] matrix){
 		double[][] tempMatrix = new double[matrix.length][matrix[0].length];
 		for(int i = 0; i < matrix.length;i++){
@@ -122,7 +170,13 @@ public class MatrixOps {
 		return tempMatrix;
 	}
 
-
+    /**
+     * Multiplies a specific row of the matrix by a constant factor and returns a new matrix.
+     * @param Matrix the input matrix
+     * @param row_index the index of the row to modify (0-based)
+     * @param factor the factor by which to multiply the row
+     * @return a new matrix with the specified row modified
+     */
     public static double[][] Constant_factor(double[][] Matrix, int row_index, double factor) {
         double[] temp = access_row(Matrix, row_index);
         int numRows = Matrix.length;
@@ -138,6 +192,11 @@ public class MatrixOps {
         }
         return temp_Matrix;
     }
+
+    /**
+     * Prints the given vector to the console.
+     * @param Vector the input vector
+     */
     public static void Print_Vector(double[] Vector) {
         for (int i = 0; i < Vector.length; i++) {
             System.out.print(Vector[i] + " ");
@@ -151,7 +210,11 @@ public class MatrixOps {
         System.out.println("");
     }
 
-
+    /**
+     * Determines the type of solution for a system of linear equations represented by the given RREF matrix.
+     * @param RREF_Matrix the RREF matrix
+     * @return a string indicating the type of solution ("No Solution", "Unique Solution", or "Infinitely Many Solutions (Free Variables)")
+     */
     public static String getSolutionType(double[][] RREF_Matrix) {
     int numRows = RREF_Matrix.length;
     int numCols = RREF_Matrix[0].length;
@@ -199,7 +262,12 @@ public class MatrixOps {
     return "Unique Solution";
     }
     
-
+    /**
+     * Converts the given matrix to its Reduced Row Echelon Form (RREF).
+     * @param Matrix the input matrix
+     * @param debug if true, prints intermediate steps for debugging
+     * @return the RREF of the input matrix
+     */
     public static double[][] RREF(double[][] Matrix, boolean debug) {
     int numRows = Matrix.length;
     int numCols = Matrix[0].length;
@@ -335,6 +403,12 @@ public class MatrixOps {
     temp_Matrix = roundMatrix(temp_Matrix, epsilon);
     return temp_Matrix;
 }
+    /**
+     * Rounds elements of the matrix that are smaller than epsilon to zero.
+     * @param matrix the input matrix
+     * @param epsilon the threshold below which values are rounded to zero
+     * @return a new matrix with small values rounded to zero
+     */
     private static double[][] roundMatrix(double[][] matrix, double epsilon) {
     int numRows = matrix.length;
     int numCols = matrix[0].length;
@@ -346,11 +420,19 @@ public class MatrixOps {
         }
     }
     return matrix;
-}
+}   
+    /**
+     * Prints an arrow symbol ("->") to the console.
+     */
     public static void therefore() {
         System.out.println("->");
     }
-
+    /**
+     * Adds two vectors element-wise.
+     * @param vector1 the first vector
+     * @param vector2 the second vector
+     * @return the element-wise sum of the two vectors
+     */
     public static double[] vectorSum(double[] vector1, double[] vector2){
         
         if(vector1.length != vector2.length){
@@ -364,6 +446,12 @@ public class MatrixOps {
         return tempVector;
     }
 
+    /**
+     * Multiplies a matrix by a vector.
+     * @param matrix the input matrix
+     * @param vector the input vector
+     * @return the resulting vector after multiplication
+     */
     public static double[] matrixVectorMult(double[][] matrix, double[] vector){
         if(matrix[0].length != vector.length){
             throw new IllegalArgumentException(ColorText.errorFormat("Incompatible matrix and vector dimensions"));
@@ -376,6 +464,13 @@ public class MatrixOps {
         return result;
     }
     
+    /**
+     * Calculates the dot product of two vectors.
+     * @param vector1 the first vector
+     * @param vector2 the second vector
+     * @param debug if true, prints intermediate products
+     * @return the dot product of the two vectors
+     */
     public static double dot_product(double[] vector1,double[] vector2, boolean debug){
         double temp = 0;
         if(vector1.length == vector2.length){
@@ -391,11 +486,14 @@ public class MatrixOps {
         }
     }
 
-
+    /**
+     * Converts nanoseconds to seconds.
+     * @param nanoseconds the time in nanoseconds
+     * @return the time in seconds
+     */
     public static double nanoToSeconds(long nanoseconds){
         return nanoseconds/1e9;
     }
-
 
     public static double dot_product(double[] vector1,double[] vector2){
         double temp = 0;
@@ -409,7 +507,13 @@ public class MatrixOps {
         }
     }
 
-
+    /**
+     * Generates a random matrix with the specified number of rows and columns.
+     * Each element in the matrix is a random integer between 0 and 9.
+     * @param Rows the number of rows in the matrix
+     * @param Columns the number of columns in the matrix
+     * @return a 2D array representing the random matrix
+     */
     public static double[][] generate_Matrix(int Rows, int Columns){
         double[][] Matrix = new double[Rows][Columns];
         Random random = new Random();
@@ -422,7 +526,13 @@ public class MatrixOps {
 
     }
 
-
+    /**
+     * Multiplies two matrices.
+     * @param Matrix_A the first matrix
+     * @param Matrix_B the second matrix
+     * @param debug if true, prints intermediate dot products
+     * @return the resulting matrix after multiplication
+     */
     public static double[][] Matrix_Mult(double[][] Matrix_A, double[][] Matrix_B, boolean debug){
         if(Matrix_A[0].length == Matrix_B.length){
             // proceed as usual type shit
@@ -460,7 +570,12 @@ public class MatrixOps {
         }
     }
 
-
+    /**
+     * Calculates the cross product of two 3D vectors.
+     * @param vector1 the first vector (length 3)
+     * @param vector2 the second vector (length 3)
+     * @return the resulting vector after cross product
+     */
     public static double[] cross_product(double[] vector1, double[] vector2){
         if(vector1.length != 3 || vector2.length != 3)
             throw new IllegalArgumentException("");
@@ -473,7 +588,11 @@ public class MatrixOps {
         return result_vector;
     }
 
-
+    /**
+     * Transposes the given matrix.
+     * @param matrix the input matrix
+     * @return the transposed matrix
+     */
     public static double[][] matrixTransposition(double[][] matrix){
         double[][] tempMatrix = new double[matrix[0].length][matrix.length];
         double[] tempRow = new double[tempMatrix[0].length];
@@ -486,7 +605,12 @@ public class MatrixOps {
         return tempMatrix;
     }
 
-
+    /**
+     * Generates a submatrix by removing the first row and the specified column from the given matrix.
+     * @param matrix the input matrix
+     * @param column the column to remove
+     * @return the resulting submatrix
+     */
     public static double[][] subMatrix(double[][] matrix, int column) {
         double[][] tempMatrix = new double[matrix.length - 1][matrix[0].length - 1];
         for (int i = 1; i < matrix.length; i++) {
@@ -500,7 +624,11 @@ public class MatrixOps {
         return tempMatrix;
     }
 
-
+    /**
+     * Calculates the determinant of a square matrix using recursion.
+     * @param matrix the input square matrix
+     * @return the determinant of the matrix
+     */
     public static double determinant(double[][] matrix){
 		double sum = 0;
 		if(matrix.length != matrix[0].length){
@@ -527,7 +655,12 @@ public class MatrixOps {
         return sum;
 	}
 
-
+    /**
+     * Calculates the inverse of a square matrix using Gaussian elimination.
+     * @param Matrix the input square matrix
+     * @param stopwatch if true, measures and prints the time taken for the operation
+     * @return the inverse of the matrix
+     */
     public static double[][] inverseMatrix(double[][] Matrix){
         if(Matrix.length != Matrix[0].length){
             throw new IllegalArgumentException(ColorText.errorFormat("Not a square matrix"));

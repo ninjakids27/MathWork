@@ -20,7 +20,13 @@ $$\sigma(x) = \frac{1}{1+e^{-x}}$$
 \par{Dont know if it's approximate or exact this is called the logistic function, sigmoid function etc... There's also the ReLU function or the Rectified Linear Unit}\\
 
 $$\text{ReLU}(x) = \begin{dcases}0 & x\leq0 \\ x & x > 0\end{dcases}$$
-\par{it's also important to note that there are more activation functions and I don't feel like writing them all out}
+\par{There's the tanh function which is short for tan hyperbolic.}
+$$\tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}$$
+\par{Now this comes at the cost at computing 4 exponentials. ReLU seems to be the 
+cheapest out of them all.}\\
+
+\par{ReLU seems to be the cheapest and seems to get the job done so I'll go with that. }
+
 \section{MatrixOps}
 \par{A matrix is a 2d array in cs or a 2d vector a matrix is denoted by uppercase letters so ``A'' is a matrix but ``a'' is not a matrix. You could also bold it to emphazise it but it's up to you.}
 $$\begin{pmatrix}
