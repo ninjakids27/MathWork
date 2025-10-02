@@ -559,7 +559,16 @@ public class StatOps {
         return rounding(Math.sqrt(variance_of_probability_distribution(x, p, ignore)), decimal);
     }
     // heres the probability distribution with ignore and rounding
+    /**
+         * Prints the probability distribution summary including mean, variance, and standard deviation.
+         * 
+         * @param x is the x values
+         * @param p is the probabilities
+         * @param decimal is the decimal places to round to
+         * @param ignore is whether to ignore floating point error in the sum of probabilities
+         */
     public static void probability_distribution(double[] x, double[] p, int decimal, boolean ignore){
+        
         if(!ignore){
             if(rounding(sum(p),decimal) != 1){
                 throw new IllegalArgumentException(ColorText.errorFormat("Probabilities do not sum to 1"));
@@ -570,5 +579,94 @@ public class StatOps {
         System.out.println("Variance: "+variance_of_probability_distribution(x, p, decimal, ignore));
         System.out.println("Standard Deviation: "+std_of_probability_distribution(x, p, decimal, ignore));
     }
+    // binomial distribution stuff
+    // should probably have the requirements and throw illegalarguments but eh
+    /**
+     * Calculates the binomial probability density function (PDF) for given parameters.
+     * @param n number of trials (non-negative integer)
+     * @param p probability for success on each trial (0 <= p <= 1)
+     * @param x number of successes (0 <= x <= n) it can also be in a list for atleast problems
+     * @param individual if true then return the individual probabilities for each x in the list, otherwise return the total probability
+     * @return the probability of exactly x successes in n trials
+     */
+    public static double binomialPDF(int n, double p, int x){
+        double q = 1 - p;
+        return numberTheory.nCr(n, x) * Math.pow(p, x) * Math.pow(q, n - x);
+    }
+    public static double binomialPDF(int n, double p, int x, int decimal){
+        double q = 1 - p;
+        return rounding(numberTheory.nCr(n, x) * Math.pow(p, x) * Math.pow(q, n - x), decimal);
+    }
+    public static double binomialPDF(int n, double p, int[] x){
+        double q = 1 - p;
+        double total = 0;
+        for(int i = 0; i < x.length; i++){
+            total += numberTheory.nCr(n, x[i]) * Math.pow(p, x[i]) * Math.pow(q, n - x[i]);
+        }
+        return total;
+    }
+    public static double binomialPDF(int n, double p, int[] x, int decimal){
+        double q = 1 - p;
+        double total = 0;
+        for(int i = 0; i < x.length; i++){
+            total += numberTheory.nCr(n, x[i]) * Math.pow(p, x[i]) * Math.pow(q, n - x[i]);
+        }
+        return rounding(total, decimal);
+    }
 
+    public static double[] binomialPDF(int n, double p, int[] x, boolean individual){
+        double q = 1 - p;
+        if(individual){
+            double[] probabilities = new double[x.length];
+            for(int i = 0; i < x.length; i++){
+                probabilities[i] = numberTheory.nCr(n, x[i]) * Math.pow(p, x[i]) * Math.pow(q, n - x[i]);
+            }
+            return probabilities;
+        }else{
+            double total = 0;
+            for(int i = 0; i < x.length; i++){
+                total += numberTheory.nCr(n, x[i]) * Math.pow(p, x[i]) * Math.pow(q, n - x[i]);
+            }
+            return new double[]{total};
+        }
+    }
+    public static double[] binomialPDF(int n, double p, int[] x, boolean individual,int decimal){
+        double q = 1 - p;
+        if(individual){
+            double[] probabilities = new double[x.length];
+            for(int i = 0; i < x.length; i++){
+                probabilities[i] = rounding(numberTheory.nCr(n, x[i]) * Math.pow(p, x[i]) * Math.pow(q, n - x[i]), decimal);
+            }
+            return probabilities;
+        }else{
+            double total = 0;
+            for(int i = 0; i < x.length; i++){
+                total += numberTheory.nCr(n, x[i]) * Math.pow(p, x[i]) * Math.pow(q, n - x[i]);
+            }
+            return new double[]{rounding(total, decimal)};
+        }
+    }
+    /**
+     * Calculates the binomial cumulative distribution function (CDF) for given parameters.
+     * @param n number of trials (non-negative integer)
+     * @param p probability for success on each trial (0 <= p <= 1)
+     * @param x the upper limit of successes (0 <= x <= n)
+     * @return the cumulative probability of up to x successes in n trials
+     */
+    public static double binomialCDF(int n, double p, int x){
+        double total = 0;
+        for(int i = 0; i <= x; i++){
+            total += binomialPDF(n, p, i);
+        }
+        return total;
+    }
+
+    public static double binomialCDF(int n, double p, int x, int decimal){
+        double total = 0;
+        for(int i = 0; i <= x; i++){
+            total += binomialPDF(n, p, i);
+        }
+        return rounding(total, decimal);
+    }
+    
 }

@@ -2,6 +2,11 @@ import java.util.Random;
 
 public class MatrixOps {
     private static final double epsilon = 1e-9; 
+    private static double rounding(double num, int decimal){
+        return Math.round(Math.pow(10, decimal)*num)/Math.pow(10, decimal);
+    }
+
+
     public static double[][] generate_Augmented_Matrix(int num_columns) {
         Random random = new Random();
         int num_rows = num_columns - 1;
@@ -13,6 +18,8 @@ public class MatrixOps {
         }
         return Matrix_Name;
     }
+
+
     public static double[] generate_Random_vector(int length){
         Random random = new Random();
         double[] vector = new double[length];
@@ -21,6 +28,8 @@ public class MatrixOps {
         }
         return vector;
     }
+
+
     public static void Print_Matrix(double[][] Matrix_Name) {
         int num_rows = Matrix_Name.length;
         int num_columns = Matrix_Name[0].length;
@@ -31,6 +40,8 @@ public class MatrixOps {
             System.out.println("");
         }
     }
+
+
     public static double[] access_row(double[][] Matrix, int row_index) {
         int num_cols = Matrix[0].length;
         double[] temp = new double[num_cols];
@@ -39,6 +50,8 @@ public class MatrixOps {
         }
         return temp;
     }
+
+
     public static double[] access_column(double[][] Matrix, int column_index) {
         int num_rows = Matrix.length;
         double[] temp = new double[num_rows];
@@ -47,6 +60,8 @@ public class MatrixOps {
         }
         return temp;
     }
+
+
     public static double[][] switch_rows(double[][] Matrix, int row1_index, int row2_index) {
         // Clone the matrix
         int numRows = Matrix.length;
@@ -65,6 +80,8 @@ public class MatrixOps {
         }
         return temp_Matrix;
     }
+
+
     public static double[][] replacement(double[][] matrix, int replacedRow, int rowAdded, double factor) {
         double[] tempRowAdded = access_row(matrix, rowAdded);
         int numRows = matrix.length;
@@ -84,6 +101,8 @@ public class MatrixOps {
         }
         return tempMatrix;
     }
+
+
     	public static double[] scalarVector(double a,double[] vector){
 		double[] tempVector = new double[vector.length];
 		for(int i = 0; i < vector.length;i++){
@@ -91,6 +110,8 @@ public class MatrixOps {
 		}
 		return tempVector;
 	}
+
+
 	public static double[][] scalarMatrix(double a, double[][] matrix){
 		double[][] tempMatrix = new double[matrix.length][matrix[0].length];
 		for(int i = 0; i < matrix.length;i++){
@@ -100,6 +121,7 @@ public class MatrixOps {
 		}
 		return tempMatrix;
 	}
+
 
     public static double[][] Constant_factor(double[][] Matrix, int row_index, double factor) {
         double[] temp = access_row(Matrix, row_index);
@@ -128,6 +150,8 @@ public class MatrixOps {
         }
         System.out.println("");
     }
+
+
     public static String getSolutionType(double[][] RREF_Matrix) {
     int numRows = RREF_Matrix.length;
     int numCols = RREF_Matrix[0].length;
@@ -175,9 +199,6 @@ public class MatrixOps {
     return "Unique Solution";
     }
     
-    private static double rounding(double num, int decimal){
-        return Math.round(Math.pow(10, decimal)*num)/Math.pow(10, decimal);
-    }
 
     public static double[][] RREF(double[][] Matrix, boolean debug) {
     int numRows = Matrix.length;
@@ -369,9 +390,13 @@ public class MatrixOps {
             throw new IllegalArgumentException(ColorText.errorFormat("Input vectors are wrong lengths"));
         }
     }
+
+
     public static double nanoToSeconds(long nanoseconds){
         return nanoseconds/1e9;
     }
+
+
     public static double dot_product(double[] vector1,double[] vector2){
         double temp = 0;
         if(vector1.length == vector2.length){
@@ -383,6 +408,8 @@ public class MatrixOps {
             throw new IllegalArgumentException(ColorText.errorFormat("Input vectors are wrong lengths"));
         }
     }
+
+
     public static double[][] generate_Matrix(int Rows, int Columns){
         double[][] Matrix = new double[Rows][Columns];
         Random random = new Random();
@@ -394,6 +421,8 @@ public class MatrixOps {
         return Matrix;
 
     }
+
+
     public static double[][] Matrix_Mult(double[][] Matrix_A, double[][] Matrix_B, boolean debug){
         if(Matrix_A[0].length == Matrix_B.length){
             // proceed as usual type shit
@@ -411,6 +440,8 @@ public class MatrixOps {
 
         }
     }
+
+
     public static double[][] Matrix_Mult(double[][] Matrix_A, double[][] Matrix_B){
         if(Matrix_A[0].length == Matrix_B.length){
             // proceed as usual type shit
@@ -428,6 +459,8 @@ public class MatrixOps {
 
         }
     }
+
+
     public static double[] cross_product(double[] vector1, double[] vector2){
         if(vector1.length != 3 || vector2.length != 3)
             throw new IllegalArgumentException("");
@@ -439,6 +472,8 @@ public class MatrixOps {
         };
         return result_vector;
     }
+
+
     public static double[][] matrixTransposition(double[][] matrix){
         double[][] tempMatrix = new double[matrix[0].length][matrix.length];
         double[] tempRow = new double[tempMatrix[0].length];
@@ -450,6 +485,8 @@ public class MatrixOps {
         }
         return tempMatrix;
     }
+
+
     public static double[][] subMatrix(double[][] matrix, int column) {
         double[][] tempMatrix = new double[matrix.length - 1][matrix[0].length - 1];
         for (int i = 1; i < matrix.length; i++) {
@@ -490,11 +527,11 @@ public class MatrixOps {
         return sum;
 	}
 
+
     public static double[][] inverseMatrix(double[][] Matrix){
         if(Matrix.length != Matrix[0].length){
             throw new IllegalArgumentException(ColorText.errorFormat("Not a square matrix"));
         }
-        // big booty bitches ;)
         if(determinant(Matrix) == 0){
             throw new IllegalArgumentException(ColorText.errorFormat("Determinent is zero"));
         }
@@ -577,7 +614,6 @@ public class MatrixOps {
         inverse_Matrix = roundMatrix(inverse_Matrix, epsilon);
         return inverse_Matrix;
     }
-
 
 
     public static double[][] inverseMatrix(double[][] Matrix,boolean stopwatch){

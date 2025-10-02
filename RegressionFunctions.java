@@ -10,6 +10,7 @@ public class RegressionFunctions {
         double b = (StatOps.sum(yValues)-m*StatOps.sum(xValues))/n;
         System.out.println("y="+m+"x+"+b);
     }
+    
     public static double[] linearRegression(double[] xValues, double[] yValues,boolean onlyLinear){
        int n = xValues.length;
         double[] xValuesCopy = xValues.clone();
@@ -83,7 +84,13 @@ public class RegressionFunctions {
         double[] coefficients = MLR(xValuesPoly, yValues);
         return coefficients;
     }
-    // mlr with a stopwatch
+    /**
+     * 
+     * @param xValues Data of xValues
+     * @param yValues
+     * @param timer
+     * @return
+     */
     public static double[] MLR(double[][] xValues, double[] yValues, boolean timer){
         long startTime = System.nanoTime();
         double[] coefficients = MLR(xValues, yValues);
