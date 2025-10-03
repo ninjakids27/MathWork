@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1759447266.99681 "c:/githubProject/MathWork/latex/notes.tex" "notes.pdf" "notes" 1759447267.47641 0
+["pdflatex"] 1759454201.74975 "c:/githubProject/MathWork/latex/notes.tex" "notes.pdf" "notes" 1759454202.21479 0
   "C:/Users/Adami/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1759447264 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/Adami/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1759372366 11548 66b6f16c216d3fb28d0ac98fc129e9db ""
   "C:/Users/Adami/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1759372318 13286966 2e9c7f087cc3d3326ed8e10e69636491 ""
@@ -55,9 +55,9 @@
   "C:/Users/Adami/AppData/Local/Programs/MiKTeX/tex/latex/mathtools/mathtools.sty" 1728300125 62711 3b0ed1d68b598a75677c10d16646d5e5 ""
   "C:/Users/Adami/AppData/Local/Programs/MiKTeX/tex/latex/mathtools/mhsetup.sty" 1728300125 5582 a43dedf8e5ec418356f1e9dfe5d29fc3 ""
   "C:/Users/Adami/AppData/Local/Programs/MiKTeX/tex/latex/tools/calc.sty" 1749468414 10374 2ffd4f27c7f90b8a300608069537743c ""
-  "c:/githubProject/MathWork/latex/notes.tex" 1759444859 3969 31e8574db2f870461ef24c29a2eb39e3 ""
-  "notes.aux" 1759447267 322 fec736f089afd4dfeb380e0462237216 "pdflatex"
-  "notes.tex" 1759444859 3969 31e8574db2f870461ef24c29a2eb39e3 ""
+  "c:/githubProject/MathWork/latex/notes.tex" 1759454201 3967 0a764c090ed9656c829ea2a6e09d637b ""
+  "notes.aux" 1759454202 322 fec736f089afd4dfeb380e0462237216 "pdflatex"
+  "notes.tex" 1759454201 3967 0a764c090ed9656c829ea2a6e09d637b ""
   (generated)
   "notes.aux"
   "notes.log"
