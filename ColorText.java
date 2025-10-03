@@ -1,3 +1,10 @@
+
+/**
+ * This class provides ANSI escape codes for coloring and formatting text in the terminal.
+ * It includes constants for various text colors, background colors, and text styles,
+ * as well as methods for applying common formatting styles to strings.
+ */
+
 public class ColorText {
     // basically have custom colored text in the terminal to have an aesthetically pleasing environment
     // RESET AND TEXT FORMAT
