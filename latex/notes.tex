@@ -26,6 +26,23 @@ $$\tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}$$
 cheapest out of them all.}\\
 
 \par{ReLU seems to be the cheapest and seems to get the job done so I'll go with that. }
+\par{I wanted to know how to activate a neuron and with this I'll be using the sigmoid for the math but it doesn't matter that much}
+$$W = \begin{pmatrix}
+    w_{0,0} & w_{0,1} & \dots & w_{0,n} \\
+    w_{1,0} & w_{1,1} & \dots & w_{1,n} \\
+    \vdots  & \vdots & \ddots & \vdots \\
+    w_{k,0} & w_{k,1} & \dots & w_{k,n} &  
+\end{pmatrix}$$
+\par{So im going to let W be the weights of our neural network of general size and I'll let I as in input be the input vector which should look like}
+$$I = \begin{bmatrix}
+    a_{1} \\
+    a_{2} \\
+    a_{3} \\
+    \vdots \\
+    a_{n}
+\end{bmatrix}$$
+\par{with these computing a vector matrix product should be relative ease with the matrix ops file having that method.
+Now I'll let another vector with the biases}
 
 \section{MatrixOps}
 \par{A matrix is a 2d array in cs or a 2d vector a matrix is denoted by uppercase letters so ``A'' is a matrix but ``a'' is not a matrix. You could also bold it to emphazise it but it's up to you.}

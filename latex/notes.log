@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2025.9.30)  3 OCT 2025 14:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2025.9.30)  3 OCT 2025 22:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -207,25 +207,203 @@ Underfull \hbox (badness 10000) in paragraph at lines 25--27
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 76--77
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
 
- []
+/home/adamivrahim/githubrepo/MathWork/latex/notes.tex:96: LaTeX Error: Command \item invalid in math mode.
 
-[2] [3] (./notes.aux) ) 
-Here is how much of TeX's memory you used:
- 3262 strings out of 478051
- 54914 string characters out of 5840943
- 1860330 words of memory out of 5000000
- 23367 multiletter control sequences out of 15000+600000
- 517390 words of font info for 50 fonts, out of 8000000 for 9000
- 14 hyphenation exceptions out of 8191
- 70i,7n,76p,302b,196s stack positions out of 10000i,1000n,20000p,200000b,200000s
- </home/adamivrahim/.texlive2022/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on notes.pdf (3 pages, 114437 bytes).
-PDF statistics:
- 69 PDF objects out of 1000 (max. 8388607)
- 42 compressed objects within 1 object stream
- 0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.96     \item
+               Swap the positions of two rows (interchange)
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
+
+/home/adamivrahim/githubrepo/MathWork/latex/notes.tex:96: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.96     \item S
+                wap the positions of two rows (interchange)
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/adamivrahim/githubrepo/MathWork/latex/notes.tex:96: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.96     \item S
+                wap the positions of two rows (interchange)
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/adamivrahim/githubrepo/MathWork/latex/notes.tex:96: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.96     \item S
+                wap the positions of two rows (interchange)
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/adamivrahim/githubrepo/MathWork/latex/notes.tex:97: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.97     \item
+               Multiply a row by a non-zero scalar (scaling)
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/adamivrahim/githubrepo/MathWork/latex/notes.tex:97: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.97     \item M
+                ultiply a row by a non-zero scalar (scaling)
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/adamivrahim/githubrepo/MathWork/latex/notes.tex:97: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.97     \item M
+                ultiply a row by a non-zero scalar (scaling)
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/adamivrahim/githubrepo/MathWork/latex/notes.tex:97: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.97     \item M
+                ultiply a row by a non-zero scalar (scaling)
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/adamivrahim/githubrepo/MathWork/latex/notes.tex:98: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.98     \item
+               Add or subtract a multiple of one row to another row (replace...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/adamivrahim/githubrepo/MathWork/latex/notes.tex:98: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.98     \item A
+                dd or subtract a multiple of one row to another row (replace...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/adamivrahim/githubrepo/MathWork/latex/notes.tex:98: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.98     \item A
+                dd or subtract a multiple of one row to another row (replace...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/adamivrahim/githubrepo/MathWork/latex/notes.tex:98: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.98     \item A
+                dd or subtract a multiple of one row to another row (replace...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/adamivrahim/githubrepo/MathWork/latex/notes.tex:99: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.99 \end{itemize}
+                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/adamivrahim/githubrepo/MathWork/latex/notes.tex:99: LaTeX Error: Command \end{itemize} invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.99 \end{itemize}
+                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/adamivrahim/githubrepo/MathWork/latex/notes.tex:99: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.99 \end{itemize}
+                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+/home/adamivrahim/githubrepo/MathWork/latex/notes.tex:99: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.99 \end{itemize}
+                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+/home/adamivrahim/githubrepo/MathWork/latex/notes.tex:100: Missing $ inserted.
+<inserted text> 
+                $
+l.100 \par
+          {Matrix multiplication is multiplying two matrices (I know shocking)}
+I've inserted a begin-math/end-math symbol since I think
+you lef
