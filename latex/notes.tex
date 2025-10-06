@@ -16,10 +16,10 @@
 
 $$ Z=WX+b$$
 \par {Where Z is the neuron W is the weight matrix, X is the input vector, and b is the bias, for binary outputs eg (Right or Wrong) you use the sigmoid function to use as the activation function. ReLU is defined as}
-$$\sigma(x) = \frac{1}{1+e^{-x}}$$
-\par{Dont know if it's approximate or exact this is called the logistic function, sigmoid function etc... There's also the ReLU function or the Rectified Linear Unit}\\
-
 $$\text{ReLU}(x) = \begin{dcases}0 & x\leq0 \\ x & x > 0\end{dcases}$$
+\par{This is also the sigmoid function which you can use for activation. In the notes I'll be using it
+, but in practice I'll be using ReLU. Sigmoid is defined as}
+$$\sigma(x) = \frac{1}{1+e^{-x}}$$
 \par{There's the tanh function which is short for tan hyperbolic.}
 $$\tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}$$
 \par{Now this comes at the cost at computing 4 exponentials. ReLU seems to be the 
@@ -27,7 +27,7 @@ cheapest out of them all.}\\
 
 \par{ReLU seems to be the cheapest and seems to get the job done so I'll go with that. }
 \par{I wanted to know how to activate a neuron and with this I'll be using the sigmoid for the math but it doesn't matter that much}
-$$W = \begin{pmatrix}
+$$\mathbf{W} = \begin{pmatrix}
     w_{0,0} & w_{0,1} & \dots & w_{0,n} \\
     w_{1,0} & w_{1,1} & \dots & w_{1,n} \\
     \vdots  & \vdots & \ddots & \vdots \\
@@ -43,7 +43,28 @@ $$I = \begin{bmatrix}
 \end{bmatrix}$$
 \par{with these computing a vector matrix product should be relative ease with the matrix ops file having that method.
 Now I'll let another vector with the biases}
+$$
+B = \begin{bmatrix}
+    b_{1} \\
+    b_{2} \\
+    b_{3} \\
+    \vdots \\
+    b_{n}
+\end{bmatrix}
+$$
+\par{Now this is where the *magic* comes in the actual ML}
 
+$$a_0^{(1)}=\sigma(\mathbf{W}I+B)$$
+$$ a_0^{(1)} = \sigma(w_{0,0}a_{1} + w_{0,1}a_{2} + \dots + w_{0,n}a_{n} +b_{1})$$
+\par{this is for activating ONE neuron if we have hundreds of neurons in our hidden layers
+then it's going to redo this computation maybe thousands of times. Now we need a cost function or a boolean output}
+\\
+\par{This is going to be in the form of right and wrong and what is the correct answer is. So let $C(x)$ be our cost function}
+$$C(x) = (\text{ResultVector}_n - \text{AnswerVector}_n)^2$$
+\par{The result vector is the results you get from the output layer and the answervector should be what the output layer should be so it should look like
+a bunch of zeros then a 1 and the resultvector should look like a bunch of numbers from 0-1 ergo confidence in the output}
+\\
+\par{Large values in $C(x)$ is BAD it means that the NN doesn't know anything and it's garbage and we gotta get it low as possible.}
 \section{MatrixOps}
 \par{A matrix is a 2d array in cs or a 2d vector a matrix is denoted by uppercase letters so ``A'' is a matrix but ``a'' is not a matrix. You could also bold it to emphazise it but it's up to you.}
 $$\begin{pmatrix}

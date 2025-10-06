@@ -1,23 +1,5 @@
 public class numberTheory {
     /**
-     * Calculates the binomial coefficient "n choose r" (nCr).
-     * @param n the total number of items
-     * @param r the number of items to choose
-     * @return the binomial coefficient
-     */
-    public static double nCr(int n, int r){
-        if(r > n) return 0;
-        if(r == 0 || r == n) return 1;
-        r = Math.min(r, n - r); // Take advantage of symmetry
-        long numerator = 1;
-        long denominator = 1;
-        for(int i = 0; i < r; i++){
-            numerator *= (n - i);
-            denominator *= (i + 1);
-        }
-        return (double) numerator / denominator;
-    }
-    /**
      * Rounds a double value to a specified number of decimal places.
      * @param value the value to round
      * @param decimal the number of decimal places
@@ -26,6 +8,37 @@ public class numberTheory {
     private static double rounding(double value, int decimal){
         double scale = Math.pow(10, decimal);
         return Math.round(value * scale) / scale;
+    }
+    /**
+     * Calculates the factorial of a non-negative integer x (x!).
+     * @param x the integer to calculate the factorial for
+     * @return the factorial of x
+     */
+    public static long factorial(int x){
+        long result = 1;
+        for(int i = x; i > 0; i--){
+            result *=i;
+        }
+        return result;
+    }
+    
+    /**
+     * Calculates the binomial coefficient "n choose r" (nCr).
+     * @param n the total number of items
+     * @param r the number of items to choose
+     * @return the binomial coefficient
+     */
+    public static double nCr(int n, int r){
+        if (r < 0 || r > n) {
+            throw new IllegalArgumentException(ColorText.errorFormat("r must be between 0 and n (inclusive)"));
+        }
+        // Use a more stable approach to avoid overflow
+        double result = 1.0;
+        for (int i = 1; i <= r; i++) {
+            result *= (n - r + i);
+            result /= i;
+        }
+        return result;
     }
     /**
      * Calculates the binomial coefficient "n choose r" (nCr) and rounds the result to a specified number of decimal places.

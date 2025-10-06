@@ -1,3 +1,5 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 public class MLOps {
     
     /**
@@ -35,5 +37,26 @@ public class MLOps {
             }
         }
         return network;
+    }
+    /**
+     * Writes neural network structure and weights to a file.
+     * first line is structure of the network (e.g., 3,5,2 for a network with 3 input neurons, 5 hidden neurons, and 2 output neurons)
+     * or 3,5,5,2 for a network with 3 input neurons, 2 hidden layers of 5 neurons each, and 2 output neurons
+     * 
+     * this is a save function use the appropiate loading function to read the file back in
+     * @param network the neural network to write
+     * @param filename the name of the file to write to
+     */
+    public static void writeNeuralNetworkToFile(Neuron[][] network, String filename) {
+        
+    }
+
+    /**
+     * Loads a neural network from a file.
+     * @param filename the name of the file to read from
+     * @return the loaded neural network
+     */
+    public static Neuron[][] loadNeuralNetworkFromFile(String filename) {
+        
     }
 }

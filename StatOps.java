@@ -2,6 +2,28 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 public class StatOps {
+    private static final double epsilon = 1e-9;
+    private static final double bigEpsilon = 1e15;
+    /**
+     * Uses the defined epsilon for tolerance checking and rounds the input to avoid floating point errors
+     * @param input
+     * @return
+     */
+    private static double tolerance(double input){
+        double temp = (input*bigEpsilon);
+        temp = Math.round(temp);
+        return (double)temp/bigEpsilon;
+    }
+    /**
+     * Checks if two doubles are equal within a defined tolerance (epsilon).
+     * @param a first double
+     * @param b second double
+     * @return true if the numbers are considered equal, false otherwise
+     */
+    public static boolean isEqual(double a, double b) {
+        return Math.abs(a - b) < epsilon;
+    }
+
     /**
      * Calculates the mean of an array of doubles.
      * @param vector the array of doubles
@@ -22,6 +44,8 @@ public class StatOps {
         double sum = 0;
         for(int i = 0; i < array.length; i++){
             sum += array[i];
+            // check for floating point errors 
+            sum = tolerance(sum);
         }
         return sum;
     }
@@ -639,8 +663,6 @@ public class StatOps {
     }
 
 
-    // binomial distribution stuff
-    // should probably have the requirements and throw illegalarguments but eh
     /**
      * Calculates the binomial probability density function (PDF) for given parameters.
      * @param n number of trials (non-negative integer)
@@ -650,84 +672,92 @@ public class StatOps {
      * @return the probability of exactly x successes in n trials
      */
     public static double binomialPDF(int n, double p, int x){
-        double q = 1 - p;
-        return numberTheory.nCr(n, x) * Math.pow(p, x) * Math.pow(q, n - x);
-    }
-    public static double binomialPDF(int n, double p, int x, int decimal){
-        double q = 1 - p;
-        return rounding(numberTheory.nCr(n, x) * Math.pow(p, x) * Math.pow(q, n - x), decimal);
-    }
-    public static double binomialPDF(int n, double p, int[] x){
-        double q = 1 - p;
-        double total = 0;
-        for(int i = 0; i < x.length; i++){
-            total += numberTheory.nCr(n, x[i]) * Math.pow(p, x[i]) * Math.pow(q, n - x[i]);
-        }
-        return total;
-    }
-    public static double binomialPDF(int n, double p, int[] x, int decimal){
-        double q = 1 - p;
-        double total = 0;
-        for(int i = 0; i < x.length; i++){
-            total += numberTheory.nCr(n, x[i]) * Math.pow(p, x[i]) * Math.pow(q, n - x[i]);
-        }
-        return rounding(total, decimal);
+        double q = 1-p;
+        double result = numberTheory.nCr(n, x)*Math.pow(p,x)*Math.pow(q,n-x);
+        return tolerance(result);
     }
 
-    public static double[] binomialPDF(int n, double p, int[] x, boolean individual){
-        double q = 1 - p;
+    public static double binomialPDF(int n, double p, int x,int decimal){
+        return rounding(binomialPDF(n, p, x), decimal);
+    }
+    public static double binomialPDF(int n, double p, int[] x){
+        double total = 0;
+        for(int i = 0; i < x.length; i++){
+            total += binomialPDF(n, p, x[i]);
+        }
+        return tolerance(total);
+    }
+    public static double binomialPDF(int n, double p, int[] x,int decimal){
+        return rounding(binomialPDF(n, p, x), decimal);
+    }
+
+    public static double[] binomialPDF(int n, double p, int[] x,boolean individual){
         if(individual){
-            double[] probabilities = new double[x.length];
+            double[] results = new double[x.length];
             for(int i = 0; i < x.length; i++){
-                probabilities[i] = numberTheory.nCr(n, x[i]) * Math.pow(p, x[i]) * Math.pow(q, n - x[i]);
+                results[i] = tolerance(binomialPDF(n, p, x[i]));
             }
-            return probabilities;
+            return results;
         }else{
-            double total = 0;
-            for(int i = 0; i < x.length; i++){
-                total += numberTheory.nCr(n, x[i]) * Math.pow(p, x[i]) * Math.pow(q, n - x[i]);
-            }
-            return new double[]{total};
+            return new double[]{tolerance(binomialPDF(n, p, x))};
         }
     }
-    public static double[] binomialPDF(int n, double p, int[] x, boolean individual,int decimal){
-        double q = 1 - p;
+    
+    public static double[] binomialPDF(int n, double p, int[] x,boolean individual,int decimal){
         if(individual){
-            double[] probabilities = new double[x.length];
+            double[] results = new double[x.length];
             for(int i = 0; i < x.length; i++){
-                probabilities[i] = rounding(numberTheory.nCr(n, x[i]) * Math.pow(p, x[i]) * Math.pow(q, n - x[i]), decimal);
+                results[i] = rounding(tolerance(binomialPDF(n, p, x[i])), decimal);
             }
-            return probabilities;
+            return results;
         }else{
-            double total = 0;
-            for(int i = 0; i < x.length; i++){
-                total += numberTheory.nCr(n, x[i]) * Math.pow(p, x[i]) * Math.pow(q, n - x[i]);
-            }
-            return new double[]{rounding(total, decimal)};
+            return new double[]{rounding(tolerance(binomialPDF(n, p, x)), decimal)};
         }
     }
     /**
      * Calculates the binomial cumulative distribution function (CDF) for given parameters.
      * @param n number of trials (non-negative integer)
      * @param p probability for success on each trial (0 <= p <= 1)
-     * @param x the upper limit of successes (0 <= x <= n)
-     * @param decimal number of decimal places to round the result to
+     * @param x number of successes (0 <= x <= n)
      * @return the cumulative probability of up to x successes in n trials
      */
     public static double binomialCDF(int n, double p, int x){
         double total = 0;
         for(int i = 0; i <= x; i++){
-            total += binomialPDF(n, p, i);
+            total += tolerance(binomialPDF(n, p, i));
         }
         return total;
     }
 
-    public static double binomialCDF(int n, double p, int x, int decimal){
-        double total = 0;
-        for(int i = 0; i <= x; i++){
-            total += binomialPDF(n, p, i);
+    public static double binomialCDF(int n, double p, int x,int decimal){
+        return rounding(binomialCDF(n, p, x), decimal);
+    }
+
+    public static double binomialCDF(int n, double p, int x,boolean greaterThan){
+        if(greaterThan){
+            return tolerance(1-binomialCDF(n, p, x));
+        }else{
+            return tolerance(binomialCDF(n, p, x));
         }
-        return rounding(total, decimal);
     }
     
+    public static double binomialCDF(int n, double p, int x,boolean greaterThan,boolean atmost){
+        if(greaterThan){
+            return tolerance(1-binomialCDF(n, p, x));
+        }
+        return tolerance(binomialCDF(n, p, x));
+    }
+    
+    public static double binomialCDF(int n, double p, int x,boolean greaterThan,boolean atmost,int decimal){
+        return rounding(binomialCDF(n, p, x, greaterThan, atmost), decimal);
+    }
+
+
+    public static double binomialCDF(int n, double p, int x,boolean greaterThan,int decimal){
+        return rounding(binomialCDF(n, p, x, greaterThan), decimal);
+    }
+
+
+    
 }
+

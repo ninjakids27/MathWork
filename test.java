@@ -1,6 +1,7 @@
 class test{
+  // not an actual test file just a sandbox to test code snippets
   public static void main(String[] args){
-    Neuron[] a  = new Neuron[5];
-    
+      Neuron[][] network = MLOps.buildNeuralNetwork(new int[]{3,5,2});
+
   }
 }
