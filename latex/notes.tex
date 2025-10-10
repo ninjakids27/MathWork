@@ -60,7 +60,7 @@ $$ a_0^{(1)} = \sigma(w_{0,0}a_{1} + w_{0,1}a_{2} + \dots + w_{0,n}a_{n} +b_{1})
 then it's going to redo this computation maybe thousands of times. Now we need a cost function or a boolean output}
 \\
 \par{This is going to be in the form of right and wrong and what is the correct answer is. So let $C(x)$ be our cost function}
-$$C(x) = (\text{ResultVector}_n - \text{AnswerVector}_n)^2$$
+$$C(x) = \Sigma(\text{ResultVector}_n - \text{AnswerVector}_n)^2$$
 \par{The result vector is the results you get from the output layer and the answervector should be what the output layer should be so it should look like
 a bunch of zeros then a 1 and the resultvector should look like a bunch of numbers from 0-1 ergo confidence in the output}
 \\

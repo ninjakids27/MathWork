@@ -728,11 +728,26 @@ public class StatOps {
         }
         return total;
     }
-
+    /**
+     * Calculates the binomial cumulative distribution function (CDF) for given parameters.
+     * @param n number of trials (non-negative integer)
+     * @param p probability for success on each trial (0 <= p <= 1)
+     * @param x number of successes (0 <= x <= n)
+     * @param decimal number of decimal places to round to
+     * @return the cumulative probability of up to x successes in n trials
+     */
     public static double binomialCDF(int n, double p, int x,int decimal){
         return rounding(binomialCDF(n, p, x), decimal);
     }
-
+    /**
+     * Calculates the binomial cumulative distribution function (CDF) for given parameters with options for greater than and at most.
+     * @param n number of trials (non-negative integer)
+     * @param p probability for success on each trial (0 <= p <= 1)
+     * @param x number of successes (0 <= x <= n)
+     * @param greaterThan if true, calculates the probability of more than x successes; if false, calculates the probability of up to x successes
+     * @param atmost if true, calculates the probability of at most x successes; if false, calculates the probability of exactly x successes
+     * @return the calculated probability based on the specified conditions
+     */
     public static double binomialCDF(int n, double p, int x,boolean greaterThan){
         if(greaterThan){
             return tolerance(1-binomialCDF(n, p, x));
@@ -740,24 +755,59 @@ public class StatOps {
             return tolerance(binomialCDF(n, p, x));
         }
     }
-    
+    /**
+     * Calculates the binomial cumulative distribution function (CDF) for given parameters with options for greater than and at most, with rounding.
+     * @param n number of trials (non-negative integer)
+     * @param p probability for success on each trial (0 <= p <= 1)
+     * @param x number of successes (0 <= x <= n)
+     * @param greaterThan if true, calculates the probability of more than x successes; if false, calculates the probability of up to x successes
+     * @param atmost if true, calculates the probability of at most x successes; if false, calculates the probability of exactly x successes
+     * @param decimal number of decimal places to round to
+     * @return the calculated probability based on the specified conditions, rounded to the specified number of decimal places
+     */
     public static double binomialCDF(int n, double p, int x,boolean greaterThan,boolean atmost){
         if(greaterThan){
             return tolerance(1-binomialCDF(n, p, x));
         }
         return tolerance(binomialCDF(n, p, x));
     }
-    
+    /**
+     * Calculates the binomial cumulative distribution function (CDF) for given parameters with an option for greater than, with rounding.
+     * @param n number of trials (non-negative integer)
+     * @param p probability for success on each trial (0 <= p <= 1)
+     * @param x number of successes (0 <= x <= n)
+     * @param greaterThan if true, calculates the probability of more than x successes; if false, calculates the probability of up to x successes
+     * @param decimal number of decimal places to round to
+     * @return the calculated probability based on the specified condition, rounded to the specified number of decimal places
+     */
     public static double binomialCDF(int n, double p, int x,boolean greaterThan,boolean atmost,int decimal){
         return rounding(binomialCDF(n, p, x, greaterThan, atmost), decimal);
     }
 
-
+    /**
+     * Calculates the binomial cumulative distribution function (CDF) for given parameters with an option for greater than, with rounding.
+     * @param n number of trials (non-negative integer)
+     * @param p probability for success on each trial (0 <= p <= 1)
+     * @param x number of successes (0 <= x <= n)
+     * @param greaterThan if true, calculates the probability of more than x successes; if false, calculates the probability of up to x successes
+     * @param decimal number of decimal places to round to
+     * @return the calculated probability based on the specified condition, rounded to the specified number of decimal places
+     */
     public static double binomialCDF(int n, double p, int x,boolean greaterThan,int decimal){
         return rounding(binomialCDF(n, p, x, greaterThan), decimal);
     }
 
-
-    
+    /**
+     * ln(vector) ;)
+     * @param vector double[] type
+     * @return  double of log
+     */
+    public static double[] vectorLog(double[] vector){
+        double temp[] = new double[vector.length];
+        for(int i = 0; i<vector.length;i++){
+            temp[i] = Math.log(vector[i]);
+        }
+        return temp;
+    }
 }
 

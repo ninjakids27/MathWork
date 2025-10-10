@@ -126,5 +126,26 @@ public class RegressionFunctions {
         System.out.println("MLR took: " + String.format("%.9f",MatrixOps.nanoToSeconds(duration)) + " seconds");
         return coefficients;
     }
+
+    /**
+     * Performs power regression by transforming the input x and y values using logarithms
+     * and then applying linear regression to find the coefficients.
+     * @param x the input x values
+     * @param y the output y values
+     * @return the coefficients of the power regression
+     */
+    public static double[] powerRegression(double[] x, double[] y){
+        double[] logX = StatOps.vectorLog(x);
+        double[] logY = StatOps.vectorLog(y);
+        double[] coefficients = linearRegression(logX, logY);
+        coefficients[1] = Math.exp(coefficients[1]);
+        return coefficients;
+    }
+
+    public static void stdPowerRegression(double[] x, double[] y){
+        double[] coefficients = powerRegression(x, y);
+        // print it in a format y = ax^b
+        System.out.println("y = "+coefficients[1]+"x^"+coefficients[0]);
+    }
 }
         
