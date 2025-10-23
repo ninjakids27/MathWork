@@ -1,9 +1,14 @@
-class test{
-  // not an actual test file just a sandbox to test code snippets
+// this is a sandbox where I test stuff. Not actual test cases
+public class test{
   public static void main(String[] args){
-      double[] x = {0.14,0.26,0.64,0.765,0.89};
-      double[] y = {0.31,0.4,0.69,0.74,0.8};
-      RegressionFunctions.stdPowerRegression(x,y);
-      MatrixOps.Print_Vector(RegressionFunctions.powerRegression(x,y));
+    int[] a = {5,4,2,2,3};
+    Neuron[][] temp = MLOps.buildNeuralNetwork(a);
+    double[] weights = {69 ,0.0 ,0.0 ,0.0, 0.0};
+    temp[1][0].setWeights(weights);
+    MLOps.saveNN(temp, "NN.ser");
+
+
+    Neuron[][] loadpls = MLOps.loadNN("NN.ser");
+    MatrixOps.Print_Vector(loadpls[0][0].getWeights());
   }
 }

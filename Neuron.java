@@ -3,7 +3,7 @@
  * It contains weights and a bias, and provides methods to get and set these values.
  */
 
-public class Neuron {
+public class Neuron implements java.io.Serializable {
     private double[] weights;
     private double bias;
     /**
