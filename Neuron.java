@@ -71,8 +71,14 @@ public class Neuron implements java.io.Serializable {
         }
         System.out.println("\nBias: " + bias);
     }
-
-
+    /**
+     * Computes the activation of the neuron given an array of inputs. using ReLU activation function.
+     * @param inputs
+     * @return
+     */
+    public double activation(double[] inputs){
+        return MLOps.reLU(MatrixOps.dot_product(weights, inputs)+bias);
+    }
 
 
 }
