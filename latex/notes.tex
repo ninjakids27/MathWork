@@ -65,6 +65,24 @@ $$C(x) = \Sigma(\text{ResultVector}_n - \text{AnswerVector}_n)^2$$
 a bunch of zeros then a 1 and the resultvector should look like a bunch of numbers from 0-1 ergo confidence in the output}
 \\
 \par{Large values in $C(x)$ is BAD it means that the NN doesn't know anything and it's garbage and we gotta get it low as possible.}
+\\
+\par{A big thing to know about is the weights initilization,
+because how you setup the weights is critical for the execuation of the neural network. We first define the std deviation of the function to be He initilization}
+$$\sigma = \sqrt{\frac{2}{n_\text{in}}}$$
+\par{And we would do this on a gauss distrubution}
+$$f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}$$
+$$\text{Where } \mu = 0$$
+\par{Now what we do is that we square the std deviation of He initlization.
+We can reduce computation by removing the square root of calculating our std deviation.
+Which can help us in the future for floating point precision or some shit.}
+$$\sigma = \frac{2}{n_\text{in}}$$
+\par{Now we can directly substituite it in the normal distrubution}
+$$\mathcal{N}(0,\sigma)$$
+$$\text{Traditional } \mathcal{N}(0,\sigma^2)$$
+\par{There's another way to do this and thats with He Uniform where we draw it from a uniform distrubution.}
+$$U(-L,L)$$
+$$\text{Where }L = \sqrt{\frac{6}{n_\text{in}}}$$
+\par{Now there's questions on what a uniform distrubution is}
 \section{MatrixOps}
 \par{A matrix is a 2d array in cs or a 2d vector a matrix is denoted by uppercase letters so ``A'' is a matrix but ``a'' is not a matrix. You could also bold it to emphazise it but it's up to you.}
 $$\begin{pmatrix}
