@@ -1,6 +1,62 @@
 import java.io.*;
 public class MLOps {
-    
+    /**
+     * Reads a CSV file and returns the values as a double array. in the format as listed in the readme
+     * @param filename
+     * @return
+     */
+    public static double[] readCSV(String filename){
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(filename));
+            String line;
+            line = br.readLine();
+            String[] stringValues = line.split(",");
+            double[] values = new double[stringValues.length];
+            for (int i = 0; i < stringValues.length; i++) {
+                values[i] = Double.parseDouble(stringValues[i]);
+            }
+            br.close();
+            return values;
+        } catch (Exception e) {
+            System.out.println("IOException return is garbage");
+            return new double[0];
+        }
+    }
+
+    /**
+     * 
+     * @param network
+     * @param input
+     * @return
+     */
+    public static double[] forwardPropagation(Neuron[][] network, double[] input) {
+        double[][] inputLayer = new double[network.length][];
+        inputLayer[0] = input;
+        for(int layer = 1; layer < network.length; layer++) {
+            inputLayer[layer] = new double[network[layer].length];
+            for(int neuron = 0; neuron < network[layer].length; neuron++){
+                inputLayer[layer][neuron] = network[layer][neuron].activation(inputLayer[layer-1]);    
+            }
+        }
+        return inputLayer[inputLayer.length - 1];
+    }
+
+    /**
+     * Mean Squared Error Cost Function
+     * @param output the output from the neural network
+     * @param ans the expected output
+     * @return the mean squared error
+     */
+    public static double costFunction(double[] output, double[] ans){
+        if(output.length != ans.length){
+            throw new IllegalArgumentException(ColorText.errorFormat("Output and answer arrays must be of the same length."));
+        }
+        double sum = 0.0;
+        for(int i = 0; i < output.length; i++){
+            sum += Math.pow(output[i] - ans[i], 2);
+        }
+        return sum / output.length;
+    }
     /**
      * ReLU activation function (see notes for specifics)
      * @param x input value
@@ -37,6 +93,7 @@ public class MLOps {
 
     /**
      * Build the neural network
+     * The structure is that the rows are layers and the columns are neurons in that layer 
      * @param layerSizes array of layer sizes
      * @return 2D array of Neurons representing the network
      * @throws IllegalArgumentException if layerSizes has less than 2 layers
