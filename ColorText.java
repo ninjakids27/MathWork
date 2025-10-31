@@ -43,4 +43,7 @@ public class ColorText {
     public static String returnFormat(String a){
         return UNDERLINE+BOLD+GREEN+a+RESET;
     }
+    public static String dataFormat(String a){
+        return UNDERLINE+BOLD+CYAN+a+RESET;
+    }
 }
