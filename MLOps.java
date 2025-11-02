@@ -139,6 +139,13 @@ public class MLOps {
     }
 
     /**
+     * This uses He initilization which is best suited for ReLU
+     * @param NN
+     */
+    public static void initilizeWeights(Neuron[][] NN){
+
+    }
+    /**
      * Loads a neural network from a file.
      * @param filename the name of the file to read from
      * @return the loaded neural network
