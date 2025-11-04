@@ -836,5 +836,90 @@ public class MatrixOps {
         }
         return inverse_Matrix;
     }
+    // x vector returns y vector where y1 = x1^factor
+    /**
+     * Raises each element in the input vector to the specified power.
+     * @param vector the data vector
+     * @param factor the power to raise each element to
+     * @return the transformed vector
+     */
+    public static double[] vectorPow(double[] vector, double factor){
+        for(int i = 0; i<vector.length; i++){
+            vector[i] = Math.pow(vector[i], factor);
+        }
+        return vector;
+    }
+    
+    /**
+     * Adds a specified factor to each element in the input vector.
+     * @param vector the data vector
+     * @param factor the factor to add to each element
+     * @return the transformed vector
+     */
+    public static double[] vectorAdd(double[] vector, double factor){
+        for(int i = 0; i<vector.length; i++){
+            vector[i] += factor;
+        }
+        return vector;
+    }
 
+    /**
+     * ln(vector) ;)
+     * @param vector double[] type
+     * @return  double of log
+     */
+    public static double[] vectorLog(double[] vector){
+        double temp[] = new double[vector.length];
+        for(int i = 0; i<vector.length;i++){
+            temp[i] = Math.log(vector[i]);
+        }
+        return temp;
+    }
+
+    /**
+     * Multiplies each element in the input vector by the specified factor.
+     * @param vector the data vector
+     * @param factor the factor to multiply each element by
+     * @return the transformed vector
+     */
+    public static double[] vectorMult(double[] vector, double factor){
+        for(int i = 0; i<vector.length; i++){
+            vector[i] *= factor;
+        }
+        return vector;
+    }
+
+
+    // imagine a vector x and y basically it represents vector z as z1 = x1*y1 and so on
+    /**
+     * Calculates the element-wise product of two vectors.
+     * @param vector1 the first data vector
+     * @param vector2 the second data vector
+     * @return the element-wise product as a new vector
+     */
+    public static double[] vectorProduct(double[] vector1, double[] vector2){
+        double[] tempVector = new double[vector1.length];
+        if(vector1.length != vector2.length){
+            throw new IllegalArgumentException(ColorText.errorFormat("Fucked up lengths"));
+        }
+        for(int i = 0; i<vector1.length; i++){
+            tempVector[i] = vector1[i]*vector2[i];
+        }
+        return tempVector;
+    }
+
+
+    /**
+     * Rounds each element in the input vector to the specified number of decimal places.
+     * @param num the input vector
+     * @param decimal the number of decimal places to round to
+     * @return the rounded vector
+     */
+    public static double[] roundingVector(double[] num, int decimal){
+        double[] roundedVector = new double[num.length];
+            for(int i = 0; i < num.length; i++){
+                roundedVector[i] = rounding(num[i],decimal);
+            }
+            return roundedVector;
+    }
     }   

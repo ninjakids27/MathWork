@@ -7,9 +7,9 @@ public class RegressionFunctions {
     public static void stdLinearRegression(double[] xValues, double[] yValues){
        int n = xValues.length;
         double[] xValuesCopy = xValues.clone();
-        double m = (n*StatOps.sum(StatOps.vectorProduct(xValues, yValues))-StatOps.sum(xValues)*StatOps.sum(yValues))
+        double m = (n*StatOps.sum(MatrixOps.vectorProduct(xValues, yValues))-StatOps.sum(xValues)*StatOps.sum(yValues))
                     /
-                    (n*StatOps.sum(StatOps.vectorPow(xValuesCopy, 2))-Math.pow((StatOps.sum(xValues)),2));
+                    (n*StatOps.sum(MatrixOps.vectorPow(xValuesCopy, 2))-Math.pow((StatOps.sum(xValues)),2));
                     
                     
         double b = (StatOps.sum(yValues)-m*StatOps.sum(xValues))/n;
@@ -19,9 +19,9 @@ public class RegressionFunctions {
     public static double[] linearRegression(double[] xValues, double[] yValues,boolean onlyLinear){
        int n = xValues.length;
         double[] xValuesCopy = xValues.clone();
-        double m = (n*StatOps.sum(StatOps.vectorProduct(xValues, yValues))-StatOps.sum(xValues)*StatOps.sum(yValues))
+        double m = (n*StatOps.sum(MatrixOps.vectorProduct(xValues, yValues))-StatOps.sum(xValues)*StatOps.sum(yValues))
                     /
-                    (n*StatOps.sum(StatOps.vectorPow(xValuesCopy, 2))-Math.pow((StatOps.sum(xValues)),2));
+                    (n*StatOps.sum(MatrixOps.vectorPow(xValuesCopy, 2))-Math.pow((StatOps.sum(xValues)),2));
                     
         if(!onlyLinear){
             double b = (StatOps.sum(yValues)-m*StatOps.sum(xValues))/n;
@@ -42,9 +42,9 @@ public class RegressionFunctions {
     public static double[] linearRegression(double[] xValues, double[] yValues){
        int n = xValues.length;
         double[] xValuesCopy = xValues.clone();
-        double m = (n*StatOps.sum(StatOps.vectorProduct(xValues, yValues))-StatOps.sum(xValues)*StatOps.sum(yValues))
+        double m = (n*StatOps.sum(MatrixOps.vectorProduct(xValues, yValues))-StatOps.sum(xValues)*StatOps.sum(yValues))
                     /
-                    (n*StatOps.sum(StatOps.vectorPow(xValuesCopy, 2))-Math.pow((StatOps.sum(xValues)),2));
+                    (n*StatOps.sum(MatrixOps.vectorPow(xValuesCopy, 2))-Math.pow((StatOps.sum(xValues)),2));
                     
                     
         double b = (StatOps.sum(yValues)-m*StatOps.sum(xValues))/n;
@@ -135,8 +135,8 @@ public class RegressionFunctions {
      * @return the coefficients of the power regression
      */
     public static double[] powerRegression(double[] x, double[] y){
-        double[] logX = StatOps.vectorLog(x);
-        double[] logY = StatOps.vectorLog(y);
+        double[] logX = MatrixOps.vectorLog(x);
+        double[] logY = MatrixOps.vectorLog(y);
         double[] coefficients = linearRegression(logX, logY);
         coefficients[1] = Math.exp(coefficients[1]);
         return coefficients;

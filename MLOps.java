@@ -5,15 +5,20 @@ public class MLOps {
      * @param filename
      * @return
      */
-    public static double[] readCSV(String filename){
+    public static double[] readCSV(String filename, int bob){
         try {
             BufferedReader br = new BufferedReader(new FileReader(filename));
+            int lineNum = 1;
             String line;
-            line = br.readLine();
-            String[] stringValues = line.split(",");
-            double[] values = new double[stringValues.length];
-            for (int i = 0; i < stringValues.length; i++) {
-                values[i] = Double.parseDouble(stringValues[i]);
+            double[] values = new double[785];
+            while((line = br.readLine()) != null){
+                if(lineNum == bob){
+                    String[] stringValues = line.split(",");
+                    for (int i = 0; i < stringValues.length; i++) {
+                        values[i] = Double.parseDouble(stringValues[i]);
+                    }
+                }
+                lineNum++;
             }
             br.close();
             return values;

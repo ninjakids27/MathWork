@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 public class StatOps {
+    
     private static final double epsilon = 1e-9;
     private static final double bigEpsilon = 1e15;
     /**
@@ -119,18 +120,7 @@ public class StatOps {
         }
     }
 
-    /**
-     * Adds a specified factor to each element in the input vector.
-     * @param vector the data vector
-     * @param factor the factor to add to each element
-     * @return the transformed vector
-     */
-    public static double[] vectorAdd(double[] vector, double factor){
-        for(int i = 0; i<vector.length; i++){
-            vector[i] += factor;
-        }
-        return vector;
-    }
+    
     /**
      * Generates a random integer between the specified low and high bounds (inclusive).
      * @param lowBound the lower bound (inclusive)
@@ -156,50 +146,11 @@ public class StatOps {
         }
         return tempVector;
     }
-    /**
-     * Multiplies each element in the input vector by the specified factor.
-     * @param vector the data vector
-     * @param factor the factor to multiply each element by
-     * @return the transformed vector
-     */
-    public static double[] vectorMult(double[] vector, double factor){
-        for(int i = 0; i<vector.length; i++){
-            vector[i] *= factor;
-        }
-        return vector;
-    }
+    
 
-    // x vector returns y vector where y1 = x1^factor
-    /**
-     * Raises each element in the input vector to the specified power.
-     * @param vector the data vector
-     * @param factor the power to raise each element to
-     * @return the transformed vector
-     */
-    public static double[] vectorPow(double[] vector, double factor){
-        for(int i = 0; i<vector.length; i++){
-            vector[i] = Math.pow(vector[i], factor);
-        }
-        return vector;
-    }
+    
 
-    // imagine a vector x and y basically it represents vector z as z1 = x1*y1 and so on
-    /**
-     * Calculates the element-wise product of two vectors.
-     * @param vector1 the first data vector
-     * @param vector2 the second data vector
-     * @return the element-wise product as a new vector
-     */
-    public static double[] vectorProduct(double[] vector1, double[] vector2){
-        double[] tempVector = new double[vector1.length];
-        if(vector1.length != vector2.length){
-            throw new IllegalArgumentException(ColorText.errorFormat("Fucked up lengths"));
-        }
-        for(int i = 0; i<vector1.length; i++){
-            tempVector[i] = vector1[i]*vector2[i];
-        }
-        return tempVector;
-    }
+    
     /**
      * Finds the indexes of the maximum value(s) in the given vector.
      * @param vector the data vector (int or double type array is fine)
@@ -391,19 +342,7 @@ public class StatOps {
         return Math.round(Math.pow(10, decimal)*num)/Math.pow(10, decimal);
     }
     
-    /**
-     * Rounds each element in the input vector to the specified number of decimal places.
-     * @param num the input vector
-     * @param decimal the number of decimal places to round to
-     * @return the rounded vector
-     */
-    public static double[] roundingVector(double[] num, int decimal){
-        double[] roundedVector = new double[num.length];
-            for(int i = 0; i < num.length; i++){
-                roundedVector[i] = rounding(num[i],decimal);
-            }
-            return roundedVector;
-    }
+    
 
     /**
      * Detects and prints outliers in the given vector using the 1.5*IQR rule.
@@ -430,8 +369,8 @@ public class StatOps {
 
     public static double stdDeviation(double[] vector){
         double mean = mean(vector);
-        vector = vectorAdd(Arrays.copyOf(vector, vector.length), -mean);
-        vector = vectorPow(vector, 2);
+        vector = MatrixOps.vectorAdd(Arrays.copyOf(vector, vector.length), -mean);
+        vector = MatrixOps.vectorPow(vector, 2);
         double val = sum(vector);
         return Math.sqrt(val/(vector.length));
     }
@@ -439,8 +378,8 @@ public class StatOps {
 
     public static double stdDeviation(double[] vector,int decimal){
         double mean = mean(vector);
-        vector = vectorAdd(Arrays.copyOf(vector, vector.length), -mean);
-        vector = vectorPow(vector, 2);
+        vector = MatrixOps.vectorAdd(Arrays.copyOf(vector, vector.length), -mean);
+        vector = MatrixOps.vectorPow(vector, 2);
         double val = sum(vector);
         return rounding(Math.sqrt(val/(vector.length)),decimal);
     }
@@ -448,8 +387,8 @@ public class StatOps {
 
     public static double samDeviation(double[] vector){
         double mean = mean(vector);
-        vector = vectorAdd(Arrays.copyOf(vector, vector.length), -mean);
-        vector = vectorPow(vector, 2);
+        vector = MatrixOps.vectorAdd(Arrays.copyOf(vector, vector.length), -mean);
+        vector = MatrixOps.vectorPow(vector, 2);
         double val = sum(vector);
         return Math.sqrt(val/(vector.length-1));
     }
@@ -457,8 +396,8 @@ public class StatOps {
 
     public static double samDeviation(double[] vector,int decimal){
         double mean = mean(vector);
-        vector = vectorAdd(Arrays.copyOf(vector, vector.length), -mean);
-        vector = vectorPow(vector, 2);
+        vector = MatrixOps.vectorAdd(Arrays.copyOf(vector, vector.length), -mean);
+        vector = MatrixOps.vectorPow(vector, 2);
         double val = sum(vector);
         return rounding(Math.sqrt(val/(vector.length-1)), decimal);
     }
@@ -466,8 +405,8 @@ public class StatOps {
 
     public static double samVariance(double[] vector){
         double mean = mean(vector);
-        vector = vectorAdd(Arrays.copyOf(vector, vector.length), -mean);
-        vector = vectorPow(vector, 2);
+        vector = MatrixOps.vectorAdd(Arrays.copyOf(vector, vector.length), -mean);
+        vector = MatrixOps.vectorPow(vector, 2);
         double val = sum(vector);
         return val/(vector.length-1);
         
@@ -476,8 +415,8 @@ public class StatOps {
 
     public static double popVariance(double[] vector){
         double mean = mean(vector);
-        vector = vectorAdd(Arrays.copyOf(vector, vector.length), -mean);
-        vector = vectorPow(vector, 2);
+        vector = MatrixOps.vectorAdd(Arrays.copyOf(vector, vector.length), -mean);
+        vector = MatrixOps.vectorPow(vector, 2);
         double val = sum(vector);
         return val/(vector.length);
         
@@ -486,8 +425,8 @@ public class StatOps {
 
     public static double popVariance(double[] vector, int decimal){
         double mean = mean(vector);
-        vector = vectorAdd(Arrays.copyOf(vector, vector.length), -mean);
-        vector = vectorPow(vector, 2);
+        vector = MatrixOps.vectorAdd(Arrays.copyOf(vector, vector.length), -mean);
+        vector = MatrixOps.vectorPow(vector, 2);
         double val = sum(vector);
         return rounding(val/(vector.length), decimal);
         
@@ -572,7 +511,7 @@ public class StatOps {
         System.out.println("Median: "+median(vector));
         System.out.println("Mode: "+mode(vector));
         System.out.println("Sum: "+sum(vector));
-        System.out.println("Sum^2: "+vectorPow(vector, 2));
+        System.out.println("Sum^2: "+MatrixOps.vectorPow(vector, 2));
         System.out.println("Sam deviation: "+samDeviation(vector));
         System.out.println("Std Deviation: "+stdDeviation(vector));
         System.out.println("Length: "+vector.length);
@@ -591,8 +530,8 @@ public class StatOps {
             throw new IllegalArgumentException(ColorText.errorFormat("Probabilities do not sum to 1"));
         }
         double mean = mean_of_probability_distribution(x, p);
-        double[] x_minus_mean = vectorAdd(Arrays.copyOf(x, x.length), -mean);
-        double[] x_minus_mean_squared = vectorPow(x_minus_mean, 2);
+        double[] x_minus_mean = MatrixOps.vectorAdd(Arrays.copyOf(x, x.length), -mean);
+        double[] x_minus_mean_squared = MatrixOps.vectorPow(x_minus_mean, 2);
         return weighted_mean(x_minus_mean_squared, p,false);
     }
     
@@ -605,7 +544,7 @@ public class StatOps {
         System.out.println("Mean: "+rounding(mean(vector),decimal));
         System.out.println("Median: "+rounding(median(vector),decimal));
         System.out.print("Mode: ");
-        MatrixOps.Print_Vector(roundingVector(mode(vector),decimal));
+        MatrixOps.Print_Vector(MatrixOps.roundingVector(mode(vector),decimal));
     }
     public static double mean_of_probability_distribution(double[] x, double[] p,int decimal){
         if(sum(p) != 1){
@@ -626,8 +565,8 @@ public class StatOps {
             throw new IllegalArgumentException(ColorText.errorFormat("Probabilities do not sum to 1"));
         }
         double mean = mean_of_probability_distribution(x, p);
-        double[] x_minus_mean = vectorAdd(Arrays.copyOf(x, x.length), -mean);
-        double[] x_minus_mean_squared = vectorPow(x_minus_mean, 2);
+        double[] x_minus_mean = MatrixOps.vectorAdd(Arrays.copyOf(x, x.length), -mean);
+        double[] x_minus_mean_squared = MatrixOps.vectorPow(x_minus_mean, 2);
         return rounding(weighted_mean(x_minus_mean_squared, p,false), decimal);
     }
     /**
@@ -797,17 +736,10 @@ public class StatOps {
         return rounding(binomialCDF(n, p, x, greaterThan), decimal);
     }
 
-    /**
-     * ln(vector) ;)
-     * @param vector double[] type
-     * @return  double of log
-     */
-    public static double[] vectorLog(double[] vector){
-        double temp[] = new double[vector.length];
-        for(int i = 0; i<vector.length;i++){
-            temp[i] = Math.log(vector[i]);
-        }
-        return temp;
+    
+
+    public static double normalDistrubution(double mean, double stdDeviation, double x){
+        return (1)/(stdDeviation*Math.sqrt(2*Math.PI)*Math.exp(.5*Math.pow((x-mean)/stdDeviation,2)));
     }
 }
 
