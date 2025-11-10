@@ -5,52 +5,31 @@ public class RegressionFunctions {
      * @param yValues the output y values
      */
     public static void stdLinearRegression(double[] xValues, double[] yValues){
-       int n = xValues.length;
-        double[] xValuesCopy = xValues.clone();
-        double m = (n*StatOps.sum(MatrixOps.vectorProduct(xValues, yValues))-StatOps.sum(xValues)*StatOps.sum(yValues))
-                    /
-                    (n*StatOps.sum(MatrixOps.vectorPow(xValuesCopy, 2))-Math.pow((StatOps.sum(xValues)),2));
-                    
-                    
-        double b = (StatOps.sum(yValues)-m*StatOps.sum(xValues))/n;
-        System.out.println("y="+m+"x+"+b);
+       // prints it out
+        double[] coefficients = linearRegression(xValues, yValues);
+        System.out.println("y = "+coefficients[0]+"x + "+coefficients[1]);
     }
     
-    public static double[] linearRegression(double[] xValues, double[] yValues,boolean onlyLinear){
-       int n = xValues.length;
-        double[] xValuesCopy = xValues.clone();
-        double m = (n*StatOps.sum(MatrixOps.vectorProduct(xValues, yValues))-StatOps.sum(xValues)*StatOps.sum(yValues))
-                    /
-                    (n*StatOps.sum(MatrixOps.vectorPow(xValuesCopy, 2))-Math.pow((StatOps.sum(xValues)),2));
-                    
-        if(!onlyLinear){
-            double b = (StatOps.sum(yValues)-m*StatOps.sum(xValues))/n;
-            double[] a = {m,b};
-            return a;
-        }
-
-        double[] a = {m};
-        return a;
-    }
     /**
-     * Performs linear regression on the given x and y values. It uses the formula instead of actual linear algebra
+     * Performs linear regression on the given x and y values using the general MLR routine to ensure consistent handling
+     * of the intercept and numerical stability; returns coefficients in order {slope, intercept}.
      * @param xValues the input x values
      * @param yValues the output y values
-     * @param onlyLinear if true, only returns the slope (m), if false returns both slope (m) and intercept (b) (returns array of size 1 or 2)
-     * @return the coefficients of the linear regression (slope and intercept)
+     * @param onlyLinear if true, only returns the slope (m), if false returns both slope (m) and intercept (b)
+     * @return the coefficients of the linear regression (slope and optionally intercept)
      */
     public static double[] linearRegression(double[] xValues, double[] yValues){
-       int n = xValues.length;
-        double[] xValuesCopy = xValues.clone();
-        double m = (n*StatOps.sum(MatrixOps.vectorProduct(xValues, yValues))-StatOps.sum(xValues)*StatOps.sum(yValues))
-                    /
-                    (n*StatOps.sum(MatrixOps.vectorPow(xValuesCopy, 2))-Math.pow((StatOps.sum(xValues)),2));
-                    
-                    
-        double b = (StatOps.sum(yValues)-m*StatOps.sum(xValues))/n;
-        
-        double[] a = {m,b};
-        return a;
+        // Build a single-column design matrix (no intercept column) so MLR will add the intercept itself.
+        int n = xValues.length;
+        double[][] xMatrix = new double[n][1];
+        for (int i = 0; i < n; i++) {
+            xMatrix[i][0] = xValues[i];
+        }
+        // MLR returns coefficients in the order [intercept, slope]
+        double[] mlrCoeffs = MLR(xMatrix, yValues);
+        double intercept = mlrCoeffs.length > 0 ? mlrCoeffs[0] : 0.0;
+        double slope = mlrCoeffs.length > 1 ? mlrCoeffs[1] : 0.0;
+        return new double[]{slope, intercept};
     }
     public static double[] MLR(double[][] xValues, double[] yValues){
         // Add a column of ones to xValues for the intercept term
