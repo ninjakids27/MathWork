@@ -755,7 +755,6 @@ public class MatrixOps {
         if(Matrix.length != Matrix[0].length){
             throw new IllegalArgumentException(ColorText.errorFormat("Not a square matrix"));
         }
-        // big booty bitches ;)
         if(determinant(Matrix) == 0){
             throw new IllegalArgumentException(ColorText.errorFormat("Determinent is zero"));
         }
