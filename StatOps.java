@@ -741,5 +741,13 @@ public class StatOps {
     public static double normalDistrubution(double mean, double stdDeviation, double x){
         return (1)/(stdDeviation*Math.sqrt(2*Math.PI)*Math.exp(.5*Math.pow((x-mean)/stdDeviation,2)));
     }
+
+    public static double sampleNormalDistrubution(double mean, double stdDeviation){
+        return normalDistrubution(mean, stdDeviation, Math.random());
+    }
+
+    public static double box_Muller_Transfrom(){
+        
+    }
 }
 
