@@ -5,17 +5,17 @@ public class MLOps {
      * @param filename
      * @return
      */
-    public static double[] readCSV(String filename, int bob){
+    public static int[] readCSV(String filename, int bob){
         try {
             BufferedReader br = new BufferedReader(new FileReader(filename));
             int lineNum = 1;
             String line;
-            double[] values = new double[785];
+            int[] values = new int[785];
             while((line = br.readLine()) != null){
                 if(lineNum == bob){
                     String[] stringValues = line.split(",");
                     for (int i = 0; i < stringValues.length; i++) {
-                        values[i] = Double.parseDouble(stringValues[i]);
+                        values[i] = Integer.parseInt(stringValues[i]);
                     }
                 }
                 lineNum++;
@@ -24,7 +24,7 @@ public class MLOps {
             return values;
         } catch (Exception e) {
             System.out.println("IOException return is garbage");
-            return new double[0];
+            return new int[0];
         }
     }
 
