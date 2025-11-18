@@ -11,15 +11,15 @@ and I don't have a lot of patience to optimize the code any further or make it a
 # TODO LIST:
 November: 
 ML
-- [ ] Do Backpropagation
-    - [ ] implement box muller transform method for sampling (P1)
+- [ ] Do Backpropagation (P1)
+    - [x] implement box muller transform method for sampling (P1) (Java had a built in method :P)
     - [ ] Do He initilization using a normal distribution to initilize the weights (P1)
     - [ ] Write a loss function (P2)
     - [ ] Write a cost function (P2)
     - [ ] Possibly need to review MVC for BP (~P3)
 - [ ] Tensor class? do more research in the future and write it up in the notes (~P3)
 - [ ] Write the training method and implement parallel processing using CUDA (P2)
-- [ ] Make more models (P1)
+- [x] Make more models (P1)
 
 NEATNESS
 - [ ] reorder the structure of a NN to be more readable via a layer class and NN class (P1)

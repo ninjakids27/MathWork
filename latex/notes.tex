@@ -11,6 +11,21 @@
 \maketitle
 
 \section{Introduction}
+\par{this is a project that I've started in my Junior year in High school. It's a fun project and would highly reccomend for any one to do. 
+The project has pretty notable restrictions I've applied on my self and it's as follows.}
+\begin{enumerate}
+    \item No imports
+    \item Little to no outside help for coding
+    \item Make maintainable code
+\end{enumerate}
+\par{The 2nd and 3rd rule is pretty reasonable for a project. The first rule
+some may have some questions and I'll break it down. ``No imports" means no outside library
+or code that I haven't written myself. While I've violated this rule I have written atleast 95\% of the code
+and know how the 5\% works completely.}\\
+\par{While this is a tough project it has led me to understand a whole lot of stuff that
+isn't traditionally taught in a book or in a standard library, and has led me to some rabbit holes,
+but this should be a successful project? I hope, because I didn't really intend to finish this as I'm just trying to learn.}
+
 \section{MLOPS}
 \par{Forward propagation seems to work by just executing the neural network with random weights and biases}
 
@@ -74,7 +89,7 @@ $$f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}=\frac
 $$\text{Where } \mu = 0$$
 \par{Now what we do is that we square the std deviation of He initlization.
 We can reduce computation by removing the square root of calculating our std deviation.
-Which can help us in the future for floating point precision or some shit.}
+Which can help us in the future for floating point precision.}
 $$\sigma = \frac{2}{n_\text{in}}$$
 \par{Now we can directly substituite it in the normal distrubution}
 $$\mathcal{N}(0,\sigma)$$
@@ -151,6 +166,18 @@ $$(X^{\top}X)^{-1}X^{\top}Y$$
 $$y = mx+b$$
 $$m = \frac{n\sum{y}\sum{x^2}-\sum{y}\sum{xy}}{n\sum{x^2}-(\sum{x})^2}$$
 $$b=\frac{n\sum{xy}-\sum{x}\sum{y}}{n\sum{x^2}-(\sum{x})^2}$$
+\par{The sum for the first dimensional linear equation is actaully the result of plugging $y=mx+b$ 
+in the MLR equation. So MLR serves as a one size fits all for any $n$ dimensional }
+\section{StatOps}
+\par{In StatOps it features functions that I use for my project or for myself in my 
+Statistics Class. }\\\\
+
+
+\par{One notable thing about statistics is that you can find 10 billion different ways
+to sample or make a random number. The bedrock of statistics is the normal/gauss distrubution.
+Machine learning features weights and biases the problem is that how do you initilize the weights?
+Random numbers? If so what range?}\\
+\par{This is where the box muller transform makes that descision for us.}
 \section{PhysicsOps}
 \par{I want the circular orbit of two masses and I want to get the orbit speed of a planet.
 In order to do that I'm given star Mass $M$ planet's mass $m$ and radius of the orbit $R$}
@@ -160,4 +187,5 @@ $$F_\text{g} = F_\text{c}$$
 \par{assuming star planet is stationary and im lazy for the derivation}
 $$G\frac{m_1m_2}{r^2} = \frac{m_1v^2}{r}$$
 $$\sqrt{G\frac{m_2}{r}}$$
+
 \end{document}
