@@ -745,9 +745,20 @@ public class StatOps {
     public static double sampleNormalDistrubution(double mean, double stdDeviation){
         return normalDistrubution(mean, stdDeviation, Math.random());
     }
-
+    /**
+     * does as described reference notes.pdf for indepth stuff that I don't want to explain
+     * @return 
+     */
     public static double box_Muller_Transfrom(){
-        
+        double u1 = Math.random();
+        double u2 = Math.random();
+        double s = Math.pow(u1, 2) + Math.pow(u2, 2);
+        while(s == 0 || s >= 1){
+            u1 = Math.random();
+            u2 = Math.random();
+            s = Math.pow(u1, 2) + Math.pow(u2, 2);
+        }
+        return u1 * Math.sqrt((-2*Math.log(s))/s);
     }
 }
 

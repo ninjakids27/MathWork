@@ -12,7 +12,7 @@ and I don't have a lot of patience to optimize the code any further or make it a
 November: 
 ML
 - [ ] Do Backpropagation (P1)
-    - [x] implement box muller transform method for sampling (P1) (Java had a built in method :P)
+    - [x] implement box muller transform method for sampling (P1) 
     - [ ] Do He initilization using a normal distribution to initilize the weights (P1)
     - [ ] Write a loss function (P2)
     - [ ] Write a cost function (P2)
@@ -20,6 +20,9 @@ ML
 - [ ] Tensor class? do more research in the future and write it up in the notes (~P3)
 - [ ] Write the training method and implement parallel processing using CUDA (P2)
 - [x] Make more models (P1)
+
+MatrixOps
+- [ ] Single Value decomposition for compressing images 
 
 NEATNESS
 - [ ] reorder the structure of a NN to be more readable via a layer class and NN class (P1)

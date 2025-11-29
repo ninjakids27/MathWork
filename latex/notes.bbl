@@ -1,0 +1,94 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global/global}
+    \entry{boxmuller_transform}{online}{}{}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labeltitlesource}{title}
+      \field{title}{Box-Muller Transform}
+      \field{urlday}{28}
+      \field{urlmonth}{11}
+      \field{urlyear}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform
+      \endverb
+      \verb{url}
+      \verb https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform
+      \endverb
+    \endentry
+    \entry{comp_complexity}{online}{}{}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labeltitlesource}{title}
+      \field{title}{Computational complexity of mathematical operations}
+      \field{urlday}{28}
+      \field{urlmonth}{11}
+      \field{urlyear}{2025}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://en.wikipedia.org/wiki/Computational_complexity_of_mathematical_operations
+      \endverb
+      \verb{url}
+      \verb https://en.wikipedia.org/wiki/Computational_complexity_of_mathematical_operations
+      \endverb
+    \endentry
+    \entry{ActivationFunctions}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=1a86e93b6278850e1238e6d6c835ba00}{%
+           family={Shiv\bibnamedelimb Ram\bibnamedelima Dubey},
+           familyi={S\bibinitperiod\bibinitdelim R\bibinitperiod\bibinitdelim D\bibinitperiod},
+           given={Bidyut\bibnamedelimb Baran\bibnamedelima Chaudhuri},
+           giveni={B\bibinitperiod\bibinitdelim B\bibinitperiod\bibinitdelim C\bibinitperiod},
+           suffix={Satish\bibnamedelimb Kumar\bibnamedelima Singh},
+           suffixi={S\bibinitperiod\bibinitdelim K\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \strng{namehash}{1a86e93b6278850e1238e6d6c835ba00}
+      \strng{fullhash}{1a86e93b6278850e1238e6d6c835ba00}
+      \strng{fullhashraw}{1a86e93b6278850e1238e6d6c835ba00}
+      \strng{bibnamehash}{1a86e93b6278850e1238e6d6c835ba00}
+      \strng{authorbibnamehash}{1a86e93b6278850e1238e6d6c835ba00}
+      \strng{authornamehash}{1a86e93b6278850e1238e6d6c835ba00}
+      \strng{authorfullhash}{1a86e93b6278850e1238e6d6c835ba00}
+      \strng{authorfullhashraw}{1a86e93b6278850e1238e6d6c835ba00}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Activation Functions in Deep Learning: A Comprehensive Survey and Benchmark}
+      \field{urlday}{28}
+      \field{urlmonth}{11}
+      \field{urlyear}{2025}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2109.14545
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2109.14545
+      \endverb
+      \warn{\item online entry 'ActivationFunctions' (notes.bib): Invalid format '9/29/21' of date field 'date' - ignoring}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
