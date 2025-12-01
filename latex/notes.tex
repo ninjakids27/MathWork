@@ -1,30 +1,8 @@
-\begin{filecontents}{notes.bib}
-    @ONLINE{comp_complexity, % <-- Unique Key, mandatory comma added
-        url = {https://en.wikipedia.org/wiki/Computational_complexity_of_mathematical_operations},
-        title = {Computational complexity of mathematical operations},
-        urldate = {2025-11-28} % <-- Good practice to include access date
-    }
-
-    @ONLINE{boxmuller_transform, % <-- Second Unique Key, mandatory comma added
-        url = {https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform},
-        title = {Box-Muller Transform},
-        urldate = {2025-11-28}
-    }
-
-    @ONLINE{
-        ActivationFunctions, 
-        url = {https://arxiv.org/abs/2109.14545},
-        title = {Activation Functions in Deep Learning: A Comprehensive Survey and Benchmark},
-        date = {9/29/21},
-        author = {Shiv Ram Dubey, Satish Kumar Singh, Bidyut Baran Chaudhuri},
-        urldate = {2025-11-28}
-    }
-\end{filecontents}
 \documentclass{article}
 \usepackage{graphicx}
 \usepackage{mathtools}
 \usepackage{amsmath}
-\usepackage{biblatex} % <-- Optional: Explicitly use biber backend
+\usepackage[backend=biber]{biblatex} % use biber backend (recommended)
 \usepackage{hyperref}
 
 \addbibresource{notes.bib}
@@ -224,6 +202,13 @@ $$F_\text{g} = F_\text{c}$$
 \par{assuming star planet is stationary and im lazy for the derivation}
 $$G\frac{m_1m_2}{r^2} = \frac{m_1v^2}{r}$$
 $$\sqrt{G\frac{m_2}{r}}$$
+\section{Tensor}
+\par{Off the bat Tensors are a very intimidating object to learn about, but the defination
+is a generealization of a matrix. Matrixes are repeated vectors or vectors in vectors. Tensors
+are represented as N-dimensional matrices. We can represent it as a line, square or cube
+and we can say that each block in it has a number in it.}
 \nocite{*}
+\coordinate (X) at (3,5)
+\node (X)
 \printbibliography
 \end{document}

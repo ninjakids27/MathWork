@@ -1,4 +1,7 @@
-public class Tensor {
-    // Placeholder for Tensor class implementation
-
+public class Tensor<T> {
+    T[] data;
+    // ??? 
+    public Tensor(int[] dimensions){
+        
+    }
 }

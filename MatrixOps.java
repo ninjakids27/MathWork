@@ -551,7 +551,12 @@ public class MatrixOps {
         }
     }
 
-
+    /**
+     * Multiplies two matrices. O(n^3) time complexity.
+     * @param Matrix_A
+     * @param Matrix_B
+     * @return
+     */
     public static double[][] Matrix_Mult(double[][] Matrix_A, double[][] Matrix_B){
         if(Matrix_A[0].length == Matrix_B.length){
             // proceed as usual type shit
@@ -566,7 +571,6 @@ public class MatrixOps {
             return Result_Matrix;
         } else{
             throw new IllegalArgumentException(ColorText.errorFormat("Input Matrices are invalid"));
-
         }
     }
 

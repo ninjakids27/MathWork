@@ -747,7 +747,7 @@ public class StatOps {
     }
     /**
      * does as described reference notes.pdf for indepth stuff that I don't want to explain
-     * @return 
+     * @return random z number on the normal distribution
      */
     public static double box_Muller_Transfrom(){
         double u1 = Math.random();
@@ -758,6 +758,13 @@ public class StatOps {
             u2 = Math.random();
             s = Math.pow(u1, 2) + Math.pow(u2, 2);
         }
+        return u1 * Math.sqrt((-2*Math.log(s))/s);
+    }
+
+    public static double box_Muller_Transfrom(double test1, double test2){
+        double u1 = test1;
+        double u2 = test2;
+        double s = Math.pow(u1, 2) + Math.pow(u2, 2);
         return u1 * Math.sqrt((-2*Math.log(s))/s);
     }
 }

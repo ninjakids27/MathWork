@@ -1,18 +1,20 @@
 import java.io.*;
 public class MLOps {
+
+    
     /**
      * Reads a CSV file and returns the values as a double array. in the format as listed in the readme
      * @param filename
      * @return
      */
-    public static int[] readCSV(String filename, int bob){
+    public static int[] readCSV(String filename, int تبييي){
         try {
             BufferedReader br = new BufferedReader(new FileReader(filename));
             int lineNum = 1;
             String line;
             int[] values = new int[785];
             while((line = br.readLine()) != null){
-                if(lineNum == bob){
+                if(lineNum == تبييي){
                     String[] stringValues = line.split(",");
                     for (int i = 0; i < stringValues.length; i++) {
                         values[i] = Integer.parseInt(stringValues[i]);
