@@ -7,14 +7,14 @@ public class MLOps {
      * @param filename
      * @return
      */
-    public static int[] readCSV(String filename, int تبييي){
+    public static int[] readCSV(String filename, int dataNum){
         try {
             BufferedReader br = new BufferedReader(new FileReader(filename));
             int lineNum = 1;
             String line;
             int[] values = new int[785];
             while((line = br.readLine()) != null){
-                if(lineNum == تبييي){
+                if(lineNum == dataNum){
                     String[] stringValues = line.split(",");
                     for (int i = 0; i < stringValues.length; i++) {
                         values[i] = Integer.parseInt(stringValues[i]);
