@@ -36,8 +36,18 @@ public class test{
     // Implement LinearRegression.fit to return this form.
     double[] coeffs = RegressionFunctions.MLR(X, y);
     double[] expected = {3.0, 2.0, -1.0};
-    assertArrayEquals(expected, coeffs, 1e-9);
+    assertArrayEquals(expected, coeffs, 0);
   }
 
+
+  @Test
+  public void testnormalPDF(){
+    // https://www.stat.colostate.edu/inmem/gumina/st201/recitation8/downloads/Normal%20Probabilites%20Practice.pdf
+
+    
+    // asking for the middle of a normal distrubution should be 0.5 unless floating point bs
+    assertEquals(0.5, StatOps.normalPDF(-2, 0, 1),0);
+
+  }
 
 }

@@ -49,6 +49,7 @@ public class MLOps {
     }
 
     /**
+     * TODO : write a test for this one
      * Mean Squared Error Cost Function
      * @param output the output from the neural network
      * @param ans the expected output
@@ -146,11 +147,27 @@ public class MLOps {
     }
 
     /**
-     * This uses He initilization which is best suited for ReLU
+     * This uses He uniform initilization which is best suited for ReLU
      * @param NN
      */
     public static void initilizeWeights(Neuron[][] NN){
-
+        // go through each hidden layer
+        for(int i = 1; i < NN.length-1; i++){
+            Neuron[] layer = NN[i];
+            int n_low   = NN[i-1].length;
+            int n_high  = NN[i+1].length;
+            double low  = Math.sqrt(6/n_low);
+            double high = Math.sqrt(6/n_high);
+            // initilize the weights based on the neurons per layer
+            for(Neuron neuron : layer){
+                // iterate through the weights sampling from a uniform distribution
+                for(int weight = 0; weight < neuron.getWeightsLength(); weight++){
+                    // he uniform is U(-L,L)
+                     neuron.setWeight(weight, -1*low+Math.random()*(low-high));
+                     System.out.println("success");
+                }
+            }
+        }
     }
     /**
      * Loads a neural network from a file.

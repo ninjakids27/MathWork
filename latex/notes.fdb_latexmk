@@ -1,13 +1,13 @@
 # Fdb version 4
-["biber notes"] 1764472823.93392 "notes.bcf" "notes.bbl" "notes" 1764473711.84221 0
-  "notes.bcf" 1764473711 108687 6b0e735addfa6993a5ee695b29ec6370 "pdflatex"
+["biber notes"] 1765050599.10085 "notes.bcf" "notes.bbl" "notes" 1765050644.15341 0
+  "notes.bcf" 1765050643 108687 6b0e735addfa6993a5ee695b29ec6370 "pdflatex"
   "notes.bib" 1764472823 999 71eda995e59295ea23c54b7c442a169e ""
   (generated)
   "notes.bbl"
   "notes.blg"
   (rewritten before read)
-["pdflatex"] 1764473710.74815 "c:/githubProject/MathWork/latex/notes.tex" "notes.pdf" "notes" 1764473711.84309 2
-  "C:/Users/Adami/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1764342454 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
+["pdflatex"] 1765050643.0943 "c:/githubProject/MathWork/latex/notes.tex" "notes.pdf" "notes" 1765050644.15423 0
+  "C:/Users/Adami/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1764799955 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/Adami/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1759372366 11548 66b6f16c216d3fb28d0ac98fc129e9db ""
   "C:/Users/Adami/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1759372318 13286966 2e9c7f087cc3d3326ed8e10e69636491 ""
   "C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/tfm/jknappen/ec/tcrm1000.tfm" 993062508 1436 c7f957a372ef2fbe93c0982f96625e12 ""
@@ -107,13 +107,13 @@
   "C:/Users/Adami/AppData/Local/Programs/MiKTeX/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1751104012 9684 a33a14b82ce60d6e77cb9be689d79ee6 ""
   "C:/Users/Adami/AppData/Local/Programs/MiKTeX/tex/latex/tools/calc.sty" 1749468414 10374 2ffd4f27c7f90b8a300608069537743c ""
   "C:/Users/Adami/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
-  "c:/githubProject/MathWork/latex/notes.tex" 1764473710 10563 983e5e01671cabf5216a8f8d46fdfd08 ""
-  "notes.aux" 1764473711 1372 f0adc2fe37e53737511df2a3a262880e "pdflatex"
-  "notes.bbl" 1764472825 3636 6abd47b7854d28262b6ff64babbda05e "biber notes"
+  "c:/githubProject/MathWork/latex/notes.tex" 1765050597 10552 db4ab9b30618aca2b8f2657d4a0af084 ""
+  "notes.aux" 1765050643 1372 f0adc2fe37e53737511df2a3a262880e "pdflatex"
+  "notes.bbl" 1765050641 3636 6abd47b7854d28262b6ff64babbda05e "biber notes"
   "notes.bib" 1764472823 999 71eda995e59295ea23c54b7c442a169e ""
-  "notes.out" 1764473711 634 144eb96723c2b21c6b85601c1eeabca3 "pdflatex"
-  "notes.run.xml" 1764473711 2307 2f06dca552429276c40e74b1fafcd791 "pdflatex"
-  "notes.tex" 1764473710 10563 983e5e01671cabf5216a8f8d46fdfd08 ""
+  "notes.out" 1765050643 634 144eb96723c2b21c6b85601c1eeabca3 "pdflatex"
+  "notes.run.xml" 1765050643 2307 2f06dca552429276c40e74b1fafcd791 "pdflatex"
+  "notes.tex" 1765050597 10552 db4ab9b30618aca2b8f2657d4a0af084 ""
   (generated)
   "notes.aux"
   "notes.bcf"

@@ -767,5 +767,10 @@ public class StatOps {
         double s = Math.pow(u1, 2) + Math.pow(u2, 2);
         return u1 * Math.sqrt((-2*Math.log(s))/s);
     }
+
+
+    public static double normalPDF(double x, double mean, double stdDeviation){
+        return Math.pow((stdDeviation*Math.sqrt(2*Math.PI)*Math.exp(0.5*Math.pow(((x-mean)/stdDeviation),2))),-1);
+    }
 }
 

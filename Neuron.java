@@ -39,7 +39,9 @@ public class Neuron implements java.io.Serializable {
     public double getBias() {
         return bias;
     }
-
+    public int getWeightsLength(){
+        return this.weights.length;
+    }
     // methods to update the weights and bias
     /**
      * Sets the weights of the neuron.
@@ -47,13 +49,21 @@ public class Neuron implements java.io.Serializable {
      * @throws IllegalArgumentException if the length of the weights array does not match the input size
      */
     public void setWeights(double[] weights) {
-
         if(weights.length != this.weights.length) {
             throw new IllegalArgumentException("Weights array length must match input size.");
         }
         this.weights = weights;
     }
 
+
+    public void setWeight(int index, double weight){
+        try {
+            // System.out.println(weight);
+            weights[index] = weight;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new IllegalArgumentException(ColorText.errorFormat("Cannot put the weight in the weights for the neuron"));
+        }
+    }
     /**
      * Sets the bias of the neuron.
      * @param bias the new bias value

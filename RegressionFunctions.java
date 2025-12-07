@@ -1,4 +1,32 @@
 public class RegressionFunctions {
+    // tolerance variables for floating point errors 
+    private static final double bigEpsilon = 1e11;
+    private static final double epsilon = 1e-9;
+    /**
+     * Checks if two doubles are equal within a defined tolerance (epsilon).
+     * @param a first double
+     * @param b second double
+     * @return true if the numbers are considered equal, false otherwise
+     */
+    public static boolean isEqual(double a, double b) {
+        return Math.abs(a - b) < epsilon;
+    }
+    /**
+     * Uses the defined epsilon for tolerance checking and rounds the input to avoid floating point errors
+     * @param input
+     * @return
+    */
+    private static double tolerance(double input){
+        double temp = (input*bigEpsilon);
+        temp = Math.round(temp);
+        return (double)temp/bigEpsilon;
+    }
+   
+    private static void tolernaceArray(double[] array){
+        for(int i = 0; i < array.length; i++){
+           array[i] = tolerance(array[i]);
+        }
+    }
     /**
      * Performs standard linear regression on the given x and y values and prints the equation in the form y=mx+b.
      * @param xValues the input x values
@@ -46,6 +74,23 @@ public class RegressionFunctions {
         double[][] XtX_inv = MatrixOps.inverseMatrix(XtX);
         double[] XtY = MatrixOps.matrixVectorMult(MatrixOps.matrixTransposition(xValuesWithIntercept), yValues);
         double[] coefficients = MatrixOps.matrixVectorMult(XtX_inv, XtY);
+        tolernaceArray(coefficients);
+        return coefficients;
+    }
+    /**
+     * Multiple Linear Regression with optional timing for benchmarking.
+     * @param xValues Data of xValues
+     * @param yValues Data of yValues
+     * @param timer Flag to enable timing
+     * @return Coefficients of the regression model
+     */
+    public static double[] MLR(double[][] xValues, double[] yValues, boolean timer){
+        long startTime = System.nanoTime();
+        double[] coefficients = MLR(xValues, yValues);
+        long endTime = System.nanoTime();
+        long duration = endTime - startTime;
+        System.out.println("MLR took: " + String.format("%.9f",MatrixOps.nanoToSeconds(duration)) + " seconds");
+        tolernaceArray(coefficients);
         return coefficients;
     }
     /**
@@ -88,21 +133,6 @@ public class RegressionFunctions {
             }
         }
         double[] coefficients = MLR(xValuesPoly, yValues);
-        return coefficients;
-    }
-    /**
-     * Multiple Linear Regression with optional timing for benchmarking.
-     * @param xValues Data of xValues
-     * @param yValues Data of yValues
-     * @param timer Flag to enable timing
-     * @return Coefficients of the regression model
-     */
-    public static double[] MLR(double[][] xValues, double[] yValues, boolean timer){
-        long startTime = System.nanoTime();
-        double[] coefficients = MLR(xValues, yValues);
-        long endTime = System.nanoTime();
-        long duration = endTime - startTime;
-        System.out.println("MLR took: " + String.format("%.9f",MatrixOps.nanoToSeconds(duration)) + " seconds");
         return coefficients;
     }
 
