@@ -9,7 +9,7 @@ The objective of the project is to make a deep neural network recognize hand wri
 and I don't have a lot of patience to optimize the code any further or make it any better.
 
 # TODO LIST:
-November: 
+## November 2025: 
 ML
 - [ ] Do Backpropagation (P1)
     - [x] implement box muller transform method for sampling (P1) 
@@ -31,7 +31,7 @@ NEATNESS
 - [ ] Write more docs (P1)
 - [ ] Update the notes to what is relevant in the files (P1)
 
-December: 
+## December 2025: 
 ML
 - [ ] Do Backpropagation (P1)
     - [x] implement box muller transform method for sampling (P1) 
