@@ -48,6 +48,7 @@ public class MLOps {
         return inputLayer[inputLayer.length - 1];
     }
 
+    
     /**
      * TODO : write a test for this one
      * Mean Squared Error Cost Function
@@ -184,5 +185,19 @@ public class MLOps {
             e.printStackTrace();
             return null;
         }
+    }
+
+    /**
+     * read mnist and forward prop it through
+     */
+
+    public static double[] forwardPropagationMNIST(int line,String filename, Neuron[][] NN){
+        int[] input = readCSV(filename, line);
+        double[] cleanInput = new double[input.length-1];
+        for(int i = 1; i < input.length; i++){
+            cleanInput[i-1] = input[i];
+        }
+
+        return forwardPropagation(NN, cleanInput);
     }
 }
