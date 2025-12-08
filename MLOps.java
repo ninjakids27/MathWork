@@ -31,7 +31,7 @@ public class MLOps {
     }
 
     /**
-     * 
+     *  TODO : write a test for this
      * @param network
      * @param input
      * @return
@@ -152,19 +152,16 @@ public class MLOps {
      */
     public static void initilizeWeights(Neuron[][] NN){
         // go through each hidden layer
-        for(int i = 1; i < NN.length-1; i++){
+        for(int i = 1; i < NN.length; i++){
             Neuron[] layer = NN[i];
-            int n_low   = NN[i-1].length;
-            int n_high  = NN[i+1].length;
-            double low  = Math.sqrt(6/n_low);
-            double high = Math.sqrt(6/n_high);
+            int n_low   = NN[i-1].length; 
+            double low  = Math.sqrt(6.0/n_low);
             // initilize the weights based on the neurons per layer
             for(Neuron neuron : layer){
                 // iterate through the weights sampling from a uniform distribution
                 for(int weight = 0; weight < neuron.getWeightsLength(); weight++){
                     // he uniform is U(-L,L)
-                     neuron.setWeight(weight, -1*low+Math.random()*(low-high));
-                     System.out.println("success");
+                     neuron.setWeight(weight, -1*low+Math.random()*(2*low));
                 }
             }
         }

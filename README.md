@@ -35,7 +35,7 @@ NEATNESS
 ML
 - [ ] Do Backpropagation (P1)
     - [x] implement box muller transform method for sampling (P1) 
-    - [ ] Do He initilization using a normal distribution to initilize the weights (P1)
+    - [x] Do He initilization using a uniform distribution to initilize the weights (P1)
     - [ ] Write a loss function (P2)
     - [ ] Write a cost function (P2)
     - [ ] Possibly need to review MVC for BP (~P3)
