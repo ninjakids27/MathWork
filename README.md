@@ -12,6 +12,7 @@ and I don't have a lot of patience to optimize the code any further or make it a
 ## November 2025: 
 ### ML
 - [ ] Do Backpropagation (P1)
+    - [ ] implement the softmax function (P1)
     - [x] implement box muller transform method for sampling (P1) 
     - [ ] Do He initilization using a normal distribution to initilize the weights (P1)
     - [ ] Write a loss function (P2)
