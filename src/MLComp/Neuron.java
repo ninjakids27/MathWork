@@ -90,7 +90,4 @@ public class Neuron implements java.io.Serializable {
         return MLOps.sigmoid(MatrixOps.dot_product(weights, inputs)+bias);
     }
 
-    public double softmax(){
-        
-    }
 }

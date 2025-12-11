@@ -47,7 +47,17 @@ public class test{
     
     // asking for the middle of a normal distrubution should be 0.5 unless floating point bs
     assertEquals(0.5, StatOps.normalPDF(-2, 0, 1),0);
+  }
 
+  @Test
+  public void testSoftmax(){
+    Neuron[][] buddy = MLOps.loadNN("Models/NN784_16_16_10.ser");
+        double[] prob = MLOps.forwardPropagationMNIST(2, "MNIST_CSV/mnist_train.csv",buddy);
+        double sum = 0;
+        for(double num : prob){
+            sum += num;
+        }
+        assertEquals(1,sum, 0);
   }
 
 }

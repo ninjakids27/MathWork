@@ -1,6 +1,33 @@
 import java.io.*;
 public class MLOps {
-
+    // tolerance variables for floating point errors 
+    private static final double bigEpsilon = 1e7;
+    private static final double epsilon = 1e-10;
+    /**
+     * Checks if two doubles are equal within a defined tolerance (epsilon).
+     * @param a first double
+     * @param b second double
+     * @return true if the numbers are considered equal, false otherwise
+     */
+    public static boolean isEqual(double a, double b) {
+        return Math.abs(a - b) < epsilon;
+    }
+    /**
+     * Uses the defined epsilon for tolerance checking and rounds the input to avoid floating point errors
+     * @param input
+     * @return
+    */
+    private static double tolerance(double input){
+        double temp = (input*bigEpsilon);
+        temp = (int) Math.round(temp);
+        return (double)temp/bigEpsilon;
+    }
+   
+    private static void tolernaceArray(double[] array){
+        for(int i = 0; i < array.length; i++){
+           array[i] = tolerance(array[i]);
+        }
+    }
     
     /**
      * Reads a CSV file and returns the values as a double array. in the format as listed in the readme
@@ -45,7 +72,7 @@ public class MLOps {
                 inputLayer[layer][neuron] = network[layer][neuron].activation(inputLayer[layer-1]);    
             }
         }
-        return inputLayer[inputLayer.length - 1];
+        return softmax(inputLayer[inputLayer.length - 1]);
     }
 
     
@@ -201,5 +228,32 @@ public class MLOps {
         return forwardPropagation(NN, cleanInput);
     }
 
-    
+    public static double[] softmax(double[] input){
+        MatrixOps.vectorPow(input, Math.E);
+        double sum = 0;
+        for(double num : input){
+            sum+=num;
+        }
+        MatrixOps.vectorMult(input, 1.0/sum);
+        tolernaceArray(input);
+        return input;
+    }
+
+    public static void mnistInterpret(double[] probDistrubution){
+        int index = 0;
+        double max = probDistrubution[0]; 
+        for(int i = 0; i < 10; i++){
+            if(max < probDistrubution[i]){
+                index = i;
+                max = probDistrubution[i];
+        }
+    }
+    String result = (
+        ColorText.dataFormat("I believe that the number is ")+
+        ColorText.returnFormat(""+index)+
+        ColorText.dataFormat(" with a confidence of ")+
+        ColorText.returnFormat(""+max)
+    );
+    ColorText.playText(result,0.2);
+    }
 }
