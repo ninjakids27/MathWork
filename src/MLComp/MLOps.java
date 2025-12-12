@@ -58,7 +58,7 @@ public class MLOps {
     }
 
     /**
-     *  TODO : write a test for this
+     *  
      * @param network
      * @param input
      * @return
@@ -74,10 +74,23 @@ public class MLOps {
         }
         return softmax(inputLayer[inputLayer.length - 1]);
     }
-
+    public static double[] forwardPropagation(Neuron[][] network, double[] input,boolean timer) {
+        double startTime = System.nanoTime();
+        double[][] inputLayer = new double[network.length][];
+        inputLayer[0] = input;
+        for(int layer = 1; layer < network.length; layer++) {
+            inputLayer[layer] = new double[network[layer].length];
+            for(int neuron = 0; neuron < network[layer].length; neuron++){
+                inputLayer[layer][neuron] = network[layer][neuron].activation(inputLayer[layer-1]);    
+            }
+        }
+        double[] result = softmax(inputLayer[inputLayer.length - 1]);
+        double endTime = System.nanoTime();
+        ColorText.playText(ColorText.dataFormat("Forward Propagation Time: ")+ColorText.dataFormat((endTime-startTime)/1000000.0+"ms"),0.1);
+        return result;
+    }
     
     /**
-     * TODO : write a test for this one
      * Mean Squared Error Cost Function
      * @param output the output from the neural network
      * @param ans the expected output
@@ -226,6 +239,16 @@ public class MLOps {
         }
 
         return forwardPropagation(NN, cleanInput);
+    }
+
+    public static double[] forwardPropagationMNIST(int line,String filename, Neuron[][] NN,boolean timer){
+        int[] input = readCSV(filename, line);
+        double[] cleanInput = new double[input.length-1];
+        for(int i = 1; i < input.length; i++){
+            cleanInput[i-1] = input[i];
+        }
+
+        return forwardPropagation(NN, cleanInput,timer);
     }
 
     public static double[] softmax(double[] input){

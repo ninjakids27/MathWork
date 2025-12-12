@@ -103,7 +103,48 @@ $$\text{Traditional } \mathcal{N}(0,\sigma^2)$$
 $$U(-L,L)$$
 $$\text{Where }L = \sqrt{\frac{6}{n_\text{in}}}$$
 \par{Now there's questions on what a uniform distrubution is and I won't address that.}
+\section*{Core Backpropagation Formulas}
+
+\begin{enumerate}
+    \item \textbf{Error Function (Mean Squared Error - MSE)}:
+    $$E = \frac{1}{2}\sum_{k} (t_k - y_k)^2$$
+
+    \item \textbf{Output Layer Error Term ($\delta_k$)}:
+    $$\delta_k = (t_k - y_k) \cdot f'(net_k)$$
+
+    \item \textbf{Hidden Layer Error Term ($\delta_j$)}:
+    $$\delta_j = f'(net_j) \cdot \sum_{k} (\delta_k w_{kj})$$
+    
+    \item \textbf{Weight Update Rule ($\Delta w_{ji}$)}:
+    $$\Delta w_{ji} = \eta \cdot \delta_j \cdot y_i$$
+    \centerline{New Weight: $w_{ji}^{new} = w_{ji}^{old} + \Delta w_{ji}$}
+
+    \item \textbf{Bias Update Rule ($\Delta b_j$)}:
+    $$\Delta b_j = \eta \cdot \delta_j$$
+\end{enumerate}
+
+\vspace{1em}
+\hrule
+\vspace{1em}
+
+\subsection*{Variable Key}
+\begin{itemize}
+    \item $E$: Error (Loss)
+    \item $t_k$: Target value for output unit $k$
+    \item $y_k$: Predicted output value for unit $k$
+    \item $f'(net)$: Derivative of the activation function with respect to the weighted input ($net$)
+    \item $\delta$: Error Term
+    \item $w_{kj}$: Weight connecting unit $j$ to unit $k$
+    \item $\eta$: Learning Rate
+\end{itemize}
+
+
+
 \section{MatrixOps}
+
+
+
+
 \par{A matrix is a 2d array in cs or a 2d vector a matrix is denoted by uppercase letters so ``A'' is a matrix but ``a'' is not a matrix. You could also bold it to emphazise it but it's up to you.}
 $$\begin{pmatrix}
 1 & 2 & 3 \\
@@ -164,7 +205,14 @@ $$
     6 & 7 & 8 & 9
 \end{pmatrix}
 $$
+
+
+
 \section{linear regression}
+
+
+
+
 \par{MLR}
 $$(X^{\top}X)^{-1}X^{\top}Y$$
 \par{this is also the equation for a linear line}
@@ -173,7 +221,13 @@ $$m = \frac{n\sum{y}\sum{x^2}-\sum{y}\sum{xy}}{n\sum{x^2}-(\sum{x})^2}$$
 $$b=\frac{n\sum{xy}-\sum{x}\sum{y}}{n\sum{x^2}-(\sum{x})^2}$$
 \par{The sum for the first dimensional linear equation is actaully the result of plugging $y=mx+b$ 
 in the MLR equation. So MLR serves as a one size fits all for any $n$ dimensional }
+
+
+
 \section{StatOps}
+
+
+
 \par{In StatOps it features functions that I use for my project or for myself in my 
 Statistics Class. }\\\\
 
@@ -193,7 +247,14 @@ $$R^2 = -2 \cdot \ln U_1$$
 $$\text{let } u = U_1, v = U_2, \text{ and } s = u^2 + v^2 $$
 \par{utilising this you can rewrite the expression without trigonemetric functions. 
 allowing you to avoid the computationally expensive sin and cos }
+
+
+
 \section{PhysicsOps}
+
+
+
+
 \par{I want the circular orbit of two masses and I want to get the orbit speed of a planet.
 In order to do that I'm given star Mass $M$ planet's mass $m$ and radius of the orbit $R$}
 $$F_\text{g}=G\frac{m_1m_2}{r^2}$$
@@ -202,7 +263,13 @@ $$F_\text{g} = F_\text{c}$$
 \par{assuming star planet is stationary and im lazy for the derivation}
 $$G\frac{m_1m_2}{r^2} = \frac{m_1v^2}{r}$$
 $$\sqrt{G\frac{m_2}{r}}$$
+
+
+
 \section{Tensor}
+
+
+
 \par{Off the bat Tensors are a very intimidating object to learn about, but the defination
 is a generealization of a matrix. Matrixes are repeated vectors or vectors in vectors. Tensors
 are represented as N-dimensional matrices. We can represent it as a line, square or cube
