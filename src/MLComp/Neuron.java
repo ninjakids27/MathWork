@@ -87,7 +87,7 @@ public class Neuron implements java.io.Serializable {
      * @return
      */
     public double activation(double[] inputs){
-        return MLOps.sigmoid(MatrixOps.dot_product(weights, inputs)+bias);
+        return MLOps.sigmoid(MatrixOps.dotProduct(weights, inputs)+bias);
     }
 
 }

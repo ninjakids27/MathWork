@@ -15,7 +15,7 @@ public class MatrixOps {
      * @param num_columns the number of columns in the augmented matrix
      * @return a 2D array representing the augmented matrix
      */
-    public static double[][] generate_Augmented_Matrix(int num_columns) {
+    public static double[][] generateAugmentedMatrix(int num_columns) {
         Random random = new Random();
         int num_rows = num_columns - 1;
         double[][] Matrix_Name = new double[num_rows][num_columns];
@@ -32,7 +32,7 @@ public class MatrixOps {
      * @param length the length of the vector
      * @return a 1D array representing the random vector
      */
-    public static double[] generate_Random_vector(int length){
+    public static double[] generateRandomVector(int length){
         Random random = new Random();
         double[] vector = new double[length];
         for(int i = 0; i < length; i++){
@@ -45,7 +45,7 @@ public class MatrixOps {
      * Prints the given matrix to the console.
      * @param Matrix_Name
      */
-    public static void Print_Matrix(double[][] Matrix_Name) {
+    public static void printMatrix(double[][] Matrix_Name) {
         int num_rows = Matrix_Name.length;
         int num_columns = Matrix_Name[0].length;
         for (int i = 0; i < num_rows; i++) {
@@ -62,7 +62,7 @@ public class MatrixOps {
      * @param row_index the index of the row to access (0-based)
      * @return the specified row as a 1D array
      */
-    public static double[] access_row(double[][] Matrix, int row_index) {
+    public static double[] accessRow(double[][] Matrix, int row_index) {
         int num_cols = Matrix[0].length;
         double[] temp = new double[num_cols];
         for (int i = 0; i < num_cols; i++) {
@@ -77,7 +77,7 @@ public class MatrixOps {
      * @param column_index the index of the column to access (0-based)
      * @return the specified column as a 1D array
      */
-    public static double[] access_column(double[][] Matrix, int column_index) {
+    public static double[] accessColumn(double[][] Matrix, int column_index) {
         int num_rows = Matrix.length;
         double[] temp = new double[num_rows];
         for (int i = 0; i < num_rows; i++) {
@@ -93,7 +93,7 @@ public class MatrixOps {
      * @param row2_index the index of the second row to swap (0-based)
      * @return a new matrix with the specified rows swapped
      */
-    public static double[][] switch_rows(double[][] Matrix, int row1_index, int row2_index) {
+    public static double[][] switchRows(double[][] Matrix, int row1_index, int row2_index) {
         // Clone the matrix
         int numRows = Matrix.length;
         int numCols = Matrix[0].length;
@@ -103,8 +103,8 @@ public class MatrixOps {
                 temp_Matrix[i][k] = Matrix[i][k];
             }
         }
-        double[] row1 = access_row(temp_Matrix, row1_index);
-        double[] row2 = access_row(temp_Matrix, row2_index);
+        double[] row1 = accessRow(temp_Matrix, row1_index);
+        double[] row2 = accessRow(temp_Matrix, row2_index);
         for (int i = 0; i < row1.length; i++) {
             temp_Matrix[row1_index][i] = row2[i];
             temp_Matrix[row2_index][i] = row1[i];
@@ -121,7 +121,7 @@ public class MatrixOps {
      * @return a new matrix with the specified row replaced
      */
     public static double[][] replacement(double[][] matrix, int replacedRow, int rowAdded, double factor) {
-        double[] tempRowAdded = access_row(matrix, rowAdded);
+        double[] tempRowAdded = accessRow(matrix, rowAdded);
         int numRows = matrix.length;
         int numCols = matrix[0].length;
         double[][] tempMatrix = new double[numRows][numCols];
@@ -132,7 +132,7 @@ public class MatrixOps {
             }
         }
         if (factor != 1) {
-            tempRowAdded = access_row(Constant_factor(matrix, rowAdded, factor), rowAdded);
+            tempRowAdded = accessRow(constantFactor(matrix, rowAdded, factor), rowAdded);
         }
         for (int i = 0; i < tempRowAdded.length; i++) {
             tempMatrix[replacedRow][i] = matrix[replacedRow][i] + tempRowAdded[i];
@@ -177,8 +177,8 @@ public class MatrixOps {
      * @param factor the factor by which to multiply the row
      * @return a new matrix with the specified row modified
      */
-    public static double[][] Constant_factor(double[][] Matrix, int row_index, double factor) {
-        double[] temp = access_row(Matrix, row_index);
+    public static double[][] constantFactor(double[][] Matrix, int row_index, double factor) {
+        double[] temp = accessRow(Matrix, row_index);
         int numRows = Matrix.length;
         int numCols = Matrix[0].length;
         double[][] temp_Matrix = new double[numRows][numCols];
@@ -197,13 +197,13 @@ public class MatrixOps {
      * Prints the given vector to the console.
      * @param Vector the input vector
      */
-    public static void Print_Vector(double[] Vector) {
+    public static void printVector(double[] Vector) {
         for (int i = 0; i < Vector.length; i++) {
             System.out.print(Vector[i] + " ");
         }
         System.out.println("");
     }
-    public static void Print_Vector(int[] Vector) {
+    public static void printVector(int[] Vector) {
         for (int i = 0; i < Vector.length; i++) {
             System.out.print(Vector[i] + " ");
         }
@@ -291,18 +291,18 @@ public class MatrixOps {
         }
 
         if (Math.abs(temp_Matrix[maxRow][j]) > epsilon) { 
-            temp_Matrix = switch_rows(temp_Matrix, pivotRow, maxRow);
+            temp_Matrix = switchRows(temp_Matrix, pivotRow, maxRow);
             if(debug){
                 therefore();
-                Print_Matrix(temp_Matrix);
+                printMatrix(temp_Matrix);
             }
 
             double pivotValue = temp_Matrix[pivotRow][j];
-            temp_Matrix = Constant_factor(temp_Matrix, pivotRow, 1/pivotValue);
+            temp_Matrix = constantFactor(temp_Matrix, pivotRow, 1/pivotValue);
             temp_Matrix = roundMatrix(temp_Matrix, epsilon);
             if(debug){
                 therefore();
-                Print_Matrix(temp_Matrix);
+                printMatrix(temp_Matrix);
             }
 
             for(int i = pivotRow + 1; i < numRows; i++){
@@ -311,7 +311,7 @@ public class MatrixOps {
                 temp_Matrix = roundMatrix(temp_Matrix, epsilon);
                 if(debug){
                     therefore();
-                    Print_Matrix(temp_Matrix);
+                    printMatrix(temp_Matrix);
                 }
             }
             pivotRow++;
@@ -333,7 +333,7 @@ public class MatrixOps {
                 temp_Matrix = roundMatrix(temp_Matrix, epsilon);
                 if(debug){
                     therefore();
-                    Print_Matrix(temp_Matrix);
+                    printMatrix(temp_Matrix);
                 }
             }
         }
@@ -368,10 +368,10 @@ public class MatrixOps {
         }
 
         if (Math.abs(temp_Matrix[maxRow][j]) > epsilon) { 
-            temp_Matrix = switch_rows(temp_Matrix, pivotRow, maxRow);
+            temp_Matrix = switchRows(temp_Matrix, pivotRow, maxRow);
 
             double pivotValue = temp_Matrix[pivotRow][j];
-            temp_Matrix = Constant_factor(temp_Matrix, pivotRow, 1/pivotValue);
+            temp_Matrix = constantFactor(temp_Matrix, pivotRow, 1/pivotValue);
             temp_Matrix = roundMatrix(temp_Matrix, epsilon);
 
             for(int i = pivotRow + 1; i < numRows; i++){
@@ -459,7 +459,7 @@ public class MatrixOps {
 
         double[] result = new double[matrix.length];
         for (int i = 0; i < matrix.length; i++) {
-            result[i] = dot_product(matrix[i], vector);
+            result[i] = dotProduct(matrix[i], vector);
         }
         return result;
     }
@@ -471,7 +471,7 @@ public class MatrixOps {
      * @param debug if true, prints intermediate products
      * @return the dot product of the two vectors
      */
-    public static double dot_product(double[] vector1,double[] vector2, boolean debug){
+    public static double dotProduct(double[] vector1,double[] vector2, boolean debug){
         double temp = 0;
         if(vector1.length == vector2.length){
             for(int i = 0; i < vector1.length; i++){
@@ -495,7 +495,7 @@ public class MatrixOps {
         return nanoseconds/1e9;
     }
 
-    public static double dot_product(double[] vector1,double[] vector2){
+    public static double dotProduct(double[] vector1,double[] vector2){
         double temp = 0;
         if(vector1.length == vector2.length){
             for(int i = 0; i < vector1.length; i++){
@@ -514,7 +514,7 @@ public class MatrixOps {
      * @param Columns the number of columns in the matrix
      * @return a 2D array representing the random matrix
      */
-    public static double[][] generate_Matrix(int Rows, int Columns){
+    public static double[][] generateMatrix(int Rows, int Columns){
         double[][] Matrix = new double[Rows][Columns];
         Random random = new Random();
         for(int i = 0; i < Rows; i++){
@@ -533,15 +533,15 @@ public class MatrixOps {
      * @param debug if true, prints intermediate dot products
      * @return the resulting matrix after multiplication
      */
-    public static double[][] Matrix_Mult(double[][] Matrix_A, double[][] Matrix_B, boolean debug){
+    public static double[][] matrixMult(double[][] Matrix_A, double[][] Matrix_B, boolean debug){
         if(Matrix_A[0].length == Matrix_B.length){
             // proceed as usual type shit
             double[][] Result_Matrix = new double[Matrix_A.length][Matrix_B[0].length];
             for(int i = 0; i < Matrix_A.length; i++){
                 for(int j = 0; j < Matrix_B[0].length; j++){
-                    double[] Row = access_row(Matrix_A, i);
-                    double[] Column = access_column(Matrix_B, j);
-                    Result_Matrix[i][j] = dot_product(Row, Column, debug);
+                    double[] Row = accessRow(Matrix_A, i);
+                    double[] Column = accessColumn(Matrix_B, j);
+                    Result_Matrix[i][j] = dotProduct(Row, Column, debug);
                 }
             }
             return Result_Matrix;
@@ -557,15 +557,15 @@ public class MatrixOps {
      * @param Matrix_B
      * @return
      */
-    public static double[][] Matrix_Mult(double[][] Matrix_A, double[][] Matrix_B){
+    public static double[][] matrixMult(double[][] Matrix_A, double[][] Matrix_B){
         if(Matrix_A[0].length == Matrix_B.length){
             // proceed as usual type shit
             double[][] Result_Matrix = new double[Matrix_A.length][Matrix_B[0].length];
             for(int i = 0; i < Matrix_A.length; i++){
                 for(int j = 0; j < Matrix_B[0].length; j++){
-                    double[] Row = access_row(Matrix_A, i);
-                    double[] Column = access_column(Matrix_B, j);
-                    Result_Matrix[i][j] = dot_product(Row, Column);
+                    double[] Row = accessRow(Matrix_A, i);
+                    double[] Column = accessColumn(Matrix_B, j);
+                    Result_Matrix[i][j] = dotProduct(Row, Column);
                 }
             }
             return Result_Matrix;
@@ -580,7 +580,7 @@ public class MatrixOps {
      * @param vector2 the second vector (length 3)
      * @return the resulting vector after cross product
      */
-    public static double[] cross_product(double[] vector1, double[] vector2){
+    public static double[] crossProduct(double[] vector1, double[] vector2){
         if(vector1.length != 3 || vector2.length != 3)
             throw new IllegalArgumentException("");
 
@@ -709,12 +709,12 @@ public class MatrixOps {
             }
 
             if (Math.abs(temp_Matrix[maxRow][j]) > epsilon) { 
-                temp_Matrix = switch_rows(temp_Matrix, pivotRow, maxRow);
-                inverse_Matrix = switch_rows(inverse_Matrix, pivotRow, maxRow);
+                temp_Matrix = switchRows(temp_Matrix, pivotRow, maxRow);
+                inverse_Matrix = switchRows(inverse_Matrix, pivotRow, maxRow);
 
                 double pivotValue = temp_Matrix[pivotRow][j];
-                temp_Matrix = Constant_factor(temp_Matrix, pivotRow, 1/pivotValue);
-                inverse_Matrix = Constant_factor(inverse_Matrix, pivotRow, 1/pivotValue);
+                temp_Matrix = constantFactor(temp_Matrix, pivotRow, 1/pivotValue);
+                inverse_Matrix = constantFactor(inverse_Matrix, pivotRow, 1/pivotValue);
                 temp_Matrix = roundMatrix(temp_Matrix, epsilon);
                 inverse_Matrix = roundMatrix(inverse_Matrix, epsilon);
 
@@ -793,12 +793,12 @@ public class MatrixOps {
             }
 
             if (Math.abs(temp_Matrix[maxRow][j]) > epsilon) { 
-                temp_Matrix = switch_rows(temp_Matrix, pivotRow, maxRow);
-                inverse_Matrix = switch_rows(inverse_Matrix, pivotRow, maxRow);
+                temp_Matrix = switchRows(temp_Matrix, pivotRow, maxRow);
+                inverse_Matrix = switchRows(inverse_Matrix, pivotRow, maxRow);
 
                 double pivotValue = temp_Matrix[pivotRow][j];
-                temp_Matrix = Constant_factor(temp_Matrix, pivotRow, 1/pivotValue);
-                inverse_Matrix = Constant_factor(inverse_Matrix, pivotRow, 1/pivotValue);
+                temp_Matrix = constantFactor(temp_Matrix, pivotRow, 1/pivotValue);
+                inverse_Matrix = constantFactor(inverse_Matrix, pivotRow, 1/pivotValue);
                 temp_Matrix = roundMatrix(temp_Matrix, epsilon);
                 inverse_Matrix = roundMatrix(inverse_Matrix, epsilon);
 

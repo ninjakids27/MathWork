@@ -1,17 +1,18 @@
 [0] Config.pm:328> INFO - This is Biber 2.21
 [0] Config.pm:331> INFO - Logfile is 'notes.blg'
-[205] biber-MSWIN64:342> INFO - === 
-[285] Biber.pm:421> INFO - Reading 'notes.bcf'
-[379] Biber.pm:999> INFO - Using all citekeys in bib section 0
-[390] Biber.pm:4487> INFO - Processing section 0
-[410] Biber.pm:4678> INFO - Looking for bibtex file 'notes.bib' for section 0
-[465] bibtex.pm:1713> INFO - LaTeX decoding ...
-[477] bibtex.pm:1519> INFO - Found BibTeX data source 'notes.bib'
-[543] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[543] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[543] Biber.pm:4307> INFO - Sorting list 'nty/global//global/global/global' of type 'entry' with template 'nty' and locale 'en-US'
-[543] Biber.pm:4313> INFO - No sort tailoring available for locale 'en-US'
-[580] bbl.pm:676> INFO - Writing 'notes.bbl' with encoding 'UTF-8'
-[581] bbl.pm:779> INFO - Output to notes.bbl
-[582] Biber.pm:132> WARN - online entry 'ActivationFunctions' (notes.bib): Invalid format '9/29/21' of date field 'date' - ignoring
-[582] Biber.pm:134> INFO - WARNINGS: 1
+[92] biber-MSWIN64:342> INFO - === 
+[129] Biber.pm:421> INFO - Reading 'notes.bcf'
+[223] Biber.pm:999> INFO - Using all citekeys in bib section 0
+[235] Biber.pm:4487> INFO - Processing section 0
+[244] Biber.pm:4678> INFO - Looking for bibtex file 'notes.bib' for section 0
+[305] bibtex.pm:1713> INFO - LaTeX decoding ...
+[319] bibtex.pm:1519> INFO - Found BibTeX data source 'notes.bib'
+[364] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[364] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[364] Biber.pm:4307> INFO - Sorting list 'nty/global//global/global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[364] Biber.pm:4313> INFO - No sort tailoring available for locale 'en-US'
+[372] bbl.pm:676> INFO - Writing 'notes.bbl' with encoding 'UTF-8'
+[374] bbl.pm:779> INFO - Output to notes.bbl
+[374] Biber.pm:132> WARN - online entry 'ADAM' (notes.bib): Invalid format '1/30/2017' of date field 'date' - ignoring
+[374] Biber.pm:132> WARN - online entry 'ActivationFunctions' (notes.bib): Invalid format '9/29/21' of date field 'date' - ignoring
+[374] Biber.pm:134> INFO - WARNINGS: 2

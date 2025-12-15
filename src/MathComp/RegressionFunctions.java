@@ -70,7 +70,7 @@ public class RegressionFunctions {
                 xValuesWithIntercept[i][j + 1] = xValues[i][j];
             }
         }
-        double[][] XtX = MatrixOps.Matrix_Mult(MatrixOps.matrixTransposition(xValuesWithIntercept), xValuesWithIntercept);
+        double[][] XtX = MatrixOps.matrixMult(MatrixOps.matrixTransposition(xValuesWithIntercept), xValuesWithIntercept);
         double[][] XtX_inv = MatrixOps.inverseMatrix(XtX);
         double[] XtY = MatrixOps.matrixVectorMult(MatrixOps.matrixTransposition(xValuesWithIntercept), yValues);
         double[] coefficients = MatrixOps.matrixVectorMult(XtX_inv, XtY);

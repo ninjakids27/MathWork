@@ -15,6 +15,7 @@ public class StatOps {
         temp = Math.round(temp);
         return (double)temp/bigEpsilon;
     }
+    
     /**
      * Checks if two doubles are equal within a defined tolerance (epsilon).
      * @param a first double
@@ -52,32 +53,18 @@ public class StatOps {
     }
 
     /**
-     * Sums an array of doubles and returns the result as an integer.
-     * @param array the array to sum
-     * @return the sum of the array elements as an integer
-     */
-    public static int  sumD(double[] array){
-        int sum = 0;
-        for(int i = 0; i < array.length; i++){
-            sum += array[i];
-        }
-        return sum;
-    }
-
-    /**
      * Calculates the weighted mean of a vector given the weights.
      * @param vector the data vector
      * @param weights the weights for each element
      * @param debug a flag for debugging
      * @return the weighted mean
      */
-    public static double weighted_mean(double[] vector, double[] weights,boolean debug){
-        double A = MatrixOps.dot_product(vector, weights,debug);
+    public static double weightedMean(double[] vector, double[] weights,boolean debug){
+        double A = MatrixOps.dotProduct(vector, weights,debug);
         double B = sum(weights);
         double C = A/B;
         return C;
     }
-
 
     /**
      * Sorts the given array in ascending order using the bubble sort algorithm.O(n^2) time complexity.
@@ -120,7 +107,6 @@ public class StatOps {
         }
     }
 
-    
     /**
      * Generates a random integer between the specified low and high bounds (inclusive).
      * @param lowBound the lower bound (inclusive)
@@ -130,6 +116,7 @@ public class StatOps {
     public static int random(int lowBound, int highBound){
         return (int) Math.floor(Math.random()*(highBound-lowBound+1)+lowBound);
     }
+    
     /**
      * Generates a frequency list based on the provided data vector and frequency counts.
      * @param vector1 the data vector
@@ -137,7 +124,7 @@ public class StatOps {
      * @return the generated frequency list
      */
     public static double[] freqList(double[] vector1, double[] vector2){
-        double[] tempVector = new double[sumD(vector2)];
+        double[] tempVector = new double[(int) sum(vector2)];
         int idx = 0;
         for(int i = 0; i < vector2.length; i++){
             for(int k = 0; k < vector2[i]; k++){
@@ -146,10 +133,6 @@ public class StatOps {
         }
         return tempVector;
     }
-    
-
-    
-
     
     /**
      * Finds the indexes of the maximum value(s) in the given vector.
@@ -176,7 +159,6 @@ public class StatOps {
 
     }
 
-
     public static int[] findMax(int[] vector){
         double Max = vector[0];
         List<Integer> indexes = new ArrayList<>();
@@ -196,8 +178,7 @@ public class StatOps {
         return return_indexes;
 
     }
-
-    
+   
     public static double[] mode(double[] vector){
         // I decided to kill this shit before it got WAYYY to out of hand
         List<Double> item = new ArrayList<>();
@@ -317,7 +298,7 @@ public class StatOps {
      * @param vector1 data values 
      * @param vector2 frequency counts
      */
-    public static void five_number_summary_of_freq(double[] vector1, double[] vector2){
+    public static void fiveNumberSummaryOfFreq(double[] vector1, double[] vector2){
         List<Double> table = new ArrayList<>();
         for(int i = 0; i < vector1.length; i++){
             for(int k = 0; k < (int)vector2[i]; k++){
@@ -337,12 +318,9 @@ public class StatOps {
         System.out.println("Max: "+D[D.length-1]);
     }
     
-    
     private static double rounding(double num, int decimal){
         return Math.round(Math.pow(10, decimal)*num)/Math.pow(10, decimal);
     }
-    
-    
 
     /**
      * Detects and prints outliers in the given vector using the 1.5*IQR rule.
@@ -350,7 +328,7 @@ public class StatOps {
      * @param isSample whether the data is a sample or population
      * @param decimal the number of decimal places to round to
      */
-    public static void outlier_test(double[] vector){
+    public static void outlierTest(double[] vector){
         double q1 = getQ1(vector);
         double q3 = getQ3(vector);
         double IQR =  q3 - q1;
@@ -366,7 +344,6 @@ public class StatOps {
         }
     }
 
-
     public static double stdDeviation(double[] vector){
         double mean = mean(vector);
         vector = MatrixOps.vectorAdd(Arrays.copyOf(vector, vector.length), -mean);
@@ -374,7 +351,6 @@ public class StatOps {
         double val = sum(vector);
         return Math.sqrt(val/(vector.length));
     }
-
 
     public static double stdDeviation(double[] vector,int decimal){
         double mean = mean(vector);
@@ -384,7 +360,6 @@ public class StatOps {
         return rounding(Math.sqrt(val/(vector.length)),decimal);
     }
 
-
     public static double samDeviation(double[] vector){
         double mean = mean(vector);
         vector = MatrixOps.vectorAdd(Arrays.copyOf(vector, vector.length), -mean);
@@ -393,7 +368,6 @@ public class StatOps {
         return Math.sqrt(val/(vector.length-1));
     }
 
-
     public static double samDeviation(double[] vector,int decimal){
         double mean = mean(vector);
         vector = MatrixOps.vectorAdd(Arrays.copyOf(vector, vector.length), -mean);
@@ -401,7 +375,6 @@ public class StatOps {
         double val = sum(vector);
         return rounding(Math.sqrt(val/(vector.length-1)), decimal);
     }
-
 
     public static double samVariance(double[] vector){
         double mean = mean(vector);
@@ -412,7 +385,6 @@ public class StatOps {
         
     }
 
-
     public static double popVariance(double[] vector){
         double mean = mean(vector);
         vector = MatrixOps.vectorAdd(Arrays.copyOf(vector, vector.length), -mean);
@@ -421,7 +393,6 @@ public class StatOps {
         return val/(vector.length);
         
     }
-
 
     public static double popVariance(double[] vector, int decimal){
         double mean = mean(vector);
@@ -432,8 +403,7 @@ public class StatOps {
         
     }
 
-
-    public static double Ztest(double observedVal,double[] vector,boolean isSample){
+    public static double ztest(double observedVal,double[] vector,boolean isSample){
         double z;
         if(isSample){
            z = (observedVal-mean(vector))/samDeviation(vector); 
@@ -443,18 +413,18 @@ public class StatOps {
         return z;
     }
 
-    public static double Ztest(double observedVal,double[] vector){
+    public static double ztest(double observedVal,double[] vector){
         double z;
         z = (observedVal-mean(vector))/stdDeviation(vector);
         return z;
     }
 
-    public static double Ztest(double observedVal,double mean, double stdDeviation){
+    public static double ztest(double observedVal,double mean, double stdDeviation){
            double z = (observedVal-mean)/stdDeviation;
            return z;
     }
 
-    public static double Ztest(double observedVal,double[] vector,boolean isSample,int decimal){
+    public static double ztest(double observedVal,double[] vector,boolean isSample,int decimal){
         double z;
         if(isSample){
            z = (observedVal-mean(vector))/samDeviation(vector); 
@@ -464,11 +434,12 @@ public class StatOps {
         return rounding(z, decimal);
     }
 
-    public static double Ztest(double observedVal,double[] vector,int decimal){
+    public static double ztest(double observedVal,double[] vector,int decimal){
         double z;
         z = (observedVal-mean(vector))/stdDeviation(vector);
         return rounding(z, decimal);
     }
+    
     /**
      *  Z-test calculation with rounding.
      * @param observedVal the observed value
@@ -479,12 +450,12 @@ public class StatOps {
      * @param decimal the number of decimal places to round to
      * @return the Z-test statistic
      */
-    public static double Ztest(double observedVal,double mean, double stdDeviation,int decimal){
+    public static double ztest(double observedVal,double mean, double stdDeviation,int decimal){
            double z = (observedVal-mean)/stdDeviation;
            return rounding(z, decimal);
     }
 
-    public static void five_number_summary(double[] vector){
+    public static void fiveNumberSummary(double[] vector){
         System.out.println("5 number summary:");
         double[] D = sort(vector);
         System.out.println("Min: "+D[0]);
@@ -494,18 +465,14 @@ public class StatOps {
         System.out.println("Max: "+D[D.length-1]);
     }
 
-
     public static void centralTedencySummary(double[] vector){
         System.out.println("3 measures of central tedency:");
         System.out.println("Mean: "+mean(vector));
         System.out.println("Median: "+median(vector));
         System.out.print("Mode: ");
-        MatrixOps.Print_Vector(mode(vector));
+        MatrixOps.printVector(mode(vector));
     }
 
-
-    
-    
     public static void OneVarStat(double[] vector){
         System.out.println("Mean: "+mean(vector));
         System.out.println("Median: "+median(vector));
@@ -515,28 +482,29 @@ public class StatOps {
         System.out.println("Sam deviation: "+samDeviation(vector));
         System.out.println("Std Deviation: "+stdDeviation(vector));
         System.out.println("Length: "+vector.length);
-        five_number_summary(vector);
+        fiveNumberSummary(vector);
         
     }
-    public static double mean_of_probability_distribution(double[] x, double[] p){
+    
+    public static double meanOfProbabilityDistribution(double[] x, double[] p){
         if(sum(p) != 1){
             throw new IllegalArgumentException(ColorText.errorFormat("Probabilities do not sum to 1"));
         }
-        return weighted_mean(x, p,false);
+        return weightedMean(x, p,false);
     }
     
-    public static double variance_of_probability_distribution(double[] x, double[] p){
+    public static double varianceProbabilityDistribution(double[] x, double[] p){
         if(sum(p) != 1){
             throw new IllegalArgumentException(ColorText.errorFormat("Probabilities do not sum to 1"));
         }
-        double mean = mean_of_probability_distribution(x, p);
+        double mean = meanOfProbabilityDistribution(x, p);
         double[] x_minus_mean = MatrixOps.vectorAdd(Arrays.copyOf(x, x.length), -mean);
         double[] x_minus_mean_squared = MatrixOps.vectorPow(x_minus_mean, 2);
-        return weighted_mean(x_minus_mean_squared, p,false);
+        return weightedMean(x_minus_mean_squared, p,false);
     }
     
-    public static double std_of_probability_distribution(double[] x, double[] p){
-        return Math.sqrt(variance_of_probability_distribution(x, p));
+    public static double stdProbabilityDistribution(double[] x, double[] p){
+        return Math.sqrt(varianceProbabilityDistribution(x, p));
     }
     
     public static void centralTedencySummary(double[] vector,int decimal){
@@ -544,13 +512,14 @@ public class StatOps {
         System.out.println("Mean: "+rounding(mean(vector),decimal));
         System.out.println("Median: "+rounding(median(vector),decimal));
         System.out.print("Mode: ");
-        MatrixOps.Print_Vector(MatrixOps.roundingVector(mode(vector),decimal));
+        MatrixOps.printVector(MatrixOps.roundingVector(mode(vector),decimal));
     }
-    public static double mean_of_probability_distribution(double[] x, double[] p,int decimal){
+    
+    public static double meanProbabilityDistribution(double[] x, double[] p,int decimal){
         if(sum(p) != 1){
             throw new IllegalArgumentException(ColorText.errorFormat("Probabilities do not sum to 1"));
         }
-        return rounding(weighted_mean(x, p,false), decimal);
+        return rounding(weightedMean(x, p,false), decimal);
     }
 
     /**
@@ -560,15 +529,16 @@ public class StatOps {
      * @param decimal number of decimal places to round to
      * @return variance of the probability distribution
      */
-    public static double variance_of_probability_distribution(double[] x, double[] p,int decimal){
+    public static double varianceProbabilityDistribution(double[] x, double[] p,int decimal){
         if(sum(p) != 1){
             throw new IllegalArgumentException(ColorText.errorFormat("Probabilities do not sum to 1"));
         }
-        double mean = mean_of_probability_distribution(x, p);
+        double mean = meanOfProbabilityDistribution(x, p);
         double[] x_minus_mean = MatrixOps.vectorAdd(Arrays.copyOf(x, x.length), -mean);
         double[] x_minus_mean_squared = MatrixOps.vectorPow(x_minus_mean, 2);
-        return rounding(weighted_mean(x_minus_mean_squared, p,false), decimal);
+        return rounding(weightedMean(x_minus_mean_squared, p,false), decimal);
     }
+    
     /**
      * Calculates the standard deviation of a probability distribution with rounding.
      * @param x values of the random variable
@@ -576,16 +546,15 @@ public class StatOps {
      * @param decimal number of decimal places to round to
      * @return standard deviation of the probability distribution
      */
-    public static double std_of_probability_distribution(double[] x, double[] p,int decimal){
-        return rounding(Math.sqrt(variance_of_probability_distribution(x, p)), decimal);
+    public static double stdProbabilityDistribution(double[] x, double[] p,int decimal){
+        return rounding(Math.sqrt(varianceProbabilityDistribution(x, p)), decimal);
     }
 
-
-    public static void probability_distribution(double[] x, double[] p){
+    public static void probabilityDistribution(double[] x, double[] p){
         System.out.println("Probability Distribution:");
-        System.out.println("Mean: "+mean_of_probability_distribution(x, p));
-        System.out.println("Variance: "+variance_of_probability_distribution(x, p));
-        System.out.println("Standard Deviation: "+std_of_probability_distribution(x, p));
+        System.out.println("Mean: "+meanOfProbabilityDistribution(x, p));
+        System.out.println("Variance: "+varianceProbabilityDistribution(x, p));
+        System.out.println("Standard Deviation: "+stdProbabilityDistribution(x, p));
     }
 
     /**
@@ -594,13 +563,12 @@ public class StatOps {
      * @param p probabilities associated with each x value
      * @param decimal number of decimal places to round to
      */
-    public static void probability_distribution(double[] x, double[] p,int decimal){
+    public static void probabilityDistribution(double[] x, double[] p,int decimal){
         System.out.println("Probability Distribution:");
-        System.out.println("Mean: "+mean_of_probability_distribution(x, p, decimal));
-        System.out.println("Variance: "+variance_of_probability_distribution(x, p, decimal));
-        System.out.println("Standard Deviation: "+std_of_probability_distribution(x, p, decimal));
+        System.out.println("Mean: "+meanProbabilityDistribution(x, p, decimal));
+        System.out.println("Variance: "+varianceProbabilityDistribution(x, p, decimal));
+        System.out.println("Standard Deviation: "+stdProbabilityDistribution(x, p, decimal));
     }
-
 
     /**
      * Calculates the binomial probability density function (PDF) for given parameters.
@@ -619,6 +587,7 @@ public class StatOps {
     public static double binomialPDF(int n, double p, int x,int decimal){
         return rounding(binomialPDF(n, p, x), decimal);
     }
+    
     public static double binomialPDF(int n, double p, int[] x){
         double total = 0;
         for(int i = 0; i < x.length; i++){
@@ -626,6 +595,7 @@ public class StatOps {
         }
         return tolerance(total);
     }
+    
     public static double binomialPDF(int n, double p, int[] x,int decimal){
         return rounding(binomialPDF(n, p, x), decimal);
     }
@@ -653,6 +623,7 @@ public class StatOps {
             return new double[]{rounding(tolerance(binomialPDF(n, p, x)), decimal)};
         }
     }
+    
     /**
      * Calculates the binomial cumulative distribution function (CDF) for given parameters.
      * @param n number of trials (non-negative integer)
@@ -667,6 +638,7 @@ public class StatOps {
         }
         return total;
     }
+    
     /**
      * Calculates the binomial cumulative distribution function (CDF) for given parameters.
      * @param n number of trials (non-negative integer)
@@ -678,6 +650,7 @@ public class StatOps {
     public static double binomialCDF(int n, double p, int x,int decimal){
         return rounding(binomialCDF(n, p, x), decimal);
     }
+    
     /**
      * Calculates the binomial cumulative distribution function (CDF) for given parameters with options for greater than and at most.
      * @param n number of trials (non-negative integer)
@@ -694,6 +667,7 @@ public class StatOps {
             return tolerance(binomialCDF(n, p, x));
         }
     }
+    
     /**
      * Calculates the binomial cumulative distribution function (CDF) for given parameters with options for greater than and at most, with rounding.
      * @param n number of trials (non-negative integer)
@@ -710,6 +684,7 @@ public class StatOps {
         }
         return tolerance(binomialCDF(n, p, x));
     }
+    
     /**
      * Calculates the binomial cumulative distribution function (CDF) for given parameters with an option for greater than, with rounding.
      * @param n number of trials (non-negative integer)
@@ -736,8 +711,6 @@ public class StatOps {
         return rounding(binomialCDF(n, p, x, greaterThan), decimal);
     }
 
-    
-
     public static double normalDistrubution(double mean, double stdDeviation, double x){
         return (1)/(stdDeviation*Math.sqrt(2*Math.PI)*Math.exp(.5*Math.pow((x-mean)/stdDeviation,2)));
     }
@@ -745,11 +718,12 @@ public class StatOps {
     public static double sampleNormalDistrubution(double mean, double stdDeviation){
         return normalDistrubution(mean, stdDeviation, Math.random());
     }
+    
     /**
      * does as described reference notes.pdf for indepth stuff that I don't want to explain
      * @return random z number on the normal distribution
      */
-    public static double box_Muller_Transfrom(){
+    public static double boxMullerTransform(){
         double u1 = Math.random();
         double u2 = Math.random();
         double s = Math.pow(u1, 2) + Math.pow(u2, 2);
@@ -761,13 +735,12 @@ public class StatOps {
         return u1 * Math.sqrt((-2*Math.log(s))/s);
     }
 
-    public static double box_Muller_Transfrom(double test1, double test2){
+    public static double boxMullerTransform(double test1, double test2){
         double u1 = test1;
         double u2 = test2;
         double s = Math.pow(u1, 2) + Math.pow(u2, 2);
         return u1 * Math.sqrt((-2*Math.log(s))/s);
     }
-
 
     public static double normalPDF(double x, double mean, double stdDeviation){
         return Math.pow((stdDeviation*Math.sqrt(2*Math.PI)*Math.exp(0.5*Math.pow(((x-mean)/stdDeviation),2))),-1);

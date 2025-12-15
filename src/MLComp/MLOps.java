@@ -96,7 +96,7 @@ public class MLOps {
      * @param ans the expected output
      * @return the mean squared error
      */
-    public static double costFunction(double[] output, double[] ans){
+    public static double lossFunction(double[] output, double[] ans){
         if(output.length != ans.length){
             throw new IllegalArgumentException(ColorText.errorFormat("Output and answer arrays must be of the same length."));
         }
@@ -277,6 +277,59 @@ public class MLOps {
         ColorText.dataFormat(" with a confidence of ")+
         ColorText.returnFormat(""+max)
     );
-    ColorText.playText(result,0.2);
+    ColorText.playText(result,0.05);
+    }
+
+    public static void mnistInterpret(double[] probDistrubution, boolean debug){
+        int index = 0;
+        double max = probDistrubution[0]; 
+        for(int i = 0; i < 10; i++){
+            if(max < probDistrubution[i]){
+                index = i;
+                max = probDistrubution[i];
+        }
+    }
+    String result = (
+        ColorText.dataFormat("I believe that the number is ")+
+        ColorText.returnFormat(""+index)+
+        ColorText.dataFormat(" with a confidence of ")+
+        ColorText.returnFormat(""+max)
+    );
+    System.out.println(result);
+    }
+
+    /**
+     * 
+     * @param NN
+     * @param probabilities
+     * @param expected
+     * @param actual
+     */
+    public static void backPropagation(Neuron[][] NN, double[] probabilities, int expected, int actual){
+        
+
+    }
+    /**
+     * 
+     */
+    public static void ADAM(){
+
+    }
+
+
+    public static void gradientDescent(){
+
+    }
+
+    public static void SGD(){
+
+    }
+
+    public static void SGDMomentum(){
+        
+    }
+
+    public static void training(int epoch){
+        
     }
 }

@@ -52,6 +52,43 @@
       \verb https://en.wikipedia.org/wiki/Computational_complexity_of_mathematical_operations
       \endverb
     \endentry
+    \entry{kundu2024adam}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=9e029fef70d22cffcef713a6495505c7}{%
+           family={Kundu},
+           familyi={K\bibinitperiod},
+           given={Sourish},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{9e029fef70d22cffcef713a6495505c7}
+      \strng{fullhash}{9e029fef70d22cffcef713a6495505c7}
+      \strng{fullhashraw}{9e029fef70d22cffcef713a6495505c7}
+      \strng{bibnamehash}{9e029fef70d22cffcef713a6495505c7}
+      \strng{authorbibnamehash}{9e029fef70d22cffcef713a6495505c7}
+      \strng{authornamehash}{9e029fef70d22cffcef713a6495505c7}
+      \strng{authorfullhash}{9e029fef70d22cffcef713a6495505c7}
+      \strng{authorfullhashraw}{9e029fef70d22cffcef713a6495505c7}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{YouTube video}
+      \field{month}{4}
+      \field{note}{Channel: Sourish Kundu. Length: 23:20}
+      \field{title}{Who's Adam and What's He Optimizing? | Deep Dive into Optimizers for Machine Learning!}
+      \field{urlday}{14}
+      \field{urlmonth}{12}
+      \field{urlyear}{2025}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://www.youtube.com/watch?v=MD2fYip6QsQ
+      \endverb
+      \verb{url}
+      \verb https://www.youtube.com/watch?v=MD2fYip6QsQ
+      \endverb
+    \endentry
     \entry{ActivationFunctions}{online}{}{}
       \name{author}{1}{}{%
         {{hash=1a86e93b6278850e1238e6d6c835ba00}{%
@@ -70,6 +107,7 @@
       \strng{authornamehash}{1a86e93b6278850e1238e6d6c835ba00}
       \strng{authorfullhash}{1a86e93b6278850e1238e6d6c835ba00}
       \strng{authorfullhashraw}{1a86e93b6278850e1238e6d6c835ba00}
+      \field{extraname}{1}
       \field{sortinit}{S}
       \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
       \field{labelnamesource}{author}
@@ -87,6 +125,43 @@
       \verb https://arxiv.org/abs/2109.14545
       \endverb
       \warn{\item online entry 'ActivationFunctions' (notes.bib): Invalid format '9/29/21' of date field 'date' - ignoring}
+    \endentry
+    \entry{ADAM}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=1a86e93b6278850e1238e6d6c835ba00}{%
+           family={Shiv\bibnamedelimb Ram\bibnamedelima Dubey},
+           familyi={S\bibinitperiod\bibinitdelim R\bibinitperiod\bibinitdelim D\bibinitperiod},
+           given={Bidyut\bibnamedelimb Baran\bibnamedelima Chaudhuri},
+           giveni={B\bibinitperiod\bibinitdelim B\bibinitperiod\bibinitdelim C\bibinitperiod},
+           suffix={Satish\bibnamedelimb Kumar\bibnamedelima Singh},
+           suffixi={S\bibinitperiod\bibinitdelim K\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \strng{namehash}{1a86e93b6278850e1238e6d6c835ba00}
+      \strng{fullhash}{1a86e93b6278850e1238e6d6c835ba00}
+      \strng{fullhashraw}{1a86e93b6278850e1238e6d6c835ba00}
+      \strng{bibnamehash}{1a86e93b6278850e1238e6d6c835ba00}
+      \strng{authorbibnamehash}{1a86e93b6278850e1238e6d6c835ba00}
+      \strng{authornamehash}{1a86e93b6278850e1238e6d6c835ba00}
+      \strng{authorfullhash}{1a86e93b6278850e1238e6d6c835ba00}
+      \strng{authorfullhashraw}{1a86e93b6278850e1238e6d6c835ba00}
+      \field{extraname}{2}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{ADAM: A METHOD FOR STOCHASTIC OPTIMIZATION}
+      \field{urlday}{14}
+      \field{urlmonth}{12}
+      \field{urlyear}{2025}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://arxiv.org/pdf/1412.6980
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/pdf/1412.6980
+      \endverb
+      \warn{\item online entry 'ADAM' (notes.bib): Invalid format '1/30/2017' of date field 'date' - ignoring}
     \endentry
   \enddatalist
 \endrefsection
