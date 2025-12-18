@@ -60,4 +60,16 @@ public class test{
         assertEquals(1,sum, 0);
   }
 
+
+  @Test
+  public void testLinearRegression(){
+    // actual stuff is 11247x+0.113
+    double[] x = {1.227,2.12,6.283,4.24,3.347};
+    MatrixOps.vectorPow(x, 10e-6);
+    double[] y = {0.2,0.4,0.8,0.6,0.5};
+
+    double[] coeffs = RegressionFunctions.linearRegression(x, y);
+    assertEquals(11247, coeffs[0], 1);
+    assertEquals(0.113, coeffs[1], 0.001);
+  }
 }

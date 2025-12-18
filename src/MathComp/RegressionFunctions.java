@@ -47,16 +47,17 @@ public class RegressionFunctions {
      * @return the coefficients of the linear regression (slope and optionally intercept)
      */
     public static double[] linearRegression(double[] xValues, double[] yValues){
-        // Build a single-column design matrix (no intercept column) so MLR will add the intercept itself.
+        // do linear regression from the formula
         int n = xValues.length;
-        double[][] xMatrix = new double[n][1];
-        for (int i = 0; i < n; i++) {
-            xMatrix[i][0] = xValues[i];
+        double sumX = 0, sumY = 0, sumXY = 0, sumXX = 0;
+        for(int i = 0; i < n; i++){
+            sumX += xValues[i];
+            sumY += yValues[i];
+            sumXY += xValues[i] * yValues[i];
+            sumXX += xValues[i] * xValues[i];
         }
-        // MLR returns coefficients in the order [intercept, slope]
-        double[] mlrCoeffs = MLR(xMatrix, yValues);
-        double intercept = mlrCoeffs.length > 0 ? mlrCoeffs[0] : 0.0;
-        double slope = mlrCoeffs.length > 1 ? mlrCoeffs[1] : 0.0;
+        double slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);
+        double intercept = (sumY - slope * sumX) / n;
         return new double[]{slope, intercept};
     }
     public static double[] MLR(double[][] xValues, double[] yValues){
