@@ -2,7 +2,7 @@
  * This class represents a single neuron in a neural network.
  * It contains weights and a bias, and provides methods to get and set these values.
  */
-
+import java.util.function.Function;
 public class Neuron implements java.io.Serializable {
     private double[] weights;
     private double bias;
@@ -86,8 +86,8 @@ public class Neuron implements java.io.Serializable {
      * @param inputs
      * @return
      */
-    public double activation(double[] inputs){
-        return MLOps.sigmoid(MatrixOps.dotProduct(weights, inputs)+bias);
+    public double activation(double[] inputs, Function<Double, Double> activationFunction) {
+        return activationFunction.apply(MatrixOps.dotProduct(weights, inputs)+bias);
     }
 
 }

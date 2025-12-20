@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.function.Function;
 public class MLOps {
     // tolerance variables for floating point errors 
     private static final double bigEpsilon = 1e7;
@@ -63,7 +64,7 @@ public class MLOps {
      * @param input
      * @return
      */
-    public static double[] forwardPropagation(Neuron[][] network, double[] input) {
+    public static double[] forwardPropagation(Neuron[][] network, double[] input, ) {
         double[][] inputLayer = new double[network.length][];
         inputLayer[0] = input;
         for(int layer = 1; layer < network.length; layer++) {
@@ -74,14 +75,14 @@ public class MLOps {
         }
         return softmax(inputLayer[inputLayer.length - 1]);
     }
-    public static double[] forwardPropagation(Neuron[][] network, double[] input,boolean timer) {
+    public static double[] forwardPropagation(Neuron[][] network, double[] input,boolean timer, Function<Double, Double> activationFunction) {
         double startTime = System.nanoTime();
         double[][] inputLayer = new double[network.length][];
         inputLayer[0] = input;
         for(int layer = 1; layer < network.length; layer++) {
             inputLayer[layer] = new double[network[layer].length];
             for(int neuron = 0; neuron < network[layer].length; neuron++){
-                inputLayer[layer][neuron] = network[layer][neuron].activation(inputLayer[layer-1]);    
+                inputLayer[layer][neuron] = network[layer][neuron].activation(inputLayer[layer-1],activationFunction);    
             }
         }
         double[] result = softmax(inputLayer[inputLayer.length - 1]);
@@ -301,11 +302,8 @@ public class MLOps {
     /**
      * 
      * @param NN
-     * @param probabilities
-     * @param expected
-     * @param actual
      */
-    public static void backPropagation(Neuron[][] NN, double[] probabilities, int expected, int actual){
+    public static void backPropagation(Neuron[][] NN){
         
 
     }
@@ -317,9 +315,6 @@ public class MLOps {
     }
 
 
-    public static void gradientDescent(){
-
-    }
 
     public static void SGD(){
 
