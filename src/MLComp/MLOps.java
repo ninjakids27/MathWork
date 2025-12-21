@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.function.Function;
 public class MLOps {
     // tolerance variables for floating point errors 
-    private static final double bigEpsilon = 1e7;
+    private static final double bigEpsilon = 1e6;
     private static final double epsilon = 1e-10;
     /**
      * Checks if two doubles are equal within a defined tolerance (epsilon).
@@ -19,8 +19,7 @@ public class MLOps {
      * @return
     */
     private static double tolerance(double input){
-        double temp = (input*bigEpsilon);
-        temp = (int) Math.round(temp);
+        double temp = (int) Math.round(input*bigEpsilon);
         return (double)temp/bigEpsilon;
     }
    
@@ -64,13 +63,13 @@ public class MLOps {
      * @param input
      * @return
      */
-    public static double[] forwardPropagation(Neuron[][] network, double[] input, ) {
+    public static double[] forwardPropagation(Neuron[][] network, double[] input, Function<Double, Double> activationFunction) {
         double[][] inputLayer = new double[network.length][];
         inputLayer[0] = input;
         for(int layer = 1; layer < network.length; layer++) {
             inputLayer[layer] = new double[network[layer].length];
             for(int neuron = 0; neuron < network[layer].length; neuron++){
-                inputLayer[layer][neuron] = network[layer][neuron].activation(inputLayer[layer-1]);    
+                inputLayer[layer][neuron] = network[layer][neuron].activation(inputLayer[layer-1],activationFunction);    
             }
         }
         return softmax(inputLayer[inputLayer.length - 1]);
@@ -232,24 +231,24 @@ public class MLOps {
      * read mnist and forward prop it through
      */
 
-    public static double[] forwardPropagationMNIST(int line,String filename, Neuron[][] NN){
+    public static double[] forwardPropagationMNIST(int line,String filename, Neuron[][] NN,Function<Double, Double> activationFunction){
         int[] input = readCSV(filename, line);
         double[] cleanInput = new double[input.length-1];
         for(int i = 1; i < input.length; i++){
             cleanInput[i-1] = input[i];
         }
 
-        return forwardPropagation(NN, cleanInput);
+        return forwardPropagation(NN, cleanInput,activationFunction );
     }
 
-    public static double[] forwardPropagationMNIST(int line,String filename, Neuron[][] NN,boolean timer){
+    public static double[] forwardPropagationMNIST(int line,String filename, Neuron[][] NN,Function<Double, Double> activationFunction,boolean timer){
         int[] input = readCSV(filename, line);
         double[] cleanInput = new double[input.length-1];
         for(int i = 1; i < input.length; i++){
             cleanInput[i-1] = input[i];
         }
 
-        return forwardPropagation(NN, cleanInput,timer);
+        return forwardPropagation(NN, cleanInput,timer,activationFunction);
     }
 
     public static double[] softmax(double[] input){

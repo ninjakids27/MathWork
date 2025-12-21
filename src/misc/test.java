@@ -1,6 +1,5 @@
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
 
 public class test{
@@ -51,8 +50,11 @@ public class test{
 
   @Test
   public void testSoftmax(){
-    Neuron[][] buddy = MLOps.loadNN("Models/NN784_16_16_10.ser");
-        double[] prob = MLOps.forwardPropagationMNIST(2, "MNIST_CSV/mnist_train.csv",buddy);
+        Neuron[][] buddy = MLOps.loadNN("Models\\NN784_16_16_10.ser");
+        if(buddy == null){
+            throw new IllegalArgumentException("Could not load model");
+        }
+        double[] prob = MLOps.forwardPropagationMNIST(2, "MNIST_CSV/mnist_train.csv",buddy, MLOps::sigmoid);
         double sum = 0;
         for(double num : prob){
             sum += num;

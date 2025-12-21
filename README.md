@@ -50,6 +50,7 @@ and I don't have a lot of patience to optimize the code any further or make it a
 - [ ] Single Value decomposition for compressing images (P1)
     - [ ] research Single Value Decomposition (P1)
     - [ ] write notes (P2)
+- [ ] Fix linear regression (P1)
 
 ### UNIT TESTS
 - [ ] Write a unit test for the cost function
