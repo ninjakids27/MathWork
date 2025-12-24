@@ -1,5 +1,10 @@
 import java.io.*;
 import java.util.function.Function;
+@FunctionalInterface
+interface optimizers {
+    double[] zeoptimizer(double[] gradient, double[] weights , double bias, double learningRate);
+    
+}
 public class MLOps {
     // tolerance variables for floating point errors 
     private static final double bigEpsilon = 1e6;
@@ -63,7 +68,7 @@ public class MLOps {
      * @param input
      * @return
      */
-    public static double[] forwardPropagation(Neuron[][] network, double[] input, Function<Double, Double> activationFunction) {
+    public static double[] forwardPropagation(Neuron[][] network, double[] input, ActivationFunction activationFunction) {
         double[][] inputLayer = new double[network.length][];
         inputLayer[0] = input;
         for(int layer = 1; layer < network.length; layer++) {
@@ -74,7 +79,21 @@ public class MLOps {
         }
         return softmax(inputLayer[inputLayer.length - 1]);
     }
-    public static double[] forwardPropagation(Neuron[][] network, double[] input,boolean timer, Function<Double, Double> activationFunction) {
+
+    public static double[][] forwardPropagation(Neuron[][] network, double[] input, ActivationFunction activationFunction,boolean returnInputs) {
+        double[][] inputLayer = new double[network.length][];
+        inputLayer[0] = input;
+        for(int layer = 1; layer < network.length; layer++) {
+            inputLayer[layer] = new double[network[layer].length];
+            for(int neuron = 0; neuron < network[layer].length; neuron++){
+                inputLayer[layer][neuron] = network[layer][neuron].activation(inputLayer[layer-1],activationFunction);    
+            }
+        }
+        return inputLayer;
+    }
+
+    
+    public static double[] forwardPropagation(Neuron[][] network, double[] input,boolean timer, ActivationFunction activationFunction) {
         double startTime = System.nanoTime();
         double[][] inputLayer = new double[network.length][];
         inputLayer[0] = input;
@@ -105,39 +124,6 @@ public class MLOps {
             sum += Math.pow(output[i] - ans[i], 2);
         }
         return sum / output.length;
-    }
-    /**
-     * ReLU activation function (see notes for specifics)
-     * @param x input value
-     * @return output value
-     */
-    public static double reLU(double x) {
-        return Math.max(0, x);
-    }
-    /**
-     * Derivative of ReLU activation function
-     * @param x input value
-     * @return derivative value
-     */
-    public static double reLUDerivative(double x) {
-        return x > 0 ? 1 : 0;
-    }
-    /**
-     * Sigmoid activation function
-     * @param x input value
-     * @return output value
-     */
-    public static double sigmoid(double x) {
-        return 1 / (1 + Math.exp(-x));
-    }
-    /**
-     * Derivative of Sigmoid activation function
-     * @param x input value
-     * @return derivative value
-     */
-    public static double sigmoidDerivative(double x) {
-        double sig = sigmoid(x);
-        return sig * (1 - sig);
     }
 
     /**
@@ -214,9 +200,9 @@ public class MLOps {
      */
     public static Neuron[][] loadNN(String filename) {
         try{
+            Neuron[][] network = null;
             FileInputStream file = new FileInputStream(filename);
             ObjectInputStream ois = new ObjectInputStream(file);
-            Neuron[][] network = null;
             network = (Neuron[][]) ois.readObject();
             ois.close();
             file.close();
@@ -231,17 +217,17 @@ public class MLOps {
      * read mnist and forward prop it through
      */
 
-    public static double[] forwardPropagationMNIST(int line,String filename, Neuron[][] NN,Function<Double, Double> activationFunction){
+    public static double[] forwardPropagationMNIST(int line,String filename, Neuron[][] NN,ActivationFunction activationFunction){
         int[] input = readCSV(filename, line);
         double[] cleanInput = new double[input.length-1];
         for(int i = 1; i < input.length; i++){
             cleanInput[i-1] = input[i];
         }
 
-        return forwardPropagation(NN, cleanInput,activationFunction );
+        return forwardPropagation(NN, cleanInput,activationFunction);
     }
 
-    public static double[] forwardPropagationMNIST(int line,String filename, Neuron[][] NN,Function<Double, Double> activationFunction,boolean timer){
+    public static double[] forwardPropagationMNIST(int line,String filename, Neuron[][] NN,ActivationFunction activationFunction,boolean timer){
         int[] input = readCSV(filename, line);
         double[] cleanInput = new double[input.length-1];
         for(int i = 1; i < input.length; i++){
@@ -302,28 +288,32 @@ public class MLOps {
      * 
      * @param NN
      */
-    public static void backPropagation(Neuron[][] NN){
+    public static void backPropagation(Neuron[][] NN, int line, String filename, double learningRate,ActivationFunction activationFunction, ActivationFunction activationFunctionDerivative){
+        int[] input = readCSV(filename, line);
+        double[] answer = new double[10];
+        answer[input[0]-1] = 1.0;
+        double[] cleanInput = new double[input.length-1];
+        for(int i = 1; i < input.length; i++){
+            cleanInput[i-1] = input[i];
+        }
+        double[] output = forwardPropagation(NN, cleanInput, activationFunction);
+        double[][] inputMatrix = forwardPropagation(NN, cleanInput, activationFunction, true);
+        
+        
+        double[] errorOutput  = new double[10];
+        double[] partoftheerror = MatrixOps.vectorSum(output,MatrixOps.vectorMult(answer, -1));
+        for(int i = 0; i < partoftheerror.length;i++){
+            errorOutput[i] = partoftheerror[i]*activationFunctionDerivative.update(output[i]);
+        }
+
+        
+        // the code is supposed to calculate the error but I don't know 
+        // how to calculate and update the weights ಥ_ಥ
+
         
 
-    }
-    /**
-     * 
-     */
-    public static void ADAM(){
 
     }
-
-
-
-    public static void SGD(){
-
-    }
-
-    public static void SGDMomentum(){
-        
-    }
-
-    public static void training(int epoch){
-        
-    }
+    
+    
 }

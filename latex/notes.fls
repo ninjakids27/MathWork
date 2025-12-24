@@ -1,6 +1,6 @@
-PWD c:\githubProject\MathWork\latex
+PWD c:\Users\Adami\Desktop\_\githubProjects\MathWork\latex
 INPUT C:\Users\Adami\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\githubProject\MathWork\latex\notes.tex
+INPUT c:\Users\Adami\Desktop\_\githubProjects\MathWork\latex\notes.tex
 OUTPUT notes.log
 INPUT C:\Users\Adami\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\Adami\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls

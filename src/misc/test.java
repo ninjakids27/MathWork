@@ -50,11 +50,11 @@ public class test{
 
   @Test
   public void testSoftmax(){
-        Neuron[][] buddy = MLOps.loadNN("Models\\NN784_16_16_10.ser");
+        Neuron[][] buddy = MLOps.loadNN("Models//NN784_16_16_10.ser");
         if(buddy == null){
-            throw new IllegalArgumentException("Could not load model");
+            throw new IllegalArgumentException(ColorText.errorFormat("Could not load model"));
         }
-        double[] prob = MLOps.forwardPropagationMNIST(2, "MNIST_CSV/mnist_train.csv",buddy, MLOps::sigmoid);
+        double[] prob = MLOps.forwardPropagationMNIST(2, "MNIST_CSV/mnist_train.csv",buddy, ActivationFunctions::sigmoid);
         double sum = 0;
         for(double num : prob){
             sum += num;
