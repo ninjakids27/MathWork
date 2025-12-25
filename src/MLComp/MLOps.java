@@ -1,5 +1,6 @@
 import java.io.*;
 public class MLOps {
+    private static BufferedWriter trainingLogWriter; // Declare trainingLogWriter as a class-level variable
     // tolerance variables for floating point errors 
     private static final double bigEpsilon = 1e6;
     private static final double epsilon = 1e-10;
@@ -302,6 +303,9 @@ public class MLOps {
      * @param activationFunction
      * @param activationFunctionDerivative
      */
+    private static double[] lossAverage = new double[50]; // Array to store loss values
+    private static double[] correctnessAverage = new double[50]; // Array to store correctness values
+
     public static void backPropagation(Neuron[][] NN, int line, String filename, double learningRate, ActivationFunction activationFunction, ActivationFunction activationFunctionDerivative, Optimizer OptimizationFunction) {
     // 1. Data Prep & Normalization
     int[] rawInput = readCSV(filename, line);
@@ -361,6 +365,7 @@ public class MLOps {
     }
 
     // Progress Reporting
+    
     if (true) { // showProgress
         double loss = lossFunctionMSE(output, answer);
         int predicted = 0;
@@ -371,14 +376,66 @@ public class MLOps {
                 predicted = i;
             }
         }
-    System.out.printf("%-28s | %-15s | %-12s | %-12s | %-12s%n",
-        ColorText.dataFormat("Data Line: ") + ColorText.returnFormat(""+line),
-        ColorText.dataFormat("Correctness: ") + ColorText.returnFormat(""+(predicted == rawInput[0])),
-        ColorText.dataFormat("Loss: ") + ColorText.returnFormat(String.format("%.6f", loss)),
-        ColorText.dataFormat("Predicted: ") + ColorText.returnFormat(""+predicted),
-        ColorText.dataFormat("Actual: ") + ColorText.returnFormat(""+rawInput[0])
-    );
+    
+    // calculate the average loss and correctness and print an average every 50 lines
+    
+    // update rolling buffers
+    int idx = (line - 1) % lossAverage.length;
+    lossAverage[idx] = loss;
+    correctnessAverage[idx] = (predicted == rawInput[0]) ? 1.0 : 0.0;
+
+    // every 50 samples print averages
+    if (line % lossAverage.length == 0) {
+        double lossSum = 0.0;
+        double correctnessSum = 0.0;
+        for (int i = 0; i < lossAverage.length; i++) {
+            lossSum += lossAverage[i];
+            correctnessSum += correctnessAverage[i];
+        }
+        double avgLoss = lossSum / lossAverage.length;
+        double avgCorrectness = (correctnessSum / lossAverage.length) * 100.0;
+        System.out.printf("%-28s | %-15s | %-12s%n",
+            ColorText.dataFormat("After " + line + " samples: "),
+            ColorText.dataFormat("Avg Loss: ") + ColorText.returnFormat(String.format("%.6f", avgLoss)),
+            ColorText.dataFormat("Avg Correctness: ") + ColorText.returnFormat(String.format("%.2f", avgCorrectness) + "%")
+        );
     }
+    // System.out.printf("%-28s | %-15s | %-12s | %-12s | %-12s%n",
+    //     ColorText.dataFormat("Data Line: ") + ColorText.returnFormat(""+line),
+    //     ColorText.dataFormat("Correctness: ") + ColorText.returnFormat(""+(predicted == rawInput[0])),
+    //     ColorText.dataFormat("Loss: ") + ColorText.returnFormat(String.format("%.6f", loss)),
+    //     ColorText.dataFormat("Predicted: ") + ColorText.returnFormat(""+predicted),
+    //     ColorText.dataFormat("Actual: ") + ColorText.returnFormat(""+rawInput[0])
+    // );
+    // insert what is in the printf into a .csv file in the /log directory and make unique names based on date and time
+    // Logging (only open file once per training session)
+    if (line == 1) {
+        try {
+            File logDir = new File("log");
+            if (!logDir.exists()) {
+                logDir.mkdirs();
+            }
+            
+            String timestamp = new java.text.SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new java.util.Date());
+            String logFilename = "log/training_log_" + timestamp + ".csv";
+            trainingLogWriter = new BufferedWriter(new FileWriter(logFilename, false));
+            trainingLogWriter.write("Data Line,Correctness,Loss,Predicted,Actual\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    try {
+        if (trainingLogWriter != null) {
+            trainingLogWriter.write(String.format("%d,%b,%.6f,%d,%d,%.6f%n", line, (predicted == rawInput[0]), loss, predicted, rawInput[0], max));
+            trainingLogWriter.flush();
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+
+}
 }
     
     public static void training(Neuron[][] NN, String filename, double learningRate, int epochs, ActivationFunction activationFunction, ActivationFunction activationFunctionDerivative, Optimizer OptimizationFunction){

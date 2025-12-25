@@ -1,7 +1,7 @@
 public class Optimizers {
     
     public static void gradientDescent(Neuron neuron,double[] gradident){
-        neuron.setWeights(MatrixOps.vectorSum(gradident, neuron.getWeights()));
+        neuron.setWeights(MatrixOps.vectorSum(MatrixOps.vectorMult(-1, gradident), neuron.getWeights()));
         neuron.setBias(neuron.getBias() + gradident[gradident.length - 1]);
     }
 
@@ -26,7 +26,7 @@ public class Optimizers {
     neuron.setBias(bias);
 }
     
-    public static void sgdMomentum(Neuron neuron,double[] gradident, double learningRate){
+    public static void sgdMomentum(Neuron neuron,double[] gradident){
         
     }
     
@@ -34,7 +34,7 @@ public class Optimizers {
         
     }
     
-    public static void adam(Neuron neuron,double[] gradident, double learningRate){
-    
+    public static void adam(Neuron neuron,double[] gradident){
+        
     }
 }
