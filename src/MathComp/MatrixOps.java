@@ -891,6 +891,12 @@ public class MatrixOps {
         }
         return vector;
     }
+    public static double[] vectorMult( double factor,double[] vector){
+        for(int i = 0; i<vector.length; i++){
+            vector[i] *= factor;
+        }
+        return vector;
+    }
 
 
     // imagine a vector x and y basically it represents vector z as z1 = x1*y1 and so on

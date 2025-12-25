@@ -1,10 +1,4 @@
 import java.io.*;
-import java.util.function.Function;
-@FunctionalInterface
-interface optimizers {
-    double[] zeoptimizer(double[] gradient, double[] weights , double bias, double learningRate);
-    
-}
 public class MLOps {
     // tolerance variables for floating point errors 
     private static final double bigEpsilon = 1e6;
@@ -115,17 +109,26 @@ public class MLOps {
      * @param ans the expected output
      * @return the mean squared error
      */
-    public static double lossFunction(double[] output, double[] ans){
-        if(output.length != ans.length){
-            throw new IllegalArgumentException(ColorText.errorFormat("Output and answer arrays must be of the same length."));
-        }
+    public static double lossFunctionMSE(double[] output, double[] ans){
         double sum = 0.0;
         for(int i = 0; i < output.length; i++){
-            sum += Math.pow(output[i] - ans[i], 2);
+            sum += Math.pow((ans[i]-output[i]), 2);
         }
-        return sum / output.length;
+        return sum/output.length;
     }
 
+    /**
+     * 
+     * 
+     * cross entropy loss function
+     */
+    public static double lossFunctionCSE(double[] output, double[] ans){
+        double sum = 0.0;
+        for(int i = 0; i < output.length; i++){
+            sum += -ans[i]*Math.log(output[i]+epsilon);
+        }
+        return sum;
+    }
     /**
      * Build the neural network
      * The structure is that the rows are layers and the columns are neurons in that layer 
@@ -177,18 +180,24 @@ public class MLOps {
      * This uses He uniform initilization which is best suited for ReLU
      * @param NN
      */
+    public static void heinitilizeWeights(Neuron[][] NN){
+        for(int layer = 1; layer < NN.length; layer++){
+            for(int neuron = 0; neuron < NN[layer].length; neuron++){
+                double limit = Math.sqrt(6.0/NN[layer-1].length);
+                for(int weight = 0; weight < NN[layer][neuron].getWeightsLength(); weight++){
+                    double randomWeight = (Math.random()*2*limit)-limit;
+                    NN[layer][neuron].setWeight(weight, randomWeight);
+                }
+            }
+        }
+    }
+
     public static void initilizeWeights(Neuron[][] NN){
-        // go through each hidden layer
-        for(int i = 1; i < NN.length; i++){
-            Neuron[] layer = NN[i];
-            int n_low   = NN[i-1].length; 
-            double low  = Math.sqrt(6.0/n_low);
-            // initilize the weights based on the neurons per layer
-            for(Neuron neuron : layer){
-                // iterate through the weights sampling from a uniform distribution
-                for(int weight = 0; weight < neuron.getWeightsLength(); weight++){
-                    // he uniform is U(-L,L)
-                     neuron.setWeight(weight, -1*low+Math.random()*(2*low));
+        for(int layer = 1; layer < NN.length; layer++){
+            for(int neuron = 0; neuron < NN[layer].length; neuron++){
+                for(int weight = 0; weight < NN[layer][neuron].getWeightsLength(); weight++){
+                    double randomWeight = (Math.random()*2)-1;
+                    NN[layer][neuron].setWeight(weight, randomWeight);
                 }
             }
         }
@@ -287,33 +296,98 @@ public class MLOps {
     /**
      * 
      * @param NN
+     * @param line
+     * @param filename
+     * @param learningRate
+     * @param activationFunction
+     * @param activationFunctionDerivative
      */
-    public static void backPropagation(Neuron[][] NN, int line, String filename, double learningRate,ActivationFunction activationFunction, ActivationFunction activationFunctionDerivative){
-        int[] input = readCSV(filename, line);
-        double[] answer = new double[10];
-        answer[input[0]-1] = 1.0;
-        double[] cleanInput = new double[input.length-1];
-        for(int i = 1; i < input.length; i++){
-            cleanInput[i-1] = input[i];
-        }
-        double[] output = forwardPropagation(NN, cleanInput, activationFunction);
-        double[][] inputMatrix = forwardPropagation(NN, cleanInput, activationFunction, true);
-        
-        
-        double[] errorOutput  = new double[10];
-        double[] partoftheerror = MatrixOps.vectorSum(output,MatrixOps.vectorMult(answer, -1));
-        for(int i = 0; i < partoftheerror.length;i++){
-            errorOutput[i] = partoftheerror[i]*activationFunctionDerivative.update(output[i]);
-        }
+    public static void backPropagation(Neuron[][] NN, int line, String filename, double learningRate, ActivationFunction activationFunction, ActivationFunction activationFunctionDerivative, Optimizer OptimizationFunction) {
+    // 1. Data Prep & Normalization
+    int[] rawInput = readCSV(filename, line);
+    double[] answer = new double[10];
+    answer[rawInput[0]] = 1.0; // One-hot encoding
 
-        
-        // the code is supposed to calculate the error but I don't know 
-        // how to calculate and update the weights ಥ_ಥ
-
-        
-
-
+    // Normalize inputs (crucial for DNNs to prevent saturation)
+    double[] cleanInput = new double[rawInput.length - 1];
+    for (int i = 1; i < rawInput.length; i++) {
+        cleanInput[i - 1] = rawInput[i] / 255.0; 
     }
+
+    // 2. Forward Pass (Capture all intermediate activations)
+    double[] output = forwardPropagation(NN, cleanInput, activationFunction);
+    double[][] layerActivations = forwardPropagation(NN, cleanInput, activationFunction, true);
+
+    // 3. Output Layer Error
+    // error = (output - target) * deriv(output)
+    double[] currentError = new double[output.length];
+    for (int i = 0; i < output.length; i++) {
+        currentError[i] = (output[i] - answer[i]) * activationFunctionDerivative.update(output[i]);
+    }
+
+    // 4. Backpropagate Errors through Hidden Layers
+    // Store errors for every layer so we can use them for weight updates
+    double[][] allLayerErrors = new double[NN.length][];
+    allLayerErrors[NN.length - 1] = currentError;
+
+    for (int layer = NN.length - 2; layer > 0; layer--) {
+        double[] nextLayerError = allLayerErrors[layer + 1];
+        double[] thisLayerError = new double[NN[layer].length];
+
+        for (int i = 0; i < NN[layer].length; i++) {
+            double errorSum = 0.0;
+            for (int j = 0; j < NN[layer + 1].length; j++) {
+                errorSum += NN[layer + 1][j].getWeight(i) * nextLayerError[j];
+            }
+            thisLayerError[i] = errorSum * activationFunctionDerivative.update(layerActivations[layer][i]);
+        }
+        allLayerErrors[layer] = thisLayerError;
+    }
+
+    // 5. Update Weights using Gradients
+    // Gradient = previous_layer_activation * current_layer_error
+    for (int layer = 1; layer < NN.length; layer++) {
+        double[] layerError = allLayerErrors[layer];
+        double[] prevLayerActivations = (layer == 1) ? cleanInput : layerActivations[layer - 1];
+
+        for (int neuron = 0; neuron < NN[layer].length; neuron++) {
+            double[] gradient = new double[NN[layer][neuron].getWeightsLength()];
+            for (int w = 0; w < gradient.length; w++) {
+                // Weight update formula
+                gradient[w] = prevLayerActivations[w] * layerError[neuron] * learningRate;
+            }
+            OptimizationFunction.update(NN[layer][neuron], gradient);
+        }
+    }
+
+    // Progress Reporting
+    if (true) { // showProgress
+        double loss = lossFunctionMSE(output, answer);
+        int predicted = 0;
+        double max = output[0];
+        for (int i = 1; i < output.length; i++) {
+            if (output[i] > max) {
+                max = output[i];
+                predicted = i;
+            }
+        }
+    System.out.printf("%-28s | %-15s | %-12s | %-12s | %-12s%n",
+        ColorText.dataFormat("Data Line: ") + ColorText.returnFormat(""+line),
+        ColorText.dataFormat("Correctness: ") + ColorText.returnFormat(""+(predicted == rawInput[0])),
+        ColorText.dataFormat("Loss: ") + ColorText.returnFormat(String.format("%.6f", loss)),
+        ColorText.dataFormat("Predicted: ") + ColorText.returnFormat(""+predicted),
+        ColorText.dataFormat("Actual: ") + ColorText.returnFormat(""+rawInput[0])
+    );
+    }
+}
     
-    
+    public static void training(Neuron[][] NN, String filename, double learningRate, int epochs, ActivationFunction activationFunction, ActivationFunction activationFunctionDerivative, Optimizer OptimizationFunction){
+        for(int epoch = 0; epoch < epochs; epoch++){
+            ColorText.playText(ColorText.dataFormat("Epoch ")+ColorText.returnFormat(""+(epoch+1)+"/"+epochs),0.1);
+
+            for(int line = 1; line < 60000; line++){
+                backPropagation(NN, line, filename, learningRate, activationFunction, activationFunctionDerivative, OptimizationFunction);
+            }
+        }
+    }
 }

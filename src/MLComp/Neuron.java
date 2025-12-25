@@ -32,6 +32,9 @@ public class Neuron implements java.io.Serializable {
     public double[] getWeights() {
         return weights;
     }
+    public double getWeight(int index){
+        return weights[index];
+    }
     /**
      * Gets the bias of the neuron.
      * @return the bias value

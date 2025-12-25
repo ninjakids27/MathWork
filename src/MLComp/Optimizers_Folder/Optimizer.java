@@ -3,6 +3,6 @@
 // optimizers, but I do know it's good for ActivaionFunctions.
 @FunctionalInterface
 public interface Optimizer {
-    double[] update(double[] gradident, double[] weights, double bias, double learningRate);
+    void update(Neuron Neuron,double[] gradident);
     
 }

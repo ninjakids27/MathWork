@@ -103,42 +103,19 @@ $$\text{Traditional } \mathcal{N}(0,\sigma^2)$$
 $$U(-L,L)$$
 $$\text{Where }L = \sqrt{\frac{6}{n_\text{in}}}$$
 \par{Now there's questions on what a uniform distrubution is and I won't address that.}
-\section*{Core Backpropagation Formulas}
-
-\begin{enumerate}
-    \item \textbf{Error Function (Mean Squared Error - MSE)}:
-    $$E = \frac{1}{2}\sum_{k} (t_k - y_k)^2$$
-
-    \item \textbf{Output Layer Error Term ($\delta_k$)}:
-    $$\delta_k = (t_k - y_k) \cdot f'(net_k)$$
-
-    \item \textbf{Hidden Layer Error Term ($\delta_j$)}:
-    $$\delta_j = f'(net_j) \cdot \sum_{k} (\delta_k w_{kj})$$
-    
-    \item \textbf{Weight Update Rule ($\Delta w_{ji}$)}:
-    $$\Delta w_{ji} = \eta \cdot \delta_j \cdot y_i$$
-    \centerline{New Weight: $w_{ji}^{new} = w_{ji}^{old} + \Delta w_{ji}$}
-
-    \item \textbf{Bias Update Rule ($\Delta b_j$)}:
-    $$\Delta b_j = \eta \cdot \delta_j$$
-\end{enumerate}
-
-\vspace{1em}
-\hrule
-\vspace{1em}
-
-\subsection*{Variable Key}
-\begin{itemize}
-    \item $E$: Error (Loss)
-    \item $t_k$: Target value for output unit $k$
-    \item $y_k$: Predicted output value for unit $k$
-    \item $f'(net)$: Derivative of the activation function with respect to the weighted input ($net$)
-    \item $\delta$: Error Term
-    \item $w_{kj}$: Weight connecting unit $j$ to unit $k$
-    \item $\eta$: Learning Rate
-\end{itemize}
-
-
+\subsection{Backpropagation}
+\par{Backpropagation is the heart of ML and the most important and difficult
+step for any ML project. The algorithm of backpropagation can vary from project to project
+as optimizers are used differently for the notes I'm going to introduce it using 
+gradient descent.}\\\\
+\text{You first start with the loss function which we can use the MSE for}
+$$\mathcal{L} = \frac{1}{n}\sum_{i=1}^n(Y_i-\hat{Y_i})^2$$
+\par{Then we progress to something more abstract like calculating the loss for the output layer}
+$$\delta_{\text{out}}=(t_k-y_k)\sigma'(\mathbf{N}_{n-1})$$
+\par{The activation input is the last layer's input so it's like a forward prop, but the derivative
+gets us the indicator of the gradient. Computing the hidden layers is a bit more complex but 
+not a huge jump from the last formula.}
+$$\delta_{\text{hidden}} = \sigma'(\mathbf{N})_{n-1}\sum_k(\delta_{out}\mathbf{W})$$
 
 \section{MatrixOps}
 

@@ -36,12 +36,14 @@ and I don't have a lot of patience to optimize the code any further or make it a
 - [ ] implement training method to train the NN (P1)
 - [ ] Do Backpropagation (P1)
     - [ ] implement Adam as an optimizer algorithm for the learning rate (P1)
+    - [ ] implement SGD
+    - [ ] implement SGD with momentum
     - [x] implement the softmax function (P1)
     - [x] implement box muller transform method for sampling (P1) 
     - [x] Do He initilization using a uniform distribution to initilize the weights (P1)
     - [x] Write a loss function (P2) // post it's the same thing as the cost function so it's just MSE
     - [x] Write a cost function (P2) // lost and cost are used interchangably in the ML community :/
-    - [ ] Possibly need to review MVC for BP (~P3)
+    - [x] Possibly need to review MVC for BP (~P3)
 - [ ] Tensor class? do more research in the future and write it up in the notes (~P3)
 - [ ] Write the training method and implement parallel processing using CUDA (P2)
 - [x] Make more models (P1)

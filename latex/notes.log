@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.12.21)  21 DEC 2025 17:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.12.21)  24 DEC 2025 15:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -560,28 +560,28 @@ Underfull \hbox (badness 10000) in paragraph at lines 87--89
 
  []
 
-[3]
-Overfull \hbox (25.00003pt too wide) in paragraph at lines 119--121
-[] 
+
+Underfull \hbox (badness 10000) in paragraph at lines 107--112
+
  []
 
-[4]
-Underfull \hbox (badness 10000) in paragraph at lines 193--194
+[3] [4]
+Underfull \hbox (badness 10000) in paragraph at lines 170--171
 
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 231--233
+Underfull \hbox (badness 10000) in paragraph at lines 208--210
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 231--233
+Underfull \hbox (badness 10000) in paragraph at lines 208--210
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 235--239
+Underfull \hbox (badness 10000) in paragraph at lines 212--216
 
  []
 
@@ -591,23 +591,23 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2025-11-06>
  ***********
 Package rerunfilecheck Info: File `notes.out' has not changed.
-(rerunfilecheck)             Checksum: 28AA305FE36A212D3AF747463283B7B4;541.
+(rerunfilecheck)             Checksum: C81174EFFD6CD060407C4BF50B912E4F;673.
 Package logreq Info: Writing requests to 'notes.run.xml'.
 \openout1 = `notes.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 17127 strings out of 467871
- 302090 string characters out of 5418375
+ 17122 strings out of 467871
+ 302070 string characters out of 5418375
  1144480 words of memory out of 5000000
- 45823 multiletter control sequences out of 15000+600000
+ 45824 multiletter control sequences out of 15000+600000
  634873 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 70i,9n,79p,749b,1318s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 70i,9n,79p,749b,1487s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Adami\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on notes.pdf (7 pages, 247891 bytes).
+Output written on notes.pdf (7 pages, 237522 bytes).
 PDF statistics:
- 184 PDF objects out of 1000 (max. 8388607)
- 30 named destinations out of 1000 (max. 500000)
- 49 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 180 PDF objects out of 1000 (max. 8388607)
+ 24 named destinations out of 1000 (max. 500000)
+ 57 words of extra memory for PDF output out of 10000 (max. 10000000)
 

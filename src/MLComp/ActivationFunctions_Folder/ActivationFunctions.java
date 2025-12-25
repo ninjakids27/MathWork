@@ -34,4 +34,19 @@ public class ActivationFunctions {
         double sig = sigmoid(x);
         return sig * (1 - sig);
     }
+
+    /**
+     * leaky relu activation function
+     * @param x input value
+     */
+    public static double leakyReLU(double x) {
+        return x > 0 ? x : 0.01 * x;
+    }
+    /**
+     * Derivative of leaky relu activation function
+     * @param x input value
+     */
+    public static double leakyReLUDerivative(double x) {
+        return x > 0 ? 1 : 0.01;
+    }
 }
