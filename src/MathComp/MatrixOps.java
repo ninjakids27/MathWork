@@ -7,7 +7,17 @@ public class MatrixOps {
     private static double rounding(double num, int decimal){
         return Math.round(Math.pow(10, decimal)*num)/Math.pow(10, decimal);
     }
-
+    public static double argmax(double[] array){
+        double max = array[0];
+        int index = 0;
+        for(int i = 1; i < array.length; i++){
+            if(array[i] > max){
+                max = array[i];
+                index = i;
+            }
+        }
+        return index;
+    }
     /**
      * Generates a random augmented matrix with the specified number of columns.
      * The number of rows will be one less than the number of columns.
