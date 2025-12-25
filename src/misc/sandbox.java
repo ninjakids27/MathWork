@@ -1,16 +1,16 @@
 public class sandbox {
     public static void main(String[] args){
-        Neuron[][] buddy0 = MLOps.buildNeuralNetwork(new int[] {784,128,128,10});
+        Neuron[][] buddy0 = MLOps.buildNeuralNetwork(new int[] {784,128,10});
         MLOps.heinitilizeWeights(buddy0);
         // MatrixOps.printVector(buddy[3][2].getWeights()); 
         MLOps.training(buddy0,
          "MNIST_CSV/mnist_train.csv",
-         0.01,
-         50,
+         0.001,
+         10,
          ActivationFunctions::reLU,
          ActivationFunctions::reLUDerivative,
          Optimizers::sgd
         );
-        MLOps.saveNN(buddy0, "Models//NN784_16_16_10.ser");
+        MLOps.saveNN(buddy0, "Models//NN784_128_64_10.ser");
     }
 }

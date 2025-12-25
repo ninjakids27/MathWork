@@ -74,4 +74,14 @@ public class test{
     assertEquals(11247, coeffs[0], 1);
     assertEquals(0.113, coeffs[1], 0.001);
   }
+
+  @Test
+  public void testNeuralNetwork(){
+    Neuron[][] buddy = MLOps.loadNN("Models//NN784_128_64_10.ser");
+    if(buddy == null){
+        throw new IllegalArgumentException(ColorText.errorFormat("Could not load model"));
+    }
+    int correct = MLOps.test(buddy, "MNIST_CSV/mnist_test.csv", ActivationFunctions::reLU, ActivationFunctions::reLUDerivative, Optimizers::sgd);
+    assertEquals(8700, correct, 100);
+  }
 }

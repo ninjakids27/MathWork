@@ -1,13 +1,12 @@
 public class Optimizers {
     
     public static void gradientDescent(Neuron neuron,double[] gradient, double learningRate){
-        // implement algorithm here
         double[] weights = neuron.getWeights();
         for(int i = 0; i < weights.length; i++){
             // Update rule: weight = weight - (learningRate * gradient)
             weights[i] -= learningRate * gradient[i];
         }
-        neuron.setWeights(weights);
+        // neuron.setWeights(weights);
     }
 
     public static void sgd(Neuron neuron, double[] gradient, double learningRate) {
@@ -54,7 +53,50 @@ public class Optimizers {
         
     }
     
-    public static void adam(Neuron neuron,double[] gradident){
+    // Adam optimizer state variables
+    private static double[] m; // First moment (mean of gradients)
+    private static double[] v; // Second moment (uncentered variance of gradients)
+    private static int t = 0;  // Timestep
+    
+    /**
+     * Adam Optimizer
+     * @param neuron The neuron whose weights will be updated
+     * @param gradient The gradients calculated during backprop
+     * @param learningRate The learning rate (e.g., 0.001)
+     */
+    public static void adam(Neuron neuron, double[] gradient, double learningRate){
+        double beta1 = 0.9;    // Exponential decay rate for first moment
+        double beta2 = 0.999;  // Exponential decay rate for second moment
+        double epsilon = 1e-8; // Small constant to prevent division by zero
         
+        double[] weights = neuron.getWeights();
+        
+        // Initialize moment arrays if first pass or size mismatch
+        if (m == null || m.length != weights.length) {
+            m = new double[weights.length];
+            v = new double[weights.length];
+            t = 0;
+        }
+        
+        t++; // Increment timestep
+        
+        for (int i = 0; i < weights.length; i++) {
+            // Update biased first moment estimate
+            m[i] = beta1 * m[i] + (1 - beta1) * gradient[i];
+            
+            // Update biased second raw moment estimate
+            v[i] = beta2 * v[i] + (1 - beta2) * gradient[i] * gradient[i];
+            
+            // Compute bias-corrected first moment estimate
+            double mHat = m[i] / (1 - Math.pow(beta1, t));
+            
+            // Compute bias-corrected second raw moment estimate
+            double vHat = v[i] / (1 - Math.pow(beta2, t));
+            
+            // Update weights
+            weights[i] -= learningRate * mHat / (Math.sqrt(vHat) + epsilon);
+        }
+        
+        neuron.setWeights(weights);
     }
 }

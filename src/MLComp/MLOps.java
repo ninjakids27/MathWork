@@ -340,7 +340,7 @@ public class MLOps {
                                    Optimizer OptimizationFunction) {
    
     // 1. Data Prep & Normalization - INCREASE TRAINING SIZE!
-    int[][] rawInput = readCSV(filename, 0, 1000); // Train on more data!
+    int[][] rawInput = readCSV(filename, 0, 60_000); // Train on more data!
     
     // Normalize inputs
     double[][] cleanInputMatrix = new double[rawInput.length][784];
@@ -413,7 +413,7 @@ public class MLOps {
         }
         
         // Progress reporting every 100 examples (changed from 10)
-        if ((trainingRow + 1) % 100 == 0) {
+        if ((trainingRow + 1) % 60_000 == 0) {
             double correctPredictions = 0;
             for (int i = 0; i <= trainingRow; i++) {
                 double[] predOutput = forwardPropagation(NN, cleanInputMatrix[i], activationFunction);
@@ -433,6 +433,7 @@ public class MLOps {
 }
     
 
+
     // ColorText.playText(ColorText.dataFormat("Backpropagation Time: ")+ColorText.dataFormat((endTime-startTime)/1000000.0+"ms"),0.1);
 
     
@@ -441,5 +442,30 @@ public class MLOps {
             System.out.println(ColorText.dataFormat("Epoch ")+ColorText.returnFormat(""+(epoch+1)+"/"+epochs));
             backPropagation(NN, filename, learningRate, activationFunction, activationFunctionDerivative, OptimizationFunction);
         }
+    }
+
+    public static int test(Neuron[][] NN, String filename, ActivationFunction activationFunction, ActivationFunction activationFunctionDerivative, Optimizer OptimizationFunction){
+        int[][] rawInput = readCSV(filename, 0, 10_000); // Test on 10,000 examples!
+        // Normalize inputs
+        double[][] cleanInputMatrix = new double[rawInput.length][784];
+        for(int i = 0; i < rawInput.length; i++){
+            for(int j = 1; j < rawInput[i].length; j++){
+            cleanInputMatrix[i][j-1] = rawInput[i][j] / 255.0;
+        }
+        }
+        // do forward pass and count the correct outputs
+        int correct = 0;
+        for(int i = 0; i < rawInput.length; i++){
+            double[] cleanInput = new double[784];
+            for(int j = 1; j < rawInput[i].length; j++){
+                cleanInput[j-1] = rawInput[i][j] / 255.0;
+            }
+            double[] output = forwardPropagation(NN, cleanInput, activationFunction);
+            int predictedLabel = (int) MatrixOps.argmax(output);
+            if(predictedLabel == rawInput[i][0]){
+                correct++;
+            }
+        }
+        return correct;
     }
 }
