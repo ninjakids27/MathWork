@@ -334,39 +334,47 @@ public class MLOps {
     */
    
    
-   public static void backPropagation(Neuron[][] NN, String filename, double learningRate, ActivationFunction activationFunction, ActivationFunction activationFunctionDerivative, Optimizer OptimizationFunction) {
-       
-       // 1. Data Prep & Normalization
-       long startTime = System.nanoTime();
-        int[][] rawInput = readCSV(filename, 0, 10);
-        long endTime = System.nanoTime();
-        
-        // Normalize inputs (crucial for DNNs to prevent saturation)
-        double[][] cleanInputMatrix = new double[rawInput.length][784];
-        for(int i = 0; i < rawInput.length; i++){
-            for(int j = 1; j < rawInput[i].length; j++){
-                cleanInputMatrix[i][j-1] = rawInput[i][j] / 255.0;
-            }
+   public static void backPropagation(Neuron[][] NN, String filename, double learningRate, 
+                                   ActivationFunction activationFunction, 
+                                   ActivationFunction activationFunctionDerivative, 
+                                   Optimizer OptimizationFunction) {
+   
+    // 1. Data Prep & Normalization - INCREASE TRAINING SIZE!
+    int[][] rawInput = readCSV(filename, 0, 1000); // Train on more data!
+    
+    // Normalize inputs
+    double[][] cleanInputMatrix = new double[rawInput.length][784];
+    for(int i = 0; i < rawInput.length; i++){
+        for(int j = 1; j < rawInput[i].length; j++){
+            cleanInputMatrix[i][j-1] = rawInput[i][j] / 255.0;
         }
-        // iterate through each training 
+    }
+    
+    // Iterate through each training example
+    for(int trainingRow = 0; trainingRow < cleanInputMatrix.length; trainingRow++){
+        double[] cleanInput = cleanInputMatrix[trainingRow];
         
-        for(int trainingRow  = 0; trainingRow < cleanInputMatrix.length; trainingRow++){
-            double[] cleanInput = cleanInputMatrix[trainingRow];
-            // 2. Forward Pass (Capture all intermediate activations)
-            double[] answer = new double[10];
-            answer[rawInput[trainingRow][0]] = 1.0; // One-hot encoding
-            double[] output = forwardPropagation(NN, cleanInput, activationFunction);
-            double[][] layerActivations = forwardPropagation(NN, cleanInput, activationFunction, true);
-            
-            // 3. Output Layer Error
-            // error = (output - target) * deriv(output)
-            double[] currentError = new double[output.length];
-            for (int i = 0; i < output.length; i++) {
-                currentError[i] = (output[i] - answer[i]) * activationFunctionDerivative.update(output[i]);
-            }
+        // 2. Forward Pass WITHOUT softmax (we need raw logits for proper backprop)
+        double[][] layerActivations = forwardPropagation(NN, cleanInput, activationFunction, true);
         
-        // 4. Backpropagate Errors through Hidden Layers
-        // Store errors for every layer so we can use them for weight updates
+        // Get the raw output (pre-softmax) from the last layer
+        double[] rawOutput = layerActivations[layerActivations.length - 1];
+        
+        // Apply softmax ONLY for computing the loss/predictions
+        double[] output = softmax(rawOutput.clone()); // clone to avoid modifying original
+        
+        // 3. Create one-hot encoded target
+        double[] answer = new double[10];
+        answer[rawInput[trainingRow][0]] = 1.0;
+        
+        // 4. Output Layer Error
+        // CRITICAL FIX: For softmax + cross-entropy, gradient is simply (prediction - target)
+        double[] currentError = new double[output.length];
+        for (int i = 0; i < output.length; i++) {
+            currentError[i] = output[i] - answer[i];  // No derivative multiplication needed!
+        }
+        
+        // 5. Backpropagate Errors through Hidden Layers
         double[][] allLayerErrors = new double[NN.length][];
         allLayerErrors[NN.length - 1] = currentError;
         
@@ -379,47 +387,54 @@ public class MLOps {
                 for (int j = 0; j < NN[layer + 1].length; j++) {
                     errorSum += NN[layer + 1][j].getWeight(i) * nextLayerError[j];
                 }
+                // Apply activation derivative for hidden layers (ReLU, sigmoid, etc.)
                 thisLayerError[i] = errorSum * activationFunctionDerivative.update(layerActivations[layer][i]);
             }
             allLayerErrors[layer] = thisLayerError;
         }
         
-        // 5. Update Weights using Gradients
-        // Gradient = previous_layer_activation * current_layer_error
+        // 6. Update Weights using Gradients
         for (int layer = 1; layer < NN.length; layer++) {
-        double[] layerError = allLayerErrors[layer];
-        double[] prevLayerActivations = (layer == 1) ? cleanInput : layerActivations[layer - 1];
-        
-        for (int neuron = 0; neuron < NN[layer].length; neuron++) {
-            double[] gradient = new double[NN[layer][neuron].getWeightsLength()];
-            for (int w = 0; w < gradient.length; w++) {
-                // Weight update formula
-                gradient[w] = prevLayerActivations[w] * layerError[neuron] * learningRate;
+            double[] layerError = allLayerErrors[layer];
+            double[] prevLayerActivations = (layer == 1) ? cleanInput : layerActivations[layer - 1];
+            
+            for (int neuron = 0; neuron < NN[layer].length; neuron++) {
+                double[] gradient = new double[NN[layer][neuron].getWeightsLength()];
+                
+                for (int w = 0; w < gradient.length; w++) {
+                    // CRITICAL FIX: Don't multiply by learning rate here!
+                    // Let the optimizer handle it
+                    gradient[w] = prevLayerActivations[w] * layerError[neuron];
+                }
+                
+                // Pass gradient and learning rate to optimizer
+                OptimizationFunction.update(NN[layer][neuron], gradient, learningRate);
             }
-            OptimizationFunction.update(NN[layer][neuron], gradient);
         }
-
-        // progress reporting on the accuracy every 10000 training examples
-        if ((trainingRow+1) % 10 == 0) {
+        
+        // Progress reporting every 100 examples (changed from 10)
+        if ((trainingRow + 1) % 100 == 0) {
             double correctPredictions = 0;
             for (int i = 0; i <= trainingRow; i++) {
-            double[] predOutput = forwardPropagation(NN, cleanInputMatrix[i], activationFunction);
-            double predictedLabel = MatrixOps.argmax(predOutput);
-            if (predictedLabel == rawInput[i][0]) {
-                correctPredictions++;
-            }
+                double[] predOutput = forwardPropagation(NN, cleanInputMatrix[i], activationFunction);
+                int predictedLabel = (int) MatrixOps.argmax(predOutput);
+                if (predictedLabel == rawInput[i][0]) {
+                    correctPredictions++;
+                }
             }
             double accuracy = (correctPredictions / (trainingRow + 1)) * 100.0;
-            String returnString = ColorText.dataFormat("Training Progress: ") + ColorText.returnFormat((trainingRow + 1) + "/" + (cleanInputMatrix.length+1)) +
-                       ColorText.dataFormat(" - Accuracy: ") + ColorText.returnFormat(String.format("%.2f", accuracy) + "%");
-            // ColorText.playText(, 0.01);
+            String returnString = ColorText.dataFormat("Training Progress: ") + 
+                                ColorText.returnFormat((trainingRow + 1) + "/" + cleanInputMatrix.length) +
+                                ColorText.dataFormat(" - Accuracy: ") + 
+                                ColorText.returnFormat(String.format("%.2f", accuracy) + "%");
             System.out.println(returnString);
         }
     }
+}
     
-}
+
     // ColorText.playText(ColorText.dataFormat("Backpropagation Time: ")+ColorText.dataFormat((endTime-startTime)/1000000.0+"ms"),0.1);
-}
+
     
     public static void training(Neuron[][] NN, String filename, double learningRate, int epochs, ActivationFunction activationFunction, ActivationFunction activationFunctionDerivative, Optimizer OptimizationFunction){
         for(int epoch = 0; epoch < epochs; epoch++){
