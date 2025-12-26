@@ -33,11 +33,11 @@ and I don't have a lot of patience to optimize the code any further or make it a
 
 ## December 2025: 
 ### ML
-- [ ] implement training method to train the NN (P1)
-- [ ] Do Backpropagation (P1)
-    - [ ] implement Adam as an optimizer algorithm for the learning rate (P1)
-    - [ ] implement SGD
-    - [ ] implement SGD with momentum
+- [x] implement training method to train the NN (P1)
+- [x] Do Backpropagation (P1)
+    - [x] implement Adam as an optimizer algorithm for the learning rate (P1)
+    - [x] implement SGD
+    - [x] implement SGD with momentum
     - [x] implement the softmax function (P1)
     - [x] implement box muller transform method for sampling (P1) 
     - [x] Do He initilization using a uniform distribution to initilize the weights (P1)

@@ -342,7 +342,7 @@ public class MLOps {
     // 1. Data Prep & Normalization - INCREASE TRAINING SIZE!
     int[][] rawInput = readCSV(filename, 0, 60_000); // Train on more data!
     
-    // Normalize inputs
+    // Normalize inputs to [0, 1] (match test() preprocessing)
     double[][] cleanInputMatrix = new double[rawInput.length][784];
     for(int i = 0; i < rawInput.length; i++){
         for(int j = 1; j < rawInput[i].length; j++){
@@ -414,15 +414,19 @@ public class MLOps {
         
         // Progress reporting every 100 examples (changed from 10)
         if ((trainingRow + 1) % 1000 == 0) {
+            // Compute accuracy on a fixed-size recent subset to avoid O(n^2) logging cost
+            int windowSize = 1000;
+            int startIdx = Math.max(0, (trainingRow + 1) - windowSize);
             double correctPredictions = 0;
-            for (int i = 0; i <= trainingRow; i++) {
+            for (int i = startIdx; i <= trainingRow; i++) {
                 double[] predOutput = forwardPropagation(NN, cleanInputMatrix[i], activationFunction);
                 int predictedLabel = (int) MatrixOps.argmax(predOutput);
                 if (predictedLabel == rawInput[i][0]) {
                     correctPredictions++;
                 }
             }
-            double accuracy = (correctPredictions / (trainingRow + 1)) * 100.0;
+            int totalEvaluated = trainingRow - startIdx + 1;
+            double accuracy = (correctPredictions / totalEvaluated) * 100.0;
             String returnString = ColorText.dataFormat("Training Progress: ") + 
                                 ColorText.returnFormat((trainingRow + 1) + "/" + cleanInputMatrix.length) +
                                 ColorText.dataFormat(" - Accuracy: ") + 

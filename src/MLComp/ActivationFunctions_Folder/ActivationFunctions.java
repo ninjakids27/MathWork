@@ -49,4 +49,13 @@ public class ActivationFunctions {
     public static double leakyReLUDerivative(double x) {
         return x > 0 ? 1 : 0.01;
     }
+
+    public static double tanh(double x) {
+        return Math.tanh(x);
+    }
+
+    public static double tanhDerivative(double x) {
+        double t = tanh(x);
+        return 1 - t * t;
+    }
 }

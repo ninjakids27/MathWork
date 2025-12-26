@@ -77,7 +77,7 @@ public class test{
 
   @Test
   public void testNeuralNetwork(){
-    Neuron[][] buddy = MLOps.loadNN("Models//NN784_128_64_10.ser");
+    Neuron[][] buddy = MLOps.loadNN("Models//NN784_128_10.ser");
     if(buddy == null){
         throw new IllegalArgumentException(ColorText.errorFormat("Could not load model"));
     }

@@ -7,11 +7,11 @@ public class sandbox {
         MLOps.training(buddy0,
          "MNIST_CSV/mnist_train.csv",
          0.001,
-         88.00,
+         1,
          ActivationFunctions::reLU,
          ActivationFunctions::reLUDerivative,
          Optimizers::adam
         );
-        MLOps.saveNN(buddy0, "Models//NN784_16_16_10.ser");
+        MLOps.saveNN(buddy0, "Models//NN784_128_10.ser");
     }
 }
