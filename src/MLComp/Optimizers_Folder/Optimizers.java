@@ -53,10 +53,7 @@ public class Optimizers {
         
     }
     
-    // Adam optimizer state variables
-    private static double[] m; // First moment (mean of gradients)
-    private static double[] v; // Second moment (uncentered variance of gradients)
-    private static int t = 0;  // Timestep
+    
     
     /**
      * Adam Optimizer
@@ -72,31 +69,31 @@ public class Optimizers {
         double[] weights = neuron.getWeights();
         
         // Initialize moment arrays if first pass or size mismatch
-        if (m == null || m.length != weights.length) {
-            m = new double[weights.length];
-            v = new double[weights.length];
-            t = 0;
+        if (neuron.getM() == null || neuron.getM().length != weights.length) {
+            neuron.setM(new double[weights.length]);
+            neuron.setV(new double[weights.length]);
+            neuron.setT(0);
         }
         
-        t++; // Increment timestep
+        neuron.setT(neuron.getT() + 1); // Increment timestep
         
         for (int i = 0; i < weights.length; i++) {
             // Update biased first moment estimate
-            m[i] = beta1 * m[i] + (1 - beta1) * gradient[i];
+            neuron.getM()[i] = beta1 * neuron.getM()[i] + (1 - beta1) * gradient[i];
             
             // Update biased second raw moment estimate
-            v[i] = beta2 * v[i] + (1 - beta2) * gradient[i] * gradient[i];
+            neuron.getV()[i] = beta2 * neuron.getV()[i] + (1 - beta2) * gradient[i] * gradient[i];
             
             // Compute bias-corrected first moment estimate
-            double mHat = m[i] / (1 - Math.pow(beta1, t));
+            double mHat = neuron.getM()[i] / (1 - Math.pow(beta1, neuron.getT()));
             
             // Compute bias-corrected second raw moment estimate
-            double vHat = v[i] / (1 - Math.pow(beta2, t));
+            double vHat = neuron.getV()[i] / (1 - Math.pow(beta2, neuron.getT()));
             
             // Update weights
             weights[i] -= learningRate * mHat / (Math.sqrt(vHat) + epsilon);
         }
-        
         neuron.setWeights(weights);
+
     }
 }

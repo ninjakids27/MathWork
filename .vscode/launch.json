@@ -9,6 +9,13 @@
             "name": "sandbox",
             "request": "launch",
             "mainClass": "sandbox",
+            "projectName": "MathWork_821188f3"
+        },
+        {
+            "type": "java",
+            "name": "sandbox",
+            "request": "launch",
+            "mainClass": "sandbox",
             "projectName": "MathWork_84c6a994"
         },
         {

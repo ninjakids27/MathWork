@@ -8,6 +8,7 @@
 public class ColorText {
     // basically have custom colored text in the terminal to have an aesthetically pleasing environment
     // RESET AND TEXT FORMAT
+    public static final String CLEAR_SCREEN      = "\u001B[2J";
     public static final String RESET              = "\u001B[0m";
     public static final String BOLD               = "\u001b[1m";
     public static final String UNDERLINE          = "\u001B[4m";
@@ -60,5 +61,9 @@ public class ColorText {
             sleep(delay);
         }
         System.out.println();
+    }
+
+    public static void clearScreen(){
+        System.out.print(CLEAR_SCREEN+RESET);
     }
 }

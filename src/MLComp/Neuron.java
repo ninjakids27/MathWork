@@ -6,6 +6,7 @@
 public class Neuron implements java.io.Serializable {
     private double[] weights;
     private double bias;
+    
     /**
      * Constructor to initialize the neuron with a given number of inputs.
      * @param inputSize
@@ -92,5 +93,30 @@ public class Neuron implements java.io.Serializable {
     public double activation(double[] inputs, ActivationFunction activationMethod) {
         return activationMethod.update(MatrixOps.dotProduct(weights, inputs)+bias);
     }
+    // Adam optimizer state variables
+    private double[] m; // First moment (mean of gradients)
+    private double[] v; // Second moment (uncentered variance of gradients)
+    private int t = 0;  // Timestep
 
+
+
+    // getters and setters for the adam variables
+    public double[] getM() {
+        return m;
+    }
+    public void setM(double[] m) {
+        this.m = m;
+    }
+    public double[] getV() {
+        return v;
+    }
+    public void setV(double[] v) {
+        this.v = v;
+    }
+    public int getT() {
+        return t;
+    }
+    public void setT(int t) {
+        this.t = t;
+    }
 }
