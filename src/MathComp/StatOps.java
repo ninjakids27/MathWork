@@ -1,6 +1,10 @@
+
+package MathComp;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import Runner.ColorText;
 public class StatOps {
     
     private static final double epsilon = 1e-9;

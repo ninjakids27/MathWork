@@ -1,5 +1,7 @@
-import java.util.Random;
+package MathComp;
 
+import java.util.Random;
+import Runner.ColorText;
 public class MatrixOps {
     // epsilon for numerical stability
     private static final double epsilon = 1e-9; 

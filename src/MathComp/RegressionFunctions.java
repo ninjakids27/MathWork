@@ -1,3 +1,6 @@
+package MathComp;
+
+
 public class RegressionFunctions {
     // tolerance variables for floating point errors 
     private static final double bigEpsilon = 1e11;

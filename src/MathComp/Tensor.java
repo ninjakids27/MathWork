@@ -1,3 +1,4 @@
+package MathComp;
 public class Tensor<T> {
     private T[] data;
     // ??? 

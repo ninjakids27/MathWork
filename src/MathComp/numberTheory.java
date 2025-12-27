@@ -1,3 +1,5 @@
+package MathComp;
+import  Runner.ColorText;
 public class numberTheory {
     /**
      * Rounds a double value to a specified number of decimal places.
