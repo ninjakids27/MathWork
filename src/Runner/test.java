@@ -89,4 +89,16 @@ public class test {
         ActivationFunctions::reLUDerivative, Optimizers::sgd);
     assertEquals(8800, correct, 100);
   }
+
+
+//  @Test
+//  public void testTensorGetCommand(){
+//    Tensor<Integer> a = new Tensor<Integer>(new Integer[] {1,2,3,4,5,6,7,8}, new int[] {2,2,2});
+//    int[] coordinates = {0,0,0};
+//    int result  = a.get(coordinates);
+//    assertEquals(result,  1, 0);
+//    coordinates = new int[] {2,2,2};
+//    result  = a.get(coordinates);
+//    assertEquals(result,  8, 0);
+//  }
 }

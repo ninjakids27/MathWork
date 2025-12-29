@@ -48,18 +48,16 @@ public class ColorText {
     public static String dataFormat(String a){
         return UNDERLINE+BOLD+CYAN+a+RESET;
     }
-    private static void sleep(double seconds){
-        final long start = System.nanoTime();
-        double elapsed = 0;
-        while(elapsed < seconds*10e8){
-            elapsed = (System.nanoTime()-start);
-        }
-    }
+    
     public static void playText(String text, double delay){
         String[] textboxes = text.split(" ");
         for(String S: textboxes){
             System.out.print(S+" ");
-            sleep(delay);
+            try {
+                Thread.sleep((long)delay*1000);
+            } catch (Exception e) {
+                
+            }
         }
         System.out.println();
     }

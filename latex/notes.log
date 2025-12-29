@@ -1,12 +1,12 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.12.21)  24 DEC 2025 15:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.12.28)  28 DEC 2025 23:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/Adami/Desktop/_/githubProjects/MathWork/latex/notes.tex
-(c:/Users/Adami/Desktop/_/githubProjects/MathWork/latex/notes.tex
+**c:/githubProjects/MathWork/latex/notes.tex
+(c:/githubProjects/MathWork/latex/notes.tex
 LaTeX2e <2025-11-01>
-L3 programming layer <2025-11-06>
+L3 programming layer <2025-12-24>
 (C:\Users\Adami\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
 (C:\Users\Adami\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
@@ -369,13 +369,13 @@ File: biblatex.cfg
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Document encoding is UTF8 ....
  (C:\Users\Adami\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
-Package: expl3 2025-11-06 L3 programming layer (loader) 
+Package: expl3 2025-12-24 L3 programming layer (loader) 
  (C:\Users\Adami\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count426
 ))
 Package biblatex Info: ... and expl3
-(biblatex)             2025-11-06 L3 programming layer (loader) 
+(biblatex)             2025-12-24 L3 programming layer (loader) 
 (biblatex)             is new enough (at least 2020/04/06),
 (biblatex)             setting 'casechanger=expl3'.
  (C:\Users\Adami\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\blx-case-expl3.sty (C:\Users\Adami\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xparse.sty
@@ -571,43 +571,48 @@ Underfull \hbox (badness 10000) in paragraph at lines 170--171
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 208--210
+Underfull \hbox (badness 10000) in paragraph at lines 226--228
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 208--210
+Underfull \hbox (badness 10000) in paragraph at lines 226--228
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 212--216
+Underfull \hbox (badness 10000) in paragraph at lines 230--234
 
  []
 
-[6] [7] (notes.aux)
+[6]
+Overfull \hbox (2.36359pt too wide) in paragraph at lines 263--263
+\OT1/cmr/m/it/10 Sci-ence\OT1/cmr/m/n/10 . Chap-ter 4: Sin-gu-lar Value De-com-po-si-tion (SVD). Cam-bridge: Cam-
+ []
+
+[7] (notes.aux)
  ***********
 LaTeX2e <2025-11-01>
-L3 programming layer <2025-11-06>
+L3 programming layer <2025-12-24>
  ***********
 Package rerunfilecheck Info: File `notes.out' has not changed.
-(rerunfilecheck)             Checksum: C81174EFFD6CD060407C4BF50B912E4F;673.
+(rerunfilecheck)             Checksum: 7B805EDFCC1CF420392A3BD6F62FFFBE;876.
 Package logreq Info: Writing requests to 'notes.run.xml'.
 \openout1 = `notes.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 17122 strings out of 467871
- 302070 string characters out of 5418375
- 1144480 words of memory out of 5000000
- 45824 multiletter control sequences out of 15000+600000
+ 17131 strings out of 467870
+ 302117 string characters out of 5418354
+ 1147511 words of memory out of 5000000
+ 45832 multiletter control sequences out of 15000+600000
  634873 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 70i,9n,79p,749b,1487s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 70i,9n,79p,727b,1324s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Adami\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on notes.pdf (7 pages, 237522 bytes).
+Output written on notes.pdf (7 pages, 241810 bytes).
 PDF statistics:
- 180 PDF objects out of 1000 (max. 8388607)
- 24 named destinations out of 1000 (max. 500000)
- 57 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 187 PDF objects out of 1000 (max. 8388607)
+ 26 named destinations out of 1000 (max. 500000)
+ 65 words of extra memory for PDF output out of 10000 (max. 10000000)
 

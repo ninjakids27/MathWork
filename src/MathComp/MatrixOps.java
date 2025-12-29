@@ -519,6 +519,19 @@ public class MatrixOps {
         }
     }
 
+
+    public static int dotProduct(int[] vector1,int[] vector2){
+        int temp = 0;
+        if(vector1.length == vector2.length){
+            for(int i = 0; i < vector1.length; i++){
+                temp += vector1[i]*vector2[i];
+            }
+            return temp;
+        }else{
+            throw new IllegalArgumentException(ColorText.errorFormat("Input vectors are wrong lengths"));
+        }
+    }
+
     /**
      * Generates a random matrix with the specified number of rows and columns.
      * Each element in the matrix is a random integer between 0 and 9.

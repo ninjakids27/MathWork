@@ -19,6 +19,54 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global/global}
+    \entry{blum2020foundations}{book}{}{}
+      \name{author}{3}{}{%
+        {{hash=c348e11a9e7f34b17b0811660fa01649}{%
+           family={Blum},
+           familyi={B\bibinitperiod},
+           given={Avrim},
+           giveni={A\bibinitperiod}}}%
+        {{hash=a8813c6fc67d61735e9349b0c2b8d89f}{%
+           family={Hopcroft},
+           familyi={H\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+        {{hash=6e31e4a53c08e16882d92359a42ba63a}{%
+           family={Kannan},
+           familyi={K\bibinitperiod},
+           given={Ravindran},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Cambridge}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{640d8c685199c88da54a9d9a176661bd}
+      \strng{fullhash}{640d8c685199c88da54a9d9a176661bd}
+      \strng{fullhashraw}{640d8c685199c88da54a9d9a176661bd}
+      \strng{bibnamehash}{640d8c685199c88da54a9d9a176661bd}
+      \strng{authorbibnamehash}{640d8c685199c88da54a9d9a176661bd}
+      \strng{authornamehash}{640d8c685199c88da54a9d9a176661bd}
+      \strng{authorfullhash}{640d8c685199c88da54a9d9a176661bd}
+      \strng{authorfullhashraw}{640d8c685199c88da54a9d9a176661bd}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Chapter 4: Singular Value Decomposition (SVD)}
+      \field{title}{Foundations of Data Science}
+      \field{urlday}{28}
+      \field{urlmonth}{12}
+      \field{urlyear}{2025}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \verb{doi}
+      \verb 10.1017/9781108755528
+      \endverb
+    \endentry
     \entry{boxmuller_transform}{online}{}{}
       \field{sortinit}{B}
       \field{sortinithash}{d7095fff47cda75ca2589920aae98399}

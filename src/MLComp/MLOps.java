@@ -116,9 +116,13 @@ public class MLOps {
         inputLayer[0] = input;
         for (int layer = 1; layer < network.length; layer++) {
             inputLayer[layer] = new double[network[layer].length];
-            for (int neuron = 0; neuron < network[layer].length - 1; neuron++) {
-                inputLayer[layer][neuron] = network[layer][neuron].activation(inputLayer[layer - 1],
-                        activationFunction);
+            for (int neuron = 0; neuron < network[layer].length; neuron++) {
+                if (layer == network.length - 1) {
+                    inputLayer[layer][neuron] = network[layer][neuron].calculateZ(inputLayer[layer - 1]);
+                } else {
+                    inputLayer[layer][neuron] = network[layer][neuron].activation(inputLayer[layer - 1],
+                            activationFunction);
+                }
             }
         }
         return softmax(inputLayer[inputLayer.length - 1]);
@@ -131,8 +135,12 @@ public class MLOps {
         for (int layer = 1; layer < network.length; layer++) {
             inputLayer[layer] = new double[network[layer].length];
             for (int neuron = 0; neuron < network[layer].length; neuron++) {
-                inputLayer[layer][neuron] = network[layer][neuron].activation(inputLayer[layer - 1],
-                        activationFunction);
+                if (layer == network.length - 1) {
+                    inputLayer[layer][neuron] = network[layer][neuron].calculateZ(inputLayer[layer - 1]);
+                } else {
+                    inputLayer[layer][neuron] = network[layer][neuron].activation(inputLayer[layer - 1],
+                            activationFunction);
+                }
             }
         }
         return inputLayer;
@@ -146,8 +154,12 @@ public class MLOps {
         for (int layer = 1; layer < network.length; layer++) {
             inputLayer[layer] = new double[network[layer].length];
             for (int neuron = 0; neuron < network[layer].length; neuron++) {
-                inputLayer[layer][neuron] = network[layer][neuron].activation(inputLayer[layer - 1],
-                        activationFunction);
+                if (layer == network.length - 1) {
+                    inputLayer[layer][neuron] = network[layer][neuron].calculateZ(inputLayer[layer - 1]);
+                } else {
+                    inputLayer[layer][neuron] = network[layer][neuron].activation(inputLayer[layer - 1],
+                            activationFunction);
+                }
             }
         }
         double[] result = softmax(inputLayer[inputLayer.length - 1]);
@@ -385,67 +397,23 @@ public class MLOps {
         for (int trainingRow = 0; trainingRow < cleanInputMatrix.length; trainingRow++) {
             double[] cleanInput = cleanInputMatrix[trainingRow];
 
-            // 2. Forward Pass WITHOUT softmax (we need raw logits for proper backprop)
+            // 2. Forward Pass with Linear Output Layer
             double[][] layerActivations = forwardPropagation(NN, cleanInput, activationFunction, true);
 
-            // Get the raw output (pre-softmax) from the last layer
+            // Get the raw output (logits) from the last layer
             double[] rawOutput = layerActivations[layerActivations.length - 1];
 
-            // Apply softmax ONLY for computing the loss/predictions
-            double[] output = softmax(rawOutput.clone()); // clone to avoid modifying original
+            // Apply softmax for prediction and loss calculation
+            double[] output = softmax(rawOutput.clone());
 
             // 3. Create one-hot encoded target
             double[] answer = new double[10];
             answer[rawInput[trainingRow][0]] = 1.0;
 
-            // 4. Output Layer Error
-            // For softmax + cross-entropy, the gradient is simply (prediction - target)
-            double[] currentError = new double[output.length];
-            for (int i = 0; i < output.length; i++) {
-                currentError[i] = output[i] - answer[i];
-            }
+            // TODO: implement the backpropagation algorithm with the CSE loss function
 
-            // 5. Backpropagate Errors through Hidden Layers
-            double[][] allLayerErrors = new double[NN.length][];
-            allLayerErrors[NN.length - 1] = currentError;
-
-            for (int layer = NN.length - 2; layer > 0; layer--) {
-                double[] nextLayerError = allLayerErrors[layer + 1];
-                double[] thisLayerError = new double[NN[layer].length];
-
-                for (int i = 0; i < NN[layer].length; i++) {
-                    double errorSum = 0.0;
-                    for (int j = 0; j < NN[layer + 1].length; j++) {
-                        errorSum += NN[layer + 1][j].getWeight(i) * nextLayerError[j];
-                    }
-                    // Apply activation derivative for hidden layers
-                    thisLayerError[i] = errorSum * activationFunctionDerivative.update(layerActivations[layer][i]);
-                }
-                allLayerErrors[layer] = thisLayerError;
-            }
-
-            // 6. Update Weights using Gradients
-            for (int layer = 1; layer < NN.length; layer++) {
-                double[] layerError = allLayerErrors[layer];
-                double[] prevLayerActivations = (layer == 1) ? cleanInput : layerActivations[layer - 1];
-
-                for (int neuron = 0; neuron < NN[layer].length; neuron++) {
-                    int weightsLen = NN[layer][neuron].getWeightsLength();
-                    double[] gradient = new double[weightsLen + 1]; // +1 for bias
-
-                    for (int w = 0; w < weightsLen; w++) {
-                        gradient[w] = prevLayerActivations[w] * layerError[neuron];
-                    }
-                    // Store bias gradient in the last element
-                    gradient[weightsLen] = layerError[neuron];
-
-                    // Pass gradient and learning rate to optimizer
-                    OptimizationFunction.update(NN[layer][neuron], gradient, learningRate);
-                }
-            }
-
-            // Progress reporting every 100 examples (changed from 10)
-            if ((trainingRow + 1) % 5000 == 0) {
+            // Progress reporting every 1000 examples
+            if ((trainingRow + 1) % epochAmount == 0) {
                 // Compute accuracy on a fixed-size recent subset to avoid O(n^2) logging cost
                 int windowSize = 1000;
                 int startIdx = Math.max(0, (trainingRow + 1) - windowSize);
@@ -469,6 +437,7 @@ public class MLOps {
             }
         }
     }
+
 
     public static void training(Neuron[][] NN, String filename, double learningRate, int epochs,
             ActivationFunction activationFunction, ActivationFunction activationFunctionDerivative,

@@ -182,8 +182,26 @@ $$
     6 & 7 & 8 & 9
 \end{pmatrix}
 $$
+\subsection{Singular Value Decomposition}
+\par{Singular Value Decomposition is a method to decompose a matrix into a sum of rank 1 matrices.
+ A Rank 1 matrix is where you can decompose it into the product of two vectors}
 
-
+ $$
+ \begin{pmatrix}
+    4 & 1 & 2 & 1\\
+    12 & 3 & 6 & 3\\
+    8 & 2 & 4 & 2\\
+ \end{pmatrix}
+ = \begin{bmatrix}
+    2\\
+    6\\
+    4
+ \end{bmatrix}
+    \begin{bmatrix}
+        2 & \frac{1}{2} & 1 & \frac{1}{2}
+    \end{bmatrix}
+ $$
+\par{Now we can use this for compression because we went from 12 numbers to just 7}
 
 \section{linear regression}
 
@@ -234,6 +252,12 @@ allowing you to avoid the computationally expensive sin and cos }
 is a generealization of a matrix. Matrixes are repeated vectors or vectors in vectors. Tensors
 are represented as N-dimensional matrices. We can represent it as a line, square or cube
 and we can say that each block in it has a number in it.}
+\par{while it's simple in concept it's not that simple in coding it. First of all we need a way
+to access the data in the tensor as a coodinate system. The question is how to do that, to solve the sizing issue
+we can store all the data as an type array and we can use the coordinates to access the data. This leads to a problem
+since it's an array how do we translate the coordinates into an index?}
+\par{To solve this we can use a simple formula}
+$$\text{index} = \sum_{i=0}^{n-1} \text{coordinates}[i] \cdot \text{dimensions}[i]$$
 \nocite{*}
 \printbibliography
 \end{document}

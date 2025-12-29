@@ -1,5 +1,7 @@
 package MLComp.Optimizers_Folder;
+
 import MLComp.Neuron;
+
 public class Optimizers {
 
     public static void sgd(Neuron neuron, double[] gradient, double learningRate) {
@@ -9,7 +11,8 @@ public class Optimizers {
             weights[i] -= learningRate * gradient[i];
         }
         neuron.setWeights(weights);
-        // bias
+
+        // Update bias (gradient for bias is at the end of the gradient array)
         double bias = neuron.getBias();
         bias -= learningRate * gradient[gradient.length - 1];
         neuron.setBias(bias);

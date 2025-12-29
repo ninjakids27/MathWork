@@ -8,7 +8,7 @@
 public class ColorText {
     // basically have custom colored text in the terminal to have an aesthetically pleasing environment
     // RESET AND TEXT FORMAT
-    public static final String CLEAR_SCREEN      = "\u001B[2J";
+    public static final String CLEAR_SCREEN       = "\u001B[2J";
     public static final String RESET              = "\u001B[0m";
     public static final String BOLD               = "\u001b[1m";
     public static final String UNDERLINE          = "\u001B[4m";
@@ -41,12 +41,15 @@ public class ColorText {
     public static String errorFormat(String a){
         return UNDERLINE+BOLD+RED+a+RESET;
     }
+    
     public static String returnFormat(String a){
         return UNDERLINE+BOLD+GREEN+a+RESET;
     }
+    
     public static String dataFormat(String a){
         return UNDERLINE+BOLD+CYAN+a+RESET;
     }
+
     private static void sleep(double seconds){
         final long start = System.nanoTime();
         double elapsed = 0;
@@ -54,6 +57,7 @@ public class ColorText {
             elapsed = (System.nanoTime()-start);
         }
     }
+
     public static void playText(String text, double delay){
         String[] textboxes = text.split(" ");
         for(String S: textboxes){

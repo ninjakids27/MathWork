@@ -44,6 +44,9 @@ and I don't have a lot of patience to optimize the code any further or make it a
     - [x] Write a loss function (P2) // post it's the same thing as the cost function so it's just MSE
     - [x] Write a cost function (P2) // lost and cost are used interchangably in the ML community :/
     - [x] Possibly need to review MVC for BP (~P3)
+- [ ] Debug Backpropagation (P1)
+    - [ ] Write a unit test for the gradient (P1)
+    - [ ] Write a unit test for the model (P1)
 - [ ] Tensor class? do more research in the future and write it up in the notes (~P3)
 - [ ] Write the training method and implement parallel processing using CUDA (P2)
 - [x] Make more models (P1)

@@ -1,4 +1,5 @@
 package MLComp;
+
 /**
  * This class represents a single neuron in a neural network.
  * It contains weights and a bias, and provides methods to get and set these
@@ -113,6 +114,10 @@ public class Neuron implements java.io.Serializable {
      */
     public double activation(double[] inputs, ActivationFunction activationMethod) {
         return activationMethod.update(MatrixOps.dotProduct(weights, inputs) + bias);
+    }
+
+    public double calculateZ(double[] inputs) {
+        return MatrixOps.dotProduct(weights, inputs) + bias;
     }
 
     // Adam optimizer state variables
