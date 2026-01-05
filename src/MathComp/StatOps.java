@@ -60,11 +60,24 @@ public class StatOps {
      * Calculates the weighted mean of a vector given the weights.
      * @param vector the data vector
      * @param weights the weights for each element
-     * @param debug a flag for debugging
+     * @param debug (OPT) a flag for debugging
      * @return the weighted mean
      */
     public static double weightedMean(double[] vector, double[] weights,boolean debug){
         double A = MatrixOps.dotProduct(vector, weights,debug);
+        double B = sum(weights);
+        double C = A/B;
+        return C;
+    }
+    /**
+     * Calculates the weighted mean of a vector given the weights.
+     * @param vector the data vector
+     * @param weights the weights for each element
+     * @param debug (OPT) a flag for debugging
+     * @return the weighted mean
+     */
+    public static double weightedMean(double[] vector, double[] weights){
+        double A = MatrixOps.dotProduct(vector, weights);
         double B = sum(weights);
         double C = A/B;
         return C;

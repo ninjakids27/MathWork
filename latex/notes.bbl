@@ -137,6 +137,38 @@
       \verb https://www.youtube.com/watch?v=MD2fYip6QsQ
       \endverb
     \endentry
+    \entry{nielsen2015neural}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=afe17482fc813e497188aee3b3783879}{%
+           family={Nielsen},
+           familyi={N\bibinitperiod},
+           given={Michael\bibnamedelima A.},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Determination Press}%
+      }
+      \strng{namehash}{afe17482fc813e497188aee3b3783879}
+      \strng{fullhash}{afe17482fc813e497188aee3b3783879}
+      \strng{fullhashraw}{afe17482fc813e497188aee3b3783879}
+      \strng{bibnamehash}{afe17482fc813e497188aee3b3783879}
+      \strng{authorbibnamehash}{afe17482fc813e497188aee3b3783879}
+      \strng{authornamehash}{afe17482fc813e497188aee3b3783879}
+      \strng{authorfullhash}{afe17482fc813e497188aee3b3783879}
+      \strng{authorfullhashraw}{afe17482fc813e497188aee3b3783879}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Neural Networks and Deep Learning}
+      \field{year}{2015}
+      \verb{urlraw}
+      \verb http://neuralnetworksanddeeplearning.com/
+      \endverb
+      \verb{url}
+      \verb http://neuralnetworksanddeeplearning.com/
+      \endverb
+    \endentry
     \entry{ActivationFunctions}{online}{}{}
       \name{author}{1}{}{%
         {{hash=1a86e93b6278850e1238e6d6c835ba00}{%

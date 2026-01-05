@@ -956,4 +956,17 @@ public class MatrixOps {
             }
             return roundedVector;
     }
+
+
+    public static double[][] hadamardProduct(double[][] A, double[][] B){
+        if(A.length != B.length || A[0].length != B[0].length)
+            throw new IllegalArgumentException(ColorText.errorFormat("Matrices are not equal length"));
+        
+        for(int i = 0; i < A.length; i++){
+            for(int j = 0; j < A[0].length; j++){
+                A[i][j] *= B[i][j];
+            }
+        }
+        return A;
+    }
 }   

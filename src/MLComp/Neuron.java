@@ -116,6 +116,13 @@ public class Neuron implements java.io.Serializable {
         return activationMethod.update(MatrixOps.dotProduct(weights, inputs) + bias);
     }
 
+    /**
+     * Computes the weighted sum of the inputs and weights plus the bias (the
+     * pre-activation value z for this neuron).
+     * 
+     * @param inputs the input values corresponding to this neuron's weights
+     * @return the pre-activation value z = (weights · inputs) + bias
+     */
     public double calculateZ(double[] inputs) {
         return MatrixOps.dotProduct(weights, inputs) + bias;
     }

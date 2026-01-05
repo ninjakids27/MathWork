@@ -1,10 +1,19 @@
 package MLComp.Optimizers_Folder;
 
 import MLComp.Neuron;
+import MathComp.MatrixOps;
+import Runner.ColorText;
 
 public class Optimizers {
 
     public static void sgd(Neuron neuron, double[] gradient, double learningRate) {
+        if(neuron.getWeightsLength() + 1 != gradient.length){
+            MatrixOps.printVector(gradient);
+            double[] weights = neuron.getWeights();
+            MatrixOps.printVector(weights);
+            System.out.println(neuron.getBias());
+            throw new IllegalArgumentException(ColorText.errorFormat("Gradient length does not match weights + bias length."));
+        }
         double[] weights = neuron.getWeights();
         for (int i = 0; i < weights.length; i++) {
             // Update rule: weight = weight - (learningRate * gradient)

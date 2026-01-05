@@ -4,7 +4,7 @@
 \usepackage{amsmath}
 \usepackage[backend=biber]{biblatex} % use biber backend (recommended)
 \usepackage{hyperref}
-
+\graphicspath{{./images/}}
 \addbibresource{notes.bib}
 
 \title{mathwork}
@@ -104,19 +104,20 @@ $$U(-L,L)$$
 $$\text{Where }L = \sqrt{\frac{6}{n_\text{in}}}$$
 \par{Now there's questions on what a uniform distrubution is and I won't address that.}
 \subsection{Backpropagation}
-\par{Backpropagation is the heart of ML and the most important and difficult
-step for any ML project. The algorithm of backpropagation can vary from project to project
-as optimizers are used differently for the notes I'm going to introduce it using 
-gradient descent.}\\\\
-\text{You first start with the loss function which we can use the MSE for}
-$$\mathcal{L} = \frac{1}{n}\sum_{i=1}^n(Y_i-\hat{Y_i})^2$$
-\par{Then we progress to something more abstract like calculating the loss for the output layer}
-$$\delta_{\text{out}}=(t_k-y_k)\sigma'(\mathbf{N}_{n-1})$$
-\par{The activation input is the last layer's input so it's like a forward prop, but the derivative
-gets us the indicator of the gradient. Computing the hidden layers is a bit more complex but 
-not a huge jump from the last formula.}
-$$\delta_{\text{hidden}} = \sigma'(\mathbf{N})_{n-1}\sum_k(\delta_{out}\mathbf{W})$$
-
+\begin{figure}
+    \centering
+    \includegraphics[width=.7\textwidth]{backpropagation.png}
+    \caption{Backpropagation Diagram}
+    \cite{nielsen2015neural}
+\end{figure}
+\par{So backpropagation is the method of updating the weights and biases of the neural network. It's essentially what enables it to learn,
+it's nearly how you might reflect upon yourself when you get an incorrect answer. }
+$$\delta^{L} = \nabla_aC\odot\sigma'(z^L)$$
+\par{While this equation uses symbols not conceived by any language known to man. It's important to know that mathematacians don't know how to program and that this equation can and will do it for any neural network. We'll start first with the cost function. In machine learning the cost and loss are essentially synonymous and I won't deal with semantics so I'll call it the cost function.}
+$$C = -\sum_{i=1}y_i\ln{\hat{y_i}}$$
+\par{This is called the Categorical Cross-Entropy loss function. A metric ton of words but what it means is that if our model is correct but not confident we'll penalize it for low confidence. There are other cost functions but usually you need to differentiate those and write it in code, so it's important to know what problem you're facing and knowing which tools are fit for the job. Going back into the first equation we can break down $\nabla_aC\odot\sigma'(z^L)$}
+$$\delta^L_j = \frac{\partial C}{\partial a^L_j}\sigma'(z^L_j)$$
+\par{}
 \section{MatrixOps}
 
 

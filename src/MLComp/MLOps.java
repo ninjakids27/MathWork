@@ -4,7 +4,7 @@ package MLComp;
 import Runner.ColorText;
 import MLComp.ActivationFunctions_Folder.*;
 import MLComp.Optimizers_Folder.*;
-import MLComp.Neuron;
+
 import static MathComp.MatrixOps.*;
 import java.io.*;
 
@@ -126,6 +126,44 @@ public class MLOps {
             }
         }
         return softmax(inputLayer[inputLayer.length - 1]);
+    }
+
+    /**
+     * Forward propagation that returns both pre-activation (z) and post-activation
+     * (a) values.
+     * 
+     * @return double[2][layers][neurons] where [0] = z values, [1] = a values
+     *         (activations)
+     */
+    public static double[][][] forwardPropagationWithZ(Neuron[][] network, double[] input,
+            ActivationFunction activationFunction) {
+        double[][] zValues = new double[network.length][];
+        double[][] aValues = new double[network.length][];
+
+        // Input layer: z = a = input
+        zValues[0] = input;
+        aValues[0] = input;
+
+        for (int layer = 1; layer < network.length; layer++) {
+            zValues[layer] = new double[network[layer].length];
+            aValues[layer] = new double[network[layer].length];
+
+            for (int neuron = 0; neuron < network[layer].length; neuron++) {
+                // Calculate z = w·a + b
+                double z = network[layer][neuron].calculateZ(aValues[layer - 1]);
+                zValues[layer][neuron] = z;
+
+                if (layer == network.length - 1) {
+                    // Output layer: keep as z (logits), softmax applied later
+                    aValues[layer][neuron] = z;
+                } else {
+                    // Hidden layer: apply activation
+                    aValues[layer][neuron] = activationFunction.update(z);
+                }
+            }
+        }
+
+        return new double[][][] { zValues, aValues };
     }
 
     public static double[][] forwardPropagation(Neuron[][] network, double[] input,
@@ -325,14 +363,27 @@ public class MLOps {
     }
 
     public static double[] softmax(double[] input) {
-        vectorPow(input, Math.E);
-        double sum = 0;
-        for (double num : input) {
-            sum += num;
+        // Find max for numerical stability
+        double max = input[0];
+        for (int i = 1; i < input.length; i++) {
+            if (input[i] > max)
+                max = input[i];
         }
-        vectorMult(input, 1.0 / sum);
-        tolernaceArray(input);
-        return input;
+
+        // Compute exp(x - max) for numerical stability
+        double[] expValues = new double[input.length];
+        double sum = 0;
+        for (int i = 0; i < input.length; i++) {
+            expValues[i] = Math.exp(input[i] - max);
+            sum += expValues[i];
+        }
+
+        // Normalize
+        for (int i = 0; i < expValues.length; i++) {
+            expValues[i] /= sum;
+        }
+
+        return expValues;
     }
 
     public static void mnistInterpret(double[] probDistrubution) {
@@ -381,9 +432,7 @@ public class MLOps {
             ActivationFunction activationFunction,
             ActivationFunction activationFunctionDerivative,
             Optimizer OptimizationFunction, int epochAmount) {
-
-        // 1. Data Prep & Normalization - INCREASE TRAINING SIZE!
-        int[][] rawInput = readCSV(filename, 0, epochAmount); // Train on more data!
+        int[][] rawInput = readCSV(filename, 0, epochAmount);
 
         // Normalize inputs to [0, 1] (match test() preprocessing)
         double[][] cleanInputMatrix = new double[rawInput.length][784];
@@ -397,11 +446,13 @@ public class MLOps {
         for (int trainingRow = 0; trainingRow < cleanInputMatrix.length; trainingRow++) {
             double[] cleanInput = cleanInputMatrix[trainingRow];
 
-            // 2. Forward Pass with Linear Output Layer
-            double[][] layerActivations = forwardPropagation(NN, cleanInput, activationFunction, true);
+            // 2. Forward Pass - get both z (pre-activation) and a (post-activation) values
+            double[][][] forwardResult = forwardPropagationWithZ(NN, cleanInput, activationFunction);
+            double[][] zValues = forwardResult[0]; // Pre-activation values
+            double[][] aValues = forwardResult[1]; // Post-activation values (activations)
 
             // Get the raw output (logits) from the last layer
-            double[] rawOutput = layerActivations[layerActivations.length - 1];
+            double[] rawOutput = aValues[aValues.length - 1];
 
             // Apply softmax for prediction and loss calculation
             double[] output = softmax(rawOutput.clone());
@@ -410,8 +461,53 @@ public class MLOps {
             double[] answer = new double[10];
             answer[rawInput[trainingRow][0]] = 1.0;
 
-            // TODO: implement the backpropagation algorithm with the CSE loss function
+            // Backpropagation Start
 
+            // 1. Calculate Deltas
+            double[][] deltas = new double[NN.length][];
+            for (int layer = NN.length - 1; layer >= 1; layer--) {
+                deltas[layer] = new double[NN[layer].length];
+                for (int neuron = 0; neuron < NN[layer].length; neuron++) {
+                    double delta;
+                    if (layer == NN.length - 1) {
+                        // Output layer error: (Softmax Output - Target) for Cross-Entropy Loss
+                        delta = output[neuron] - answer[neuron];
+                    } else {
+                        // Hidden layer error
+                        double errorSum = 0.0;
+                        Neuron[] nextLayerNeurons = NN[layer + 1];
+                        double[] nextLayerDeltas = deltas[layer + 1];
+                        for (int k = 0; k < nextLayerNeurons.length; k++) {
+                            // Sum (Delta_k * Weight_kj) where k is neuron in next layer, j is current
+                            // neuron
+                            errorSum += nextLayerDeltas[k] * nextLayerNeurons[k].getWeight(neuron);
+                        }
+                        // Use z (pre-activation) value for derivative, NOT the activation
+                        delta = errorSum * activationFunctionDerivative.update(zValues[layer][neuron]);
+                    }
+                    deltas[layer][neuron] = delta;
+                }
+            }
+
+            // 2. Update Weights
+            for (int layer = NN.length - 1; layer >= 1; layer--) {
+                for (int neuron = 0; neuron < NN[layer].length; neuron++) {
+                    double delta = deltas[layer][neuron];
+
+                    // Calculate gradients
+                    // Inputs for this layer are activations from previous layer
+                    double[] inputs = aValues[layer - 1];
+                    double[] gradient = new double[inputs.length + 1];
+
+                    for (int w = 0; w < inputs.length; w++) {
+                        gradient[w] = inputs[w] * delta;
+                    }
+                    // Bias gradient
+                    gradient[gradient.length - 1] = delta;
+
+                    OptimizationFunction.update(NN[layer][neuron], gradient, learningRate);
+                }
+            }
             // Progress reporting every 1000 examples
             if ((trainingRow + 1) % epochAmount == 0) {
                 // Compute accuracy on a fixed-size recent subset to avoid O(n^2) logging cost
@@ -437,7 +533,6 @@ public class MLOps {
             }
         }
     }
-
 
     public static void training(Neuron[][] NN, String filename, double learningRate, int epochs,
             ActivationFunction activationFunction, ActivationFunction activationFunctionDerivative,
