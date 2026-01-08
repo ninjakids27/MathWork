@@ -470,39 +470,29 @@ public class MLOps {
                 for (int neuron = 0; neuron < NN[layer].length; neuron++) {
                     double delta;
                     if (layer == NN.length - 1) {
-                        // Output layer error: (Softmax Output - Target) for Cross-Entropy Loss
                         delta = output[neuron] - answer[neuron];
                     } else {
-                        // Hidden layer error
                         double errorSum = 0.0;
                         Neuron[] nextLayerNeurons = NN[layer + 1];
                         double[] nextLayerDeltas = deltas[layer + 1];
                         for (int k = 0; k < nextLayerNeurons.length; k++) {
-                            // Sum (Delta_k * Weight_kj) where k is neuron in next layer, j is current
-                            // neuron
                             errorSum += nextLayerDeltas[k] * nextLayerNeurons[k].getWeight(neuron);
                         }
-                        // Use z (pre-activation) value for derivative, NOT the activation
                         delta = errorSum * activationFunctionDerivative.update(zValues[layer][neuron]);
                     }
                     deltas[layer][neuron] = delta;
                 }
             }
 
-            // 2. Update Weights
             for (int layer = NN.length - 1; layer >= 1; layer--) {
                 for (int neuron = 0; neuron < NN[layer].length; neuron++) {
                     double delta = deltas[layer][neuron];
-
-                    // Calculate gradients
-                    // Inputs for this layer are activations from previous layer
                     double[] inputs = aValues[layer - 1];
                     double[] gradient = new double[inputs.length + 1];
 
                     for (int w = 0; w < inputs.length; w++) {
                         gradient[w] = inputs[w] * delta;
                     }
-                    // Bias gradient
                     gradient[gradient.length - 1] = delta;
 
                     OptimizationFunction.update(NN[layer][neuron], gradient, learningRate);
