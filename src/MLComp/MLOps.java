@@ -545,7 +545,7 @@ public class MLOps {
                     OptimizationFunction, epochAmount);
             if (test) {
                 double accuracy = (double) test(NN, "MNIST_CSV/mnist_test.csv", activationFunction,
-                        activationFunctionDerivative, OptimizationFunction) / 10000.0;
+                        activationFunctionDerivative) / 10000.0;
                 System.out.println(ColorText.dataFormat("Current Accuracy: ")
                         + ColorText.returnFormat(String.format("%.2f", accuracy * 100.0) + "%"));
             }
@@ -555,21 +555,15 @@ public class MLOps {
     public static void training(Neuron[][] NN, String filename, double learningRate, double accuracy,
             ActivationFunction activationFunction, ActivationFunction activationFunctionDerivative,
             Optimizer OptimizationFunction, int epochAmount) {
-        // iterate through backprop till it hits the accuracy or does an early stop
         double currentAccuracy = 0.0;
-        double oldAccuracy = 0.0;
         int epoch = 0;
         while (currentAccuracy < accuracy) {
-            if (Math.abs(currentAccuracy - oldAccuracy) < 0.001 && epoch > 5) {
-                System.out.println(ColorText.dataFormat("Early stopping triggered at epoch ")
-                        + ColorText.returnFormat("" + (epoch + 1)));
-                break;
-            }
+            
             System.out.println(ColorText.dataFormat("Epoch ") + ColorText.returnFormat("" + (epoch + 1)));
             backPropagation(NN, filename, learningRate, activationFunction, activationFunctionDerivative,
                     OptimizationFunction, epochAmount);
             currentAccuracy = (double) test(NN, "MNIST_CSV/mnist_test.csv", activationFunction,
-                    activationFunctionDerivative, OptimizationFunction) / 10000.0;
+                    activationFunctionDerivative) / 10000.0;
             System.out.println(ColorText.dataFormat("Current Accuracy: ")
                     + ColorText.returnFormat(String.format("%.2f", currentAccuracy * 100.0) + "%"));
             epoch++;
@@ -579,16 +573,9 @@ public class MLOps {
     public static void training(Neuron[][] NN, String filename, double learningRate, double accuracy,
             ActivationFunction activationFunction, ActivationFunction activationFunctionDerivative,
             Optimizer OptimizationFunction, int epochAmount, boolean noTest) {
-        // iterate through backprop till it hits the accuracy or does an early stop
         double currentAccuracy = 0.0;
-        double oldAccuracy = 0.0;
         int epoch = 0;
         while (currentAccuracy < accuracy) {
-            // if (Math.abs(currentAccuracy - oldAccuracy) < 0.001 && epoch > 5) {
-            // System.out.println(ColorText.dataFormat("Early stopping triggered at epoch ")
-            // + ColorText.returnFormat("" + (epoch + 1)));
-            // break;
-            // }
             System.out.println(ColorText.dataFormat("Epoch ") + ColorText.returnFormat("" + (epoch + 1)));
             backPropagation(NN, filename, learningRate, activationFunction, activationFunctionDerivative,
                     OptimizationFunction, epochAmount);
@@ -598,7 +585,7 @@ public class MLOps {
     }
 
     public static int test(Neuron[][] NN, String filename, ActivationFunction activationFunction,
-            ActivationFunction activationFunctionDerivative, Optimizer OptimizationFunction) {
+            ActivationFunction activationFunctionDerivative) {
         int[][] rawInput = readCSV(filename, 0, 10_000); // Test on 10,000 examples!
         // Normalize inputs
         double[][] cleanInputMatrix = new double[rawInput.length][784];

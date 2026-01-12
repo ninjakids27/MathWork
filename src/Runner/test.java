@@ -86,7 +86,7 @@ public class test {
       throw new IllegalArgumentException(ColorText.errorFormat("Could not load model"));
     }
     int correct = MLOps.test(buddy, "MNIST_CSV/mnist_test.csv", ActivationFunctions::reLU,
-        ActivationFunctions::reLUDerivative, Optimizers::sgd);
+        ActivationFunctions::reLUDerivative);
     assertEquals(8800, correct, 100);
   }
 

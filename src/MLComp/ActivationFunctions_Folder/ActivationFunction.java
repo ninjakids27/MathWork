@@ -3,5 +3,4 @@ package MLComp.ActivationFunctions_Folder;
 @FunctionalInterface
 public interface ActivationFunction {
     double update(double x);
-    
 }

@@ -3,9 +3,7 @@ package MathComp;
 import java.util.Random;
 import Runner.ColorText;
 public class MatrixOps {
-    // epsilon for numerical stability
-    private static final double epsilon = 1e-9; 
-    // rounding function (need to implement for other functions)
+    private static final double epsilon = 1e-9;
     private static double rounding(double num, int decimal){
         return Math.round(Math.pow(10, decimal)*num)/Math.pow(10, decimal);
     }
@@ -38,7 +36,6 @@ public class MatrixOps {
         }
         return Matrix_Name;
     }
-
     /**
      * Generates a random vector of the specified length.
      * @param length the length of the vector
@@ -52,7 +49,6 @@ public class MatrixOps {
         }
         return vector;
     }
-
     /**
      * Prints the given matrix to the console.
      * @param Matrix_Name
@@ -67,7 +63,6 @@ public class MatrixOps {
             System.out.println("");
         }
     }
-
     /**
      * Accesses a specific row of the given matrix.
      * @param Matrix the input matrix
@@ -82,7 +77,6 @@ public class MatrixOps {
         }
         return temp;
     }
-
     /**
      * Accesses a specific column of the given matrix.
      * @param Matrix the input matrix
@@ -97,7 +91,6 @@ public class MatrixOps {
         }
         return temp;
     }
-
     /**
      * Switches two rows in the given matrix and returns a new matrix with the rows swapped.
      * @param Matrix the input matrix
@@ -273,7 +266,6 @@ public class MatrixOps {
 
     return "Unique Solution";
     }
-    
     /**
      * Converts the given matrix to its Reduced Row Echelon Form (RREF).
      * @param Matrix the input matrix
@@ -457,7 +449,6 @@ public class MatrixOps {
         }
         return tempVector;
     }
-
     /**
      * Multiplies a matrix by a vector.
      * @param matrix the input matrix
@@ -475,7 +466,6 @@ public class MatrixOps {
         }
         return result;
     }
-    
     /**
      * Calculates the dot product of two vectors.
      * @param vector1 the first vector
@@ -497,16 +487,16 @@ public class MatrixOps {
             throw new IllegalArgumentException(ColorText.errorFormat("Input vectors are wrong lengths"));
         }
     }
-
     /**
      * Converts nanoseconds to seconds.
      * @param nanoseconds the time in nanoseconds
      * @return the time in seconds
      */
+    
     public static double nanoToSeconds(long nanoseconds){
         return nanoseconds/1e9;
     }
-
+    
     public static double dotProduct(double[] vector1,double[] vector2){
         double temp = 0;
         if(vector1.length == vector2.length){
@@ -518,8 +508,7 @@ public class MatrixOps {
             throw new IllegalArgumentException(ColorText.errorFormat("Input vectors are wrong lengths"));
         }
     }
-
-
+    
     public static int dotProduct(int[] vector1,int[] vector2){
         int temp = 0;
         if(vector1.length == vector2.length){
@@ -550,7 +539,7 @@ public class MatrixOps {
         return Matrix;
 
     }
-
+    
     /**
      * Multiplies two matrices.
      * @param Matrix_A the first matrix
@@ -916,15 +905,13 @@ public class MatrixOps {
         }
         return vector;
     }
+    
     public static double[] vectorMult( double factor,double[] vector){
         for(int i = 0; i<vector.length; i++){
             vector[i] *= factor;
         }
         return vector;
     }
-
-
-    // imagine a vector x and y basically it represents vector z as z1 = x1*y1 and so on
     /**
      * Calculates the element-wise product of two vectors.
      * @param vector1 the first data vector
@@ -957,7 +944,6 @@ public class MatrixOps {
             return roundedVector;
     }
 
-
     public static double[][] hadamardProduct(double[][] A, double[][] B){
         if(A.length != B.length || A[0].length != B[0].length)
             throw new IllegalArgumentException(ColorText.errorFormat("Matrices are not equal length"));
@@ -969,4 +955,4 @@ public class MatrixOps {
         }
         return A;
     }
-}   
+}
