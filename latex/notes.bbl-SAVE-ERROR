@@ -100,46 +100,6 @@
       \verb https://en.wikipedia.org/wiki/Computational_complexity_of_mathematical_operations
       \endverb
     \endentry
-    \entry{kingma2017adammethodstochasticoptimization}{misc}{}{}
-      \name{author}{2}{}{%
-        {{hash=b6fbd171848aad4edf3925543f1f1522}{%
-           family={Kingma},
-           familyi={K\bibinitperiod},
-           given={Diederik\bibnamedelima P.},
-           giveni={D\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
-        {{hash=8aa66e8231cc2fdbe67aa4f18ca970c6}{%
-           family={Ba},
-           familyi={B\bibinitperiod},
-           given={Jimmy},
-           giveni={J\bibinitperiod}}}%
-      }
-      \strng{namehash}{a09df9f123146b8e2c7f1134c9496932}
-      \strng{fullhash}{a09df9f123146b8e2c7f1134c9496932}
-      \strng{fullhashraw}{a09df9f123146b8e2c7f1134c9496932}
-      \strng{bibnamehash}{a09df9f123146b8e2c7f1134c9496932}
-      \strng{authorbibnamehash}{a09df9f123146b8e2c7f1134c9496932}
-      \strng{authornamehash}{a09df9f123146b8e2c7f1134c9496932}
-      \strng{authorfullhash}{a09df9f123146b8e2c7f1134c9496932}
-      \strng{authorfullhashraw}{a09df9f123146b8e2c7f1134c9496932}
-      \field{sortinit}{K}
-      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{eprintclass}{cs.LG}
-      \field{eprinttype}{arXiv}
-      \field{title}{Adam: A Method for Stochastic Optimization}
-      \field{year}{2017}
-      \true{nocite}
-      \verb{eprint}
-      \verb 1412.6980
-      \endverb
-      \verb{urlraw}
-      \verb https://arxiv.org/abs/1412.6980
-      \endverb
-      \verb{url}
-      \verb https://arxiv.org/abs/1412.6980
-      \endverb
-    \endentry
     \entry{kundu2024adam}{misc}{}{}
       \name{author}{1}{}{%
         {{hash=9e029fef70d22cffcef713a6495505c7}{%
@@ -175,61 +135,6 @@
       \endverb
       \verb{url}
       \verb https://www.youtube.com/watch?v=MD2fYip6QsQ
-      \endverb
-    \endentry
-    \entry{li2018visualizinglosslandscapeneural}{misc}{}{}
-      \name{author}{5}{}{%
-        {{hash=2620b9afd37cca5b9b7354f67c036d4d}{%
-           family={Li},
-           familyi={L\bibinitperiod},
-           given={Hao},
-           giveni={H\bibinitperiod}}}%
-        {{hash=05cfd0bcb3bc857f515fc6e69d6ca277}{%
-           family={Xu},
-           familyi={X\bibinitperiod},
-           given={Zheng},
-           giveni={Z\bibinitperiod}}}%
-        {{hash=3a2adb4bdc707f5f21becb12b393db90}{%
-           family={Taylor},
-           familyi={T\bibinitperiod},
-           given={Gavin},
-           giveni={G\bibinitperiod}}}%
-        {{hash=45fe5ab966df2ae2a98ac0437e84e46f}{%
-           family={Studer},
-           familyi={S\bibinitperiod},
-           given={Christoph},
-           giveni={C\bibinitperiod}}}%
-        {{hash=3b1fea9d27f10122cd27336b3dc68ea7}{%
-           family={Goldstein},
-           familyi={G\bibinitperiod},
-           given={Tom},
-           giveni={T\bibinitperiod}}}%
-      }
-      \strng{namehash}{daaeb7670772db8a47b015a37e6672bc}
-      \strng{fullhash}{81b803b4f93b59feebc04c40d625a5a6}
-      \strng{fullhashraw}{81b803b4f93b59feebc04c40d625a5a6}
-      \strng{bibnamehash}{daaeb7670772db8a47b015a37e6672bc}
-      \strng{authorbibnamehash}{daaeb7670772db8a47b015a37e6672bc}
-      \strng{authornamehash}{daaeb7670772db8a47b015a37e6672bc}
-      \strng{authorfullhash}{81b803b4f93b59feebc04c40d625a5a6}
-      \strng{authorfullhashraw}{81b803b4f93b59feebc04c40d625a5a6}
-      \field{sortinit}{L}
-      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{eprintclass}{cs.LG}
-      \field{eprinttype}{arXiv}
-      \field{title}{Visualizing the Loss Landscape of Neural Nets}
-      \field{year}{2018}
-      \true{nocite}
-      \verb{eprint}
-      \verb 1712.09913
-      \endverb
-      \verb{urlraw}
-      \verb https://arxiv.org/abs/1712.09913
-      \endverb
-      \verb{url}
-      \verb https://arxiv.org/abs/1712.09913
       \endverb
     \endentry
     \entry{nielsen2015neural}{book}{}{}
@@ -282,6 +187,7 @@
       \strng{authornamehash}{1a86e93b6278850e1238e6d6c835ba00}
       \strng{authorfullhash}{1a86e93b6278850e1238e6d6c835ba00}
       \strng{authorfullhashraw}{1a86e93b6278850e1238e6d6c835ba00}
+      \field{extraname}{1}
       \field{sortinit}{S}
       \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
       \field{labelnamesource}{author}
@@ -299,6 +205,43 @@
       \verb https://arxiv.org/abs/2109.14545
       \endverb
       \warn{\item online entry 'ActivationFunctions' (notes.bib): Invalid format '9/29/21' of date field 'date' - ignoring}
+    \endentry
+    \entry{ADAM}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=1a86e93b6278850e1238e6d6c835ba00}{%
+           family={Shiv\bibnamedelimb Ram\bibnamedelima Dubey},
+           familyi={S\bibinitperiod\bibinitdelim R\bibinitperiod\bibinitdelim D\bibinitperiod},
+           given={Bidyut\bibnamedelimb Baran\bibnamedelima Chaudhuri},
+           giveni={B\bibinitperiod\bibinitdelim B\bibinitperiod\bibinitdelim C\bibinitperiod},
+           suffix={Satish\bibnamedelimb Kumar\bibnamedelima Singh},
+           suffixi={S\bibinitperiod\bibinitdelim K\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \strng{namehash}{1a86e93b6278850e1238e6d6c835ba00}
+      \strng{fullhash}{1a86e93b6278850e1238e6d6c835ba00}
+      \strng{fullhashraw}{1a86e93b6278850e1238e6d6c835ba00}
+      \strng{bibnamehash}{1a86e93b6278850e1238e6d6c835ba00}
+      \strng{authorbibnamehash}{1a86e93b6278850e1238e6d6c835ba00}
+      \strng{authornamehash}{1a86e93b6278850e1238e6d6c835ba00}
+      \strng{authorfullhash}{1a86e93b6278850e1238e6d6c835ba00}
+      \strng{authorfullhashraw}{1a86e93b6278850e1238e6d6c835ba00}
+      \field{extraname}{2}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{ADAM: A METHOD FOR STOCHASTIC OPTIMIZATION}
+      \field{urlday}{14}
+      \field{urlmonth}{12}
+      \field{urlyear}{2025}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://arxiv.org/pdf/1412.6980
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/pdf/1412.6980
+      \endverb
+      \warn{\item online entry 'ADAM' (notes.bib): Invalid format '1/30/2017' of date field 'date' - ignoring}
     \endentry
   \enddatalist
 \endrefsection

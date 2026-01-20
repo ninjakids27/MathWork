@@ -1,0 +1,17 @@
+[0] Config.pm:328> INFO - This is Biber 2.21
+[0] Config.pm:331> INFO - Logfile is 'notes.blg'
+[86] biber-MSWIN64:342> INFO - === 
+[120] Biber.pm:421> INFO - Reading 'notes.bcf'
+[212] Biber.pm:999> INFO - Using all citekeys in bib section 0
+[224] Biber.pm:4487> INFO - Processing section 0
+[235] Biber.pm:4678> INFO - Looking for bibtex file 'notes.bib' for section 0
+[284] bibtex.pm:1713> INFO - LaTeX decoding ...
+[294] bibtex.pm:1519> INFO - Found BibTeX data source 'notes.bib'
+[347] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[347] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[347] Biber.pm:4307> INFO - Sorting list 'nty/global//global/global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[347] Biber.pm:4313> INFO - No sort tailoring available for locale 'en-US'
+[358] bbl.pm:676> INFO - Writing 'notes.bbl' with encoding 'UTF-8'
+[361] bbl.pm:779> INFO - Output to notes.bbl
+[361] Biber.pm:132> WARN - online entry 'ActivationFunctions' (notes.bib): Invalid format '9/29/21' of date field 'date' - ignoring
+[361] Biber.pm:134> INFO - WARNINGS: 1

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.12.21)  2 JAN 2026 11:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.12.21)  19 JAN 2026 23:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -133,6 +133,9 @@ LaTeX Info: Redefining \] on input line 2951.
 \l_MT_below_shortintertext_sep=\dimen168
 \xmathstrut@box=\box55
 \xmathstrut@dim=\dimen169
+) (C:\Users\Adami\AppData\Local\Programs\MiKTeX\tex/latex/manfnt\manfnt.sty
+Package: manfnt 1999/07/010.2LaTeX2e manfnt package
+\dbend@height=\skip58
 ) (C:\Users\Adami\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\biblatex.sty
 Package: biblatex 2025/07/10 v3.21 programmable bibliographies (PK/MW)
  (C:\Users\Adami\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds.sty
@@ -208,14 +211,14 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 \blx@sectionciteorderinternal@0=\count341
 \blx@entrysetcounter=\count342
 \blx@biblioinstance=\count343
-\labelnumberwidth=\skip58
-\labelalphawidth=\skip59
-\biblabelsep=\skip60
-\bibitemsep=\skip61
-\bibnamesep=\skip62
-\bibinitsep=\skip63
-\bibparsep=\skip64
-\bibhang=\skip65
+\labelnumberwidth=\skip59
+\labelalphawidth=\skip60
+\biblabelsep=\skip61
+\bibitemsep=\skip62
+\bibnamesep=\skip63
+\bibinitsep=\skip64
+\bibparsep=\skip65
+\bibhang=\skip66
 \blx@bcfin=\read2
 \blx@bcfout=\write3
 \blx@langwohyphens=\language79
@@ -297,20 +300,20 @@ Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
 \c@savedoriglanguage=\count412
 \c@pageref=\count413
 \c@savedpageref=\count414
-\shorthandwidth=\skip66
-\shortjournalwidth=\skip67
-\shortserieswidth=\skip68
-\shorttitlewidth=\skip69
-\shortauthorwidth=\skip70
-\shorteditorwidth=\skip71
-\locallabelnumberwidth=\skip72
-\locallabelalphawidth=\skip73
-\localshorthandwidth=\skip74
-\localshortjournalwidth=\skip75
-\localshortserieswidth=\skip76
-\localshorttitlewidth=\skip77
-\localshortauthorwidth=\skip78
-\localshorteditorwidth=\skip79
+\shorthandwidth=\skip67
+\shortjournalwidth=\skip68
+\shortserieswidth=\skip69
+\shorttitlewidth=\skip70
+\shortauthorwidth=\skip71
+\shorteditorwidth=\skip72
+\locallabelnumberwidth=\skip73
+\locallabelalphawidth=\skip74
+\localshorthandwidth=\skip75
+\localshortjournalwidth=\skip76
+\localshortserieswidth=\skip77
+\localshorttitlewidth=\skip78
+\localshortauthorwidth=\skip79
+\localshorteditorwidth=\skip80
 Package biblatex Info: Trying to load compatibility code...
 Package biblatex Info: ... file 'blx-compat.def' found.
  (C:\Users\Adami\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\blx-compat.def
@@ -458,31 +461,31 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 284.
 )
-\Hy@SectionHShift=\skip80
+\Hy@SectionHShift=\skip81
 )
 \@quotelevel=\count438
 \@quotereset=\count439
  (notes.aux)
 \openout1 = `notes.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
  (C:\Users\Adami\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count440
@@ -520,73 +523,68 @@ Package biblatex Warning: Biber reported the following issues
 (biblatex)                with 'ActivationFunctions':
 (biblatex)                - online entry 'ActivationFunctions' (notes.bib): Invalid format '9/29/21' of date field 'date' - ignoring.
 
-
-Package biblatex Warning: Biber reported the following issues
-(biblatex)                with 'ADAM':
-(biblatex)                - online entry 'ADAM' (notes.bib): Invalid format '1/30/2017' of date field 'date' - ignoring.
-
 )
-Package biblatex Info: Reference section=0 on input line 14.
-Package biblatex Info: Reference segment=0 on input line 14.
-Package hyperref Info: Link coloring OFF on input line 14.
+Package biblatex Info: Reference section=0 on input line 15.
+Package biblatex Info: Reference segment=0 on input line 15.
+Package hyperref Info: Link coloring OFF on input line 15.
  (notes.out) (notes.out)
 \@outlinefile=\write4
 \openout4 = `notes.out'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 26--30
+Underfull \hbox (badness 10000) in paragraph at lines 27--31
 
  []
 
 [1
 
 {C:/Users/Adami/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 45--47
+Underfull \hbox (badness 10000) in paragraph at lines 46--48
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 79--82
+Underfull \hbox (badness 10000) in paragraph at lines 80--83
 
  []
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 84--87
+Underfull \hbox (badness 10000) in paragraph at lines 85--88
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 87--89
+Underfull \hbox (badness 10000) in paragraph at lines 88--90
 
  []
 
-<./images/backpropagation.png, id=58, 512.91624pt x 285.065pt>
+<./images/backpropagation.png, id=62, 512.91624pt x 285.065pt>
 File: ./images/backpropagation.png Graphic file (type png)
 <use ./images/backpropagation.png>
-Package pdftex.def Info: ./images/backpropagation.png  used on input line 109.
+Package pdftex.def Info: ./images/backpropagation.png  used on input line 111.
 (pdftex.def)             Requested size: 241.49895pt x 134.2198pt.
-[3] [4 <./images/backpropagation.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 171--172
-
- []
-
-[5]
-Underfull \hbox (badness 10000) in paragraph at lines 227--229
+[3] [4 <./images/backpropagation.png>] [5]
+Underfull \hbox (badness 10000) in paragraph at lines 174--175
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 227--229
+Underfull \hbox (badness 10000) in paragraph at lines 230--232
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 231--235
+Underfull \hbox (badness 10000) in paragraph at lines 230--232
 
  []
 
 [6]
-Overfull \hbox (2.36359pt too wide) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 234--238
+
+ []
+
+
+Overfull \hbox (2.36359pt too wide) in paragraph at lines 267--267
 \OT1/cmr/m/it/10 Sci-ence\OT1/cmr/m/n/10 . Chap-ter 4: Sin-gu-lar Value De-com-po-si-tion (SVD). Cam-bridge: Cam-
  []
 
@@ -596,23 +594,23 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2025-11-06>
  ***********
 Package rerunfilecheck Info: File `notes.out' has not changed.
-(rerunfilecheck)             Checksum: 7B805EDFCC1CF420392A3BD6F62FFFBE;876.
+(rerunfilecheck)             Checksum: 54983E0602E5879516042ECB15726175;1027.
 Package logreq Info: Writing requests to 'notes.run.xml'.
 \openout1 = `notes.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 17149 strings out of 467871
- 302661 string characters out of 5418375
- 1145597 words of memory out of 5000000
- 45846 multiletter control sequences out of 15000+600000
- 634873 words of font info for 65 fonts, out of 8000000 for 9000
+ 17211 strings out of 467871
+ 304151 string characters out of 5418375
+ 1146010 words of memory out of 5000000
+ 45902 multiletter control sequences out of 15000+600000
+ 635124 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  70i,9n,79p,726b,1487s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Adami\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on notes.pdf (8 pages, 251402 bytes).
+ <C:\Users\Adami\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\Adami\AppData\Local\MiKTeX\fonts/pk/ljfour/public/knuth-lib/dpi600\manfnt.pk><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on notes.pdf (8 pages, 254596 bytes).
 PDF statistics:
- 198 PDF objects out of 1000 (max. 8388607)
- 29 named destinations out of 1000 (max. 500000)
- 70 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 212 PDF objects out of 1000 (max. 8388607)
+ 31 named destinations out of 1000 (max. 500000)
+ 78 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -297,7 +297,7 @@ public class DrawApp extends JFrame {
             double gy = py / cellHeight;
 
             // Larger brush radius for smoother strokes (scaled to higher res canvas)
-            int radius = 2;
+            int radius = 3;
             double sigma = 3; // Gaussian spread for soft edges
 
             for (int i = -radius; i <= radius; i++) {

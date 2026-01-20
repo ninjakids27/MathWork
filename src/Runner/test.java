@@ -91,14 +91,44 @@ public class test {
   }
 
 
-//  @Test
-//  public void testTensorGetCommand(){
-//    Tensor<Integer> a = new Tensor<Integer>(new Integer[] {1,2,3,4,5,6,7,8}, new int[] {2,2,2});
-//    int[] coordinates = {0,0,0};
-//    int result  = a.get(coordinates);
-//    assertEquals(result,  1, 0);
-//    coordinates = new int[] {2,2,2};
-//    result  = a.get(coordinates);
-//    assertEquals(result,  8, 0);
-//  }
+ @Test
+ public void testTensorGetCommand(){
+   Tensor<Integer> a = new Tensor<Integer>(new Integer[] {1,2,3,4,5,6,7,8}, new int[] {2,2,2});
+   int[] coordinates = {0,0,0};
+   int result  = a.get(coordinates);
+   assertEquals(result,  1, 0);
+   coordinates = new int[] {2,2,2};
+   result  = a.get(coordinates);
+   assertEquals(result,  8, 0);
+ }
+
+
+ @Test
+    public void testTensorIndexing() {
+        // 1. Define dimensions: 2 sheets, 3 rows, 4 columns (2x3x4)
+        int[] dims = {2, 3, 4};
+        
+        // 2. Create the flat data array (2 * 3 * 4 = 24 elements)
+        Integer[] flatData = new Integer[24];
+        for (int i = 0; i < 24; i++) {
+            flatData[i] = i; // Fill with 0, 1, 2... 23
+        }
+
+        // 3. Initialize your Tensor class
+        Tensor<Integer> tensor = new Tensor<>(flatData, dims);
+
+        // 4. Test specific coordinates
+        // Formula: (depth * row_size * col_size) + (row * col_size) + col
+        
+        // Target element at [0, 0, 0] should be index 0
+        assertEquals(0, (int)tensor.get(new int[]{0, 0, 0}));
+
+        // Target element at [0, 1, 2] 
+        // Logic: (0*12) + (1*4) + 2 = 6
+        assertEquals(6, (int)tensor.get(new int[]{0, 1, 2}));
+
+        // Target element at [1, 2, 3] (The very last element)
+        // Logic: (1*12) + (2*4) + 3 = 23
+        assertEquals(23, (int)tensor.get(new int[]{1, 2, 3}));
+    }
 }

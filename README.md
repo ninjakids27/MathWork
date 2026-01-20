@@ -11,6 +11,7 @@ and I don't have a lot of patience to optimize the code any further or make it a
 # How to get the ML Project to work:
 clone the repo to your IDE and make sure JDK is installed then run DrawApp.java
 for the demo. 
-
+Here's what the demo looks like
+![](media/demo.gif)
 
 

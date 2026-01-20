@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage{graphicx}
 \usepackage{mathtools}
+\usepackage{manfnt}
 \usepackage{amsmath}
 \usepackage[backend=biber]{biblatex} % use biber backend (recommended)
 \usepackage{hyperref}
@@ -36,7 +37,7 @@ but this should be a successful project? I hope, because I didn't really intend 
 
 $$ Z=WX+b$$
 \par {Where Z is the neuron W is the weight matrix, X is the input vector, and b is the bias, for binary outputs eg (Right or Wrong) you use the sigmoid function to use as the activation function. ReLU is defined as}
-$$\text{ReLU}(x) = \begin{dcases}0 & x\leq0 \\ x & x > 0\end{dcases}$$
+$$\text{ReLU}(x) = \max(0,x)$$
 \par{This is also the sigmoid function which you can use for activation. In the notes I'll be using it
 , but in practice I'll be using ReLU. Sigmoid is defined as}
 $$\sigma(x) = \frac{1}{1+e^{-x}}$$
@@ -104,6 +105,7 @@ $$U(-L,L)$$
 $$\text{Where }L = \sqrt{\frac{6}{n_\text{in}}}$$
 \par{Now there's questions on what a uniform distrubution is and I won't address that.}
 \subsection{Backpropagation}
+\dbend
 \begin{figure}
     \centering
     \includegraphics[width=.7\textwidth]{backpropagation.png}
@@ -114,15 +116,16 @@ $$\text{Where }L = \sqrt{\frac{6}{n_\text{in}}}$$
 it's nearly how you might reflect upon yourself when you get an incorrect answer. }
 $$\delta^{L} = \nabla_aC\odot\sigma'(z^L)$$
 \par{While this equation uses symbols not conceived by any language known to man. It's important to know that mathematacians don't know how to program and that this equation can and will do it for any neural network. We'll start first with the cost function. In machine learning the cost and loss are essentially synonymous and I won't deal with semantics so I'll call it the cost function.}
-$$C = -\sum_{i=1}y_i\ln{\hat{y_i}}$$
+$$C = -\sum_{i=1}y_i\ln{a_i}$$
 \par{This is called the Categorical Cross-Entropy loss function. A metric ton of words but what it means is that if our model is correct but not confident we'll penalize it for low confidence. There are other cost functions but usually you need to differentiate those and write it in code, so it's important to know what problem you're facing and knowing which tools are fit for the job. Going back into the first equation we can break down $\nabla_aC\odot\sigma'(z^L)$}
 $$\delta^L_j = \frac{\partial C}{\partial a^L_j}\sigma'(z^L_j)$$
-\par{}
+\par{Everything in the error formula is easily computable except for the partial. We can go into it.}
+$$\frac{\boxed{\partial C}}{\partial a^L_j} = \frac{\partial}{\partial a^L_j} \left( -\sum_{i=1}y_i\ln a_i \right)= $$
 \section{MatrixOps}
 
 
 
-
+\subsection{What is a matrix?}
 \par{A matrix is a 2d array in cs or a 2d vector a matrix is denoted by uppercase letters so ``A'' is a matrix but ``a'' is not a matrix. You could also bold it to emphazise it but it's up to you.}
 $$\begin{pmatrix}
 1 & 2 & 3 \\

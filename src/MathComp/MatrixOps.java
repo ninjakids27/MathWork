@@ -549,7 +549,6 @@ public class MatrixOps {
      */
     public static double[][] matrixMult(double[][] Matrix_A, double[][] Matrix_B, boolean debug){
         if(Matrix_A[0].length == Matrix_B.length){
-            // proceed as usual type shit
             double[][] Result_Matrix = new double[Matrix_A.length][Matrix_B[0].length];
             for(int i = 0; i < Matrix_A.length; i++){
                 for(int j = 0; j < Matrix_B[0].length; j++){
@@ -573,7 +572,6 @@ public class MatrixOps {
      */
     public static double[][] matrixMult(double[][] Matrix_A, double[][] Matrix_B){
         if(Matrix_A[0].length == Matrix_B.length){
-            // proceed as usual type shit
             double[][] Result_Matrix = new double[Matrix_A.length][Matrix_B[0].length];
             for(int i = 0; i < Matrix_A.length; i++){
                 for(int j = 0; j < Matrix_B[0].length; j++){

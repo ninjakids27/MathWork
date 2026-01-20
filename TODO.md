@@ -62,11 +62,14 @@
 - [ ] Single Value decomposition for compressing images (P1)
     - [ ] research Single Value Decomposition (P1)
     - [ ] write notes (P2)
+    - [ ] Implement Eigenvalues and Eigenvectors (P1)
+        - [ ] Research Eigenvalues and Eigenvectors (P1)
 - [ ] Fix linear regression (P1)
 
 ### ML
 - [ ] Tensor class? do more research in the future and write it up in the notes (~P3)
 - [ ] Write the training method and implement parallel processing using CUDA (P2)
+- [ ] Fix the optimizers since SGD is the only one that works (P1)
 
 ### Regression
 - [ ] Fix MLR for the billionth time (P1)
