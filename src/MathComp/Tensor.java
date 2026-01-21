@@ -1,6 +1,5 @@
 package MathComp;
 
-import Runner.ColorText;
 
 public class Tensor<T> {
     private final T[] data;
@@ -11,6 +10,17 @@ public class Tensor<T> {
     public Tensor(T[] data, int[] dimensions){
         this.dimensions = dimensions;
         this.data = data;
+        this.rank = dimensions.length;
+    }
+
+    @SuppressWarnings("unchecked")
+    public Tensor(int[] dimensions){
+        this.dimensions = dimensions;
+        int mult =1;
+        for(int dimension : dimensions){
+            mult*=dimension;
+        }
+        this.data = (T[]) new Object[mult];
         this.rank = dimensions.length;
     }
 
@@ -29,13 +39,6 @@ public class Tensor<T> {
    public int[] getDimensions(){
     return this.dimensions;
    }
-   private boolean sameDimensions(Tensor<T> tensor){
-    if(!this.dimensions.equals(tensor.getDimensions())){
-        return false;
-    }else{
-        return true; 
-    }
-   }
-
+   
 
 }
