@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber notes"] 1768879667.67709 "notes.bcf" "notes.bbl" "notes" 1768881782.94971 0
-  "notes.bcf" 1768881782 108759 f789cb41b905701a6e9a2df9e4444328 "pdflatex"
-  "notes.bib" 1768879666 2806 76f81e0d6561e60b2ef0c4b7a21b0ef0 ""
+["biber notes"] 1769738749.11758 "notes.bcf" "notes.bbl" "notes" 1769739070.04575 0
+  "notes.bcf" 1769739069 108759 f789cb41b905701a6e9a2df9e4444328 "pdflatex"
+  "notes.bib" 1769039555 2806 76f81e0d6561e60b2ef0c4b7a21b0ef0 ""
   (generated)
   "notes.bbl"
   "notes.blg"
   (rewritten before read)
-["pdflatex"] 1768881781.90451 "c:/githubProject/MathWork/latex/notes.tex" "notes.pdf" "notes" 1768881782.95052 0
+["pdflatex"] 1769739068.91978 "c:/githubProject/MathWork/latex/notes.tex" "notes.pdf" "notes" 1769739070.04673 0
   "C:/Users/Adami/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1768747417 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/Adami/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1759372366 11548 66b6f16c216d3fb28d0ac98fc129e9db ""
   "C:/Users/Adami/AppData/Local/MiKTeX/fonts/pk/ljfour/public/knuth-lib/dpi600/manfnt.pk" 1768747474 16468 0e5dd15d48313bfd06a5255ef3cf6f74 ""
@@ -110,14 +110,14 @@
   "C:/Users/Adami/AppData/Local/Programs/MiKTeX/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1751104012 9684 a33a14b82ce60d6e77cb9be689d79ee6 ""
   "C:/Users/Adami/AppData/Local/Programs/MiKTeX/tex/latex/tools/calc.sty" 1761901070 10374 2ffd4f27c7f90b8a300608069537743c ""
   "C:/Users/Adami/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
-  "c:/githubProject/MathWork/latex/notes.tex" 1768881781 12981 b86218ef153af98baa974b849c8bdc11 ""
-  "images/backpropagation.png" 1767284288 8786 aee3d335d5df0713cdaf2f6e144de1d9 ""
-  "notes.aux" 1768881782 2312 7b74022f1f8c3a1416192fcc884d79c1 "pdflatex"
-  "notes.bbl" 1768879669 12016 02a169a42df4dc6ebfa3fd63ff522192 "biber notes"
-  "notes.bib" 1768879666 2806 76f81e0d6561e60b2ef0c4b7a21b0ef0 ""
-  "notes.out" 1768881782 1027 54983e0602e5879516042ecb15726175 "pdflatex"
-  "notes.run.xml" 1768881782 2307 2f06dca552429276c40e74b1fafcd791 "pdflatex"
-  "notes.tex" 1768881781 12981 b86218ef153af98baa974b849c8bdc11 ""
+  "c:/githubProject/MathWork/latex/notes.tex" 1769739068 13260 6cec23f21af71d4a4914c12b8c05c0c5 ""
+  "images/backpropagation.png" 1769039555 8786 aee3d335d5df0713cdaf2f6e144de1d9 ""
+  "notes.aux" 1769739069 2312 baafc79061d2ed34aaeeb0b5f7264722 "pdflatex"
+  "notes.bbl" 1769738751 12016 02a169a42df4dc6ebfa3fd63ff522192 "biber notes"
+  "notes.bib" 1769039555 2806 76f81e0d6561e60b2ef0c4b7a21b0ef0 ""
+  "notes.out" 1769739069 1027 54983e0602e5879516042ecb15726175 "pdflatex"
+  "notes.run.xml" 1769739069 2307 2f06dca552429276c40e74b1fafcd791 "pdflatex"
+  "notes.tex" 1769739068 13260 6cec23f21af71d4a4914c12b8c05c0c5 ""
   (generated)
   "notes.aux"
   "notes.bcf"

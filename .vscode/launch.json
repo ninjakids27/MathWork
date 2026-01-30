@@ -17,65 +17,6 @@
             "request": "launch",
             "mainClass": "Runner.Main",
             "projectName": "MathWork_a4c5474a"
-        },
-        {
-            "type": "java",
-            "name": "DrawApp",
-            "request": "launch",
-            "mainClass": "UIAppDemo.DrawApp",
-            "projectName": "MathWork_a4c5474a"
-        },
-        {
-            "type": "java",
-            "name": "Main",
-            "request": "launch",
-            "mainClass": "Runner.Main",
-            "projectName": "MathWork_821188f3"
-        },
-        {
-            "type": "java",
-            "name": "DrawApp",
-            "request": "launch",
-            "mainClass": "UIAppDemo.DrawApp",
-            "projectName": "MathWork_821188f3"
-        },
-        {
-            "type": "java",
-            "name": "App",
-            "request": "launch",
-            "mainClass": "UIAppDemo.App",
-            "projectName": "MathWork_821188f3"
-        },
-        {
-            "type": "java",
-            "name": "Main",
-            "request": "launch",
-            "mainClass": "Main",
-            "projectName": "MathWork_821188f3",
-            "vmArgs": "-Xmx4G"
-        },
-        {
-            "type": "java",
-            "name": "sandbox",
-            "request": "launch",
-            "mainClass": "sandbox",
-            "projectName": "MathWork_821188f3",
-            "vmArgs": "-Xmx4G"
-        },
-        {
-            "type": "java",
-            "name": "sandbox",
-            "request": "launch",
-            "mainClass": "sandbox",
-            "projectName": "MathWork_84c6a994",
-            "vmArgs": "-Xmx4G"
-        },
-        {
-            "type": "java",
-            "name": "Current File",
-            "request": "launch",
-            "mainClass": "${file}",
-            "vmArgs": "-Xmx4G"
         }
     ]
 }

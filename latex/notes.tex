@@ -120,7 +120,8 @@ $$C = -\sum_{i=1}y_i\ln{a_i}$$
 \par{This is called the Categorical Cross-Entropy loss function. A metric ton of words but what it means is that if our model is correct but not confident we'll penalize it for low confidence. There are other cost functions but usually you need to differentiate those and write it in code, so it's important to know what problem you're facing and knowing which tools are fit for the job. Going back into the first equation we can break down $\nabla_aC\odot\sigma'(z^L)$}
 $$\delta^L_j = \frac{\partial C}{\partial a^L_j}\sigma'(z^L_j)$$
 \par{Everything in the error formula is easily computable except for the partial. We can go into it.}
-$$\frac{\boxed{\partial C}}{\partial a^L_j} = \frac{\partial}{\partial a^L_j} \left( -\sum_{i=1}y_i\ln a_i \right)= $$
+$$\frac{\boxed{\partial C}}{\partial a^L_j} = \frac{\partial}{\partial a^L_j} \left( -\sum_{i=1}y_i\ln a_i \right)= p_i-y_i$$
+\par{This is the derivative of the cost function with respect to the activation of the output layer. This is important because it tells us how much we need to change the weights and biases to minimize the cost function. Now we can plug this back into the error formula.}
 \section{MatrixOps}
 
 

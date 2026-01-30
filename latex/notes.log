@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.12.21)  19 JAN 2026 23:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.12.21)  29 JAN 2026 21:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -564,31 +564,31 @@ File: ./images/backpropagation.png Graphic file (type png)
 Package pdftex.def Info: ./images/backpropagation.png  used on input line 111.
 (pdftex.def)             Requested size: 241.49895pt x 134.2198pt.
 [3] [4 <./images/backpropagation.png>] [5]
-Underfull \hbox (badness 10000) in paragraph at lines 174--175
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 230--232
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 230--232
+Underfull \hbox (badness 10000) in paragraph at lines 175--176
 
  []
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 234--238
+Underfull \hbox (badness 10000) in paragraph at lines 231--233
 
  []
 
 
-Overfull \hbox (2.36359pt too wide) in paragraph at lines 267--267
+Underfull \hbox (badness 10000) in paragraph at lines 231--233
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 235--239
+
+ []
+
+[7]
+Overfull \hbox (2.36359pt too wide) in paragraph at lines 268--268
 \OT1/cmr/m/it/10 Sci-ence\OT1/cmr/m/n/10 . Chap-ter 4: Sin-gu-lar Value De-com-po-si-tion (SVD). Cam-bridge: Cam-
  []
 
-[7] [8] (notes.aux)
+[8] (notes.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-11-06>
@@ -602,13 +602,13 @@ Package logreq Info: Writing requests to 'notes.run.xml'.
 Here is how much of TeX's memory you used:
  17211 strings out of 467871
  304151 string characters out of 5418375
- 1146010 words of memory out of 5000000
+ 1147010 words of memory out of 5000000
  45902 multiletter control sequences out of 15000+600000
  635124 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 70i,9n,79p,726b,1487s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 70i,9n,79p,726b,1324s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Adami\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\Adami\AppData\Local\MiKTeX\fonts/pk/ljfour/public/knuth-lib/dpi600\manfnt.pk><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Adami/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on notes.pdf (8 pages, 254596 bytes).
+Output written on notes.pdf (8 pages, 255240 bytes).
 PDF statistics:
  212 PDF objects out of 1000 (max. 8388607)
  31 named destinations out of 1000 (max. 500000)

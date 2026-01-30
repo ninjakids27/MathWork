@@ -65,9 +65,10 @@
     - [ ] Implement Eigenvalues and Eigenvectors (P1)
         - [ ] Research Eigenvalues and Eigenvectors (P1)
 - [ ] Fix linear regression (P1)
+- [ ] Implement the Matrix class (P1)
 
 ### ML
-- [ ] Tensor class? do more research in the future and write it up in the notes (~P3)
+- [x] Tensor class? do more research in the future and write it up in the notes (~P3)
 - [ ] Write the training method and implement parallel processing using CUDA (P2)
 - [ ] Fix the optimizers since SGD is the only one that works (P1)
 
