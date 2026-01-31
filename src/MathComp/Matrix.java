@@ -49,14 +49,18 @@ public class Matrix<T> extends Tensor<T>{
     }
     
 
-    public void setRows(int rowNum){
-
+    public void setRow(int rowNum, T[] row){
+        int[] coordinates = {rowNum, 0};
+        for(int i = 0; i < row.length; i++){
+            this.set(coordinates, row[i]);
+            coordinates[1]++;
+        }
     }
     @SuppressWarnings("unchecked")
-    public T[] accessRow(int row_index) {
+    public T[] accessRow(int rowIndex) {
         int num_cols = this.getDimensions()[1];
         T[] temp = (T[]) new Object[num_cols];
-        int[] coordinates =  {row_index,0};
+        int[] coordinates =  {rowIndex,0};
         for (int i = 0; i < num_cols; i++) {
             temp[i] = this.get(coordinates);
             coordinates[1]++;

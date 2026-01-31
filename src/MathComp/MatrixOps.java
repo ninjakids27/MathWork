@@ -99,10 +99,14 @@ public class MatrixOps {
         Matrix<Double> tempMatrix = new Matrix<Double>(numRows,numCols);
         // Clone the matrix
         if (factor != 1) {
-            tempRowAdded = accessRow(constantFactor(matrix, rowAdded, factor), rowAdded);
+            constantFactor(tempMatrix, rowAdded, factor);
+            tempRowAdded = matrix.accessRow(rowAdded);
         }
+        int[] coordinates = {replacedRow,0};
         for (int i = 0; i < tempRowAdded.length; i++) {
-            tempMatrix[replacedRow][i] = matrix[replacedRow][i] + tempRowAdded[i];
+            tempMatrix.set(coordinates, matrix.get(coordinates)+tempRowAdded[i]);
+            // tempMatrix[replacedRow][i] = matrix[replacedRow][i] + tempRowAdded[i];
+            coordinates[1]++;
         }
         return tempMatrix;
     }
@@ -149,7 +153,7 @@ public class MatrixOps {
         for(int i = 0 ; i < temp.length; i++){
             temp[i]*=factor;
         }
-        Matrix.set
+        Matrix.setRow(rowIndex, temp);
     }
 
     /**
@@ -171,37 +175,44 @@ public class MatrixOps {
 
     /**
      * Determines the type of solution for a system of linear equations represented by the given RREF matrix.
-     * @param RREF_Matrix the RREF matrix
+     * @param RREFMatrix the RREF matrix
      * @return a string indicating the type of solution ("No Solution", "Unique Solution", or "Infinitely Many Solutions (Free Variables)")
      */
-    public static String getSolutionType(double[][] RREF_Matrix) {
-    int numRows = RREF_Matrix.length;
-    int numCols = RREF_Matrix[0].length;
+    public static String getSolutionType(Matrix<Double> RREFMatrix) {
+    int numRows = RREFMatrix.getRowNum();
+    int numCols = RREFMatrix.getColumnNum();
     int numVariables = numCols - 1; // Assuming it's an augmented matrix
 
     // Check for no solution
+    int[] coordinates = {0,0};
     for (int i = 0; i < numRows; i++) {
+        coordinates[0] = i;
         boolean allZerosExceptLast = true;
         for (int j = 0; j < numVariables; j++) {
-            if (RREF_Matrix[i][j] != 0.0) {
+            coordinates[1] = j;
+            if (RREFMatrix.get(coordinates) != 0.0) {
                 allZerosExceptLast = false;
                 break;
             }
         }
-        if (allZerosExceptLast && RREF_Matrix[i][numVariables] != 0.0) {
+        if (allZerosExceptLast && RREFMatrix.get(new int[] {i,numVariables}) != 0.0) {
             return "No Solution";
         }
     }
 
     // Check for free variables
+    coordinates = new int[] {0,0};
     int pivotCount = 0;
     for (int i = 0; i < numRows; i++) {
+        coordinates[0] = i;
         for (int j = 0; j < numVariables; j++) {
-            if (RREF_Matrix[i][j] == 1.0) {
+            coordinates[1] = j;
+            if (RREFMatrix.get(coordinates) == 1.0) {
                 // Check if it's a leading 1
                 boolean isLeadingOne = true;
                 for (int k = 0; k < j; k++) {
-                    if (RREF_Matrix[i][k] != 0.0) {
+                    coordinates[1] = k;
+                    if (RREFMatrix.get(coordinates) != 0.0) {
                         isLeadingOne = false;
                         break;
                     }
