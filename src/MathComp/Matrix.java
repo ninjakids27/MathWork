@@ -1,15 +1,26 @@
 package MathComp;
 
 public class Matrix<T> extends Tensor<T>{
+    private int[] coordinates = new int[] {0, 0};
     
+    public T get(int row, int column) {
+        coordinates[0] = row;
+        coordinates[1] = column;
+        return super.get(coordinates);
+    }
 
     public Matrix(T[] data,int rows, int columns){
+        super(data,new int[] {rows,columns});
+    }
+
+    public Matrix(int rows, int columns,T[] data){
         super(data,new int[] {rows,columns});
     }
 
     public Matrix(Matrix<T> other){
         super(other.data,new int[] {other.getRowNum(),other.getColumnNum()});
     }
+
 
     public Matrix(int rows, int columns){
         super(new int[] {rows,columns});
@@ -50,12 +61,13 @@ public class Matrix<T> extends Tensor<T>{
     
 
     public void setRow(int rowNum, T[] row){
-        int[] coordinates = {rowNum, 0};
+        int[] coordinates = {rowNum,0};
         for(int i = 0; i < row.length; i++){
+            coordinates[1] = i;
             this.set(coordinates, row[i]);
-            coordinates[1]++;
         }
     }
+    
     @SuppressWarnings("unchecked")
     public T[] accessRow(int rowIndex) {
         int num_cols = this.getDimensions()[1];
@@ -67,6 +79,23 @@ public class Matrix<T> extends Tensor<T>{
         }
         return temp;
     }
+
+
+    @SuppressWarnings("unchecked")
+    public T[] accessColumn(int columnIndex) {
+        int num_rows = this.getDimensions()[0];
+        T[] temp = (T[]) new Object[num_rows];
+        int[] coordinates =  {0,columnIndex};
+        for (int i = 0; i < num_rows; i++) {
+            temp[i] = this.get(coordinates);
+            coordinates[0]++;
+        }
+        return temp;
+    }
+
+     
+
+
 
     @Override
     public String toString(){

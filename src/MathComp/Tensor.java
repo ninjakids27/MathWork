@@ -43,6 +43,7 @@ public class Tensor<T>{
         return data[index];
    }
 
+
    public void set(int[] coordinates, T value){
     int index = 0;
         int base = 1;

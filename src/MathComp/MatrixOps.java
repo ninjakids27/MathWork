@@ -241,112 +241,125 @@ public class MatrixOps {
     int numRows = Matrix.getRowNum();
     int numCols = Matrix.getColumnNum();
     Matrix<Double> tempMatrix= new Matrix<Double>(numRows,numCols);
-
+    int[] coordinates = {0,0};
     for (int i = 0; i < numRows; i++) {
+        coordinates[0] = i;
         for (int k = 0; k < numCols; k++) {
-            tempMatrix[i][k] = Matrix[i][k];
+            coordinates[1] = k;
+            tempMatrix.set(coordinates, Matrix.get(coordinates));
+            
         }
     }
 
 
     int pivotRow = 0;
-
+    coordinates = new int[] {0,0};
     for (int j = 0; j < numCols && pivotRow < numRows; j++) {
+        coordinates[1] = j;
         int maxRow = pivotRow;
         for (int i = pivotRow + 1; i < numRows; i++) {
-            if (Math.abs(tempMatrix[i][j]) > Math.abs(tempMatrix[maxRow][j])) {
+            coordinates[0] = i;
+            if (Math.abs(tempMatrix.get(coordinates)) > Math.abs(tempMatrix.get(new int[] {maxRow, coordinates[1]}))) {
                 maxRow = i;
             }
         }
 
-        if (Math.abs(tempMatrix[maxRow][j]) > epsilon) { 
-            tempMatrix = switchRows(tempMatrix, pivotRow, maxRow);
+        if (Math.abs(tempMatrix.get(new int[] {maxRow, coordinates[1]})) > epsilon) {
+            tempMatrix.switchRows(pivotRow, maxRow);
             if(debug){
                 therefore();
-                printMatrix(tempMatrix);
+                System.out.println(tempMatrix);
             }
 
-            double pivotValue = tempMatrix[pivotRow][j];
-            tempMatrix = constantFactor(tempMatrix, pivotRow, 1/pivotValue);
-            tempMatrix = roundMatrix(tempMatrix, epsilon);
+            double pivotValue = tempMatrix.get(new int[] {pivotRow, j});
+            constantFactor(tempMatrix, pivotRow, 1/pivotValue);
+            roundMatrix(tempMatrix, epsilon);
             if(debug){
                 therefore();
                 System.out.println(tempMatrix);
             }
 
             for(int i = pivotRow + 1; i < numRows; i++){
-                double factor = tempMatrix[i][j];
-                tempMatrix = replacement(tempMatrix, i, pivotRow, -factor);
-                tempMatrix = roundMatrix(tempMatrix, epsilon);
+                double factor = tempMatrix.get(new int[] {i, j});
+                replacement(tempMatrix, i, pivotRow, -factor);
+                roundMatrix(tempMatrix, epsilon);
                 if(debug){
                     therefore();
-                    printMatrix(tempMatrix);
+                    System.out.println(tempMatrix);
                 }
             }
             pivotRow++;
         }
     }
-    
+    coordinates = new int[] {0,0};
     for(int i = numRows - 1; i >=0; i--){
         int pivotCol = -1;
+        coordinates[0] = i;
         for(int j = 0; j < numCols; j++){
-            if(Math.abs(tempMatrix[i][j] - 1.0) < epsilon){ 
+            coordinates[1] = j;
+            if(Math.abs(tempMatrix.get(coordinates) - 1.0) < epsilon){ 
                 pivotCol = j;
                 break;
             }
         }
         if(pivotCol != -1){
             for(int k = 0; k < i; k++){
-                double factor = tempMatrix[k][pivotCol];
-                tempMatrix = replacement(tempMatrix, k, i, -factor);
-                tempMatrix = roundMatrix(tempMatrix, epsilon);
+                coordinates[0] = k;
+                coordinates[1] = pivotCol;
+                double factor = tempMatrix.get(coordinates);
+                replacement(tempMatrix, k, i, -factor);
+                roundMatrix(tempMatrix, epsilon);
                 if(debug){
                     therefore();
-                    printMatrix(tempMatrix);
+                    System.out.println(tempMatrix);
                 }
             }
         }
     }
     
-    tempMatrix = roundMatrix(tempMatrix, epsilon);
+    roundMatrix(tempMatrix, epsilon);
     if(debug){
         therefore();
     }
     return tempMatrix;
 }
-    public static double[][] RREF(double[][] Matrix) {
-    int numRows = Matrix.length;
-    int numCols = Matrix[0].length;
-    double[][] tempMatrix = new double[numRows][numCols];
-
+    public static Matrix<Double> RREF(Matrix<Double> Matrix) {
+    int numRows = Matrix.getRowNum();
+    int numCols = Matrix.getColumnNum();
+    Matrix<Double> tempMatrix = new Matrix<Double>(numRows,numCols);
+    int[] coordinates = {0,0};
     for (int i = 0; i < numRows; i++) {
+        coordinates[0] = i;
         for (int k = 0; k < numCols; k++) {
-            tempMatrix[i][k] = Matrix[i][k];
+            coordinates[1] = k;
+            tempMatrix.set(coordinates, Matrix.get(coordinates));
         }
     }
 
     
     int pivotRow = 0;
-
+    coordinates = new int[] {0,0};
     for (int j = 0; j < numCols && pivotRow < numRows; j++) {
         int maxRow = pivotRow;
+        coordinates[1] = j;
         for (int i = pivotRow + 1; i < numRows; i++) {
-            if (Math.abs(tempMatrix[i][j]) > Math.abs(tempMatrix[maxRow][j])) {
+            coordinates[0] = i;
+            if (Math.abs(tempMatrix.get(coordinates)) > Math.abs(tempMatrix.get(new int[] {maxRow, coordinates[1]}))) {
                 maxRow = i;
             }
         }
 
-        if (Math.abs(tempMatrix[maxRow][j]) > epsilon) { 
-            tempMatrix = switchRows(tempMatrix, pivotRow, maxRow);
+        if (Math.abs(tempMatrix.get(new int[] {maxRow, coordinates[1]})) > epsilon) { 
+            tempMatrix.switchRows(pivotRow, maxRow);
 
-            double pivotValue = tempMatrix[pivotRow][j];
-            tempMatrix = constantFactor(tempMatrix, pivotRow, 1/pivotValue);
-            tempMatrix = roundMatrix(tempMatrix, epsilon);
+            double pivotValue = tempMatrix.get(new int[] {pivotRow, j});
+            constantFactor(tempMatrix, pivotRow, 1/pivotValue);
+            roundMatrix(tempMatrix, epsilon);
 
             for(int i = pivotRow + 1; i < numRows; i++){
-                double factor = tempMatrix[i][j];
-                tempMatrix = replacement(tempMatrix, i, pivotRow, -factor);
-                tempMatrix = roundMatrix(tempMatrix, epsilon);
+                double factor = tempMatrix.get(new int[] {i, j});
+                replacement(tempMatrix, i, pivotRow, -factor);
+                roundMatrix(tempMatrix, epsilon);
             }
             pivotRow++;
         }
@@ -355,21 +368,21 @@ public class MatrixOps {
     for(int i = numRows - 1; i >=0; i--){
         int pivotCol = -1;
         for(int j = 0; j < numCols; j++){
-            if(Math.abs(tempMatrix[i][j] - 1.0) < epsilon){ 
+            if(Math.abs(tempMatrix.get(new int[] {i, j}) - 1.0) < epsilon){ 
                 pivotCol = j;
                 break;
             }
         }
         if(pivotCol != -1){
             for(int k = 0; k < i; k++){
-                double factor = tempMatrix[k][pivotCol];
-                tempMatrix = replacement(tempMatrix, k, i, -factor);
-                tempMatrix = roundMatrix(tempMatrix, epsilon);
+                double factor = tempMatrix.get(new int[] {k, pivotCol});
+                replacement(tempMatrix, k, i, -factor);
+                roundMatrix(tempMatrix, epsilon);
             }
         }
     }
     
-    tempMatrix = roundMatrix(tempMatrix, epsilon);
+    roundMatrix(tempMatrix, epsilon);
     return tempMatrix;
 }
     /**
@@ -378,17 +391,19 @@ public class MatrixOps {
      * @param epsilon the threshold below which values are rounded to zero
      * @return a new matrix with small values rounded to zero
      */
-    private static double[][] roundMatrix(double[][] matrix, double epsilon) {
-    int numRows = matrix.length;
-    int numCols = matrix[0].length;
+    private static void roundMatrix(Matrix<Double> matrix, double epsilon) {
+    int numRows = matrix.getRowNum();
+    int numCols = matrix.getColumnNum();
+    int[] coordinates = {0,0};
     for (int i = 0; i < numRows; i++) {
+        coordinates[0] = i;
         for (int j = 0; j < numCols; j++) {
-            if (Math.abs(matrix[i][j]) < epsilon) {
-                matrix[i][j] = 0.0;
+            coordinates[1] = j;
+            if (Math.abs(matrix.get(coordinates)) < epsilon) {
+                matrix.set(coordinates, 0.0);
             }
         }
     }
-    return matrix;
 }   
     /**
      * Prints an arrow symbol ("->") to the console.
@@ -420,14 +435,14 @@ public class MatrixOps {
      * @param vector the input vector
      * @return the resulting vector after multiplication
      */
-    public static double[] matrixVectorMult(double[][] matrix, double[] vector){
-        if(matrix[0].length != vector.length){
+    public static double[] matrixVectorMult(Matrix<Double> matrix, double[] vector){
+        if(matrix.getColumnNum() != vector.length){
             throw new IllegalArgumentException(ColorText.errorFormat("Incompatible matrix and vector dimensions"));
         }
 
-        double[] result = new double[matrix.length];
-        for (int i = 0; i < matrix.length; i++) {
-            result[i] = dotProduct(matrix[i], vector);
+        double[] result = new double[matrix.getRowNum()];
+        for (int i = 0; i < matrix.getRowNum(); i++) {
+            result[i] = dotProduct(matrix.accessRow(i), vector);
         }
         return result;
     }
@@ -473,6 +488,30 @@ public class MatrixOps {
             throw new IllegalArgumentException(ColorText.errorFormat("Input vectors are wrong lengths"));
         }
     }
+
+    public static double dotProduct(Double[] vector1,double[] vector2){
+        double temp = 0;
+        if(vector1.length == vector2.length){
+            for(int i = 0; i < vector1.length; i++){
+                temp += vector1[i]*vector2[i];
+            }
+            return temp;
+        }else{
+            throw new IllegalArgumentException(ColorText.errorFormat("Input vectors are wrong lengths"));
+        }
+    }
+
+    public static double dotProduct(Double[] vector1,Double[] vector2){
+        double temp = 0;
+        if(vector1.length == vector2.length){
+            for(int i = 0; i < vector1.length; i++){
+                temp += vector1[i]*vector2[i];
+            }
+            return temp;
+        }else{
+            throw new IllegalArgumentException(ColorText.errorFormat("Input vectors are wrong lengths"));
+        }
+    }
     
     public static int dotProduct(int[] vector1,int[] vector2){
         int temp = 0;
@@ -507,22 +546,22 @@ public class MatrixOps {
     
     /**
      * Multiplies two matrices.
-     * @param Matrix_A the first matrix
-     * @param Matrix_B the second matrix
+     * @param MatrixA the first matrix
+     * @param MatrixB the second matrix
      * @param debug if true, prints intermediate dot products
      * @return the resulting matrix after multiplication
      */
-    public static double[][] matrixMult(double[][] Matrix_A, double[][] Matrix_B, boolean debug){
-        if(Matrix_A[0].length == Matrix_B.length){
-            double[][] Result_Matrix = new double[Matrix_A.length][Matrix_B[0].length];
-            for(int i = 0; i < Matrix_A.length; i++){
-                for(int j = 0; j < Matrix_B[0].length; j++){
-                    double[] Row = accessRow(Matrix_A, i);
-                    double[] Column = accessColumn(Matrix_B, j);
-                    Result_Matrix[i][j] = dotProduct(Row, Column, debug);
+    public static double[][] matrixMult(double[][] MatrixA, double[][] MatrixB, boolean debug){
+        if(MatrixA[0].length == MatrixB.length){
+            double[][] ResultMatrix = new double[MatrixA.length][MatrixB[0].length];
+            for(int i = 0; i < MatrixA.length; i++){
+                for(int j = 0; j < MatrixB[0].length; j++){
+                    double[] Row = accessRow(MatrixA, i);
+                    double[] Column = accessColumn(MatrixB, j);
+                    ResultMatrix[i][j] = dotProduct(Row, Column, debug);
                 }
             }
-            return Result_Matrix;
+            return ResultMatrix;
         } else{
             throw new IllegalArgumentException(ColorText.errorFormat("Input Matrices are invalid"));
 
@@ -535,17 +574,20 @@ public class MatrixOps {
      * @param Matrix_B
      * @return
      */
-    public static double[][] matrixMult(double[][] Matrix_A, double[][] Matrix_B){
-        if(Matrix_A[0].length == Matrix_B.length){
-            double[][] Result_Matrix = new double[Matrix_A.length][Matrix_B[0].length];
-            for(int i = 0; i < Matrix_A.length; i++){
-                for(int j = 0; j < Matrix_B[0].length; j++){
-                    double[] Row = accessRow(Matrix_A, i);
-                    double[] Column = accessColumn(Matrix_B, j);
-                    Result_Matrix[i][j] = dotProduct(Row, Column);
+    public static Matrix<Double> matrixMult(Matrix<Double> MatrixA, Matrix<Double> MatrixB){
+        if(MatrixA.getColumnNum() == MatrixB.getRowNum()){
+            int[] coordinates = {0,0};
+            Matrix<Double> ResultMatrix = new Matrix<Double>(MatrixA.getRowNum(), MatrixB.getColumnNum());
+            for(int i = 0; i < MatrixA.getRowNum(); i++){
+                coordinates[0] = i;
+                for(int j = 0; j < MatrixB.getColumnNum(); j++){
+                    coordinates[1] = j;
+                    Double[] Row = MatrixA.accessRow(i);
+                    Double[] Column = MatrixB.accessColumn(j);
+                    ResultMatrix.set(coordinates, dotProduct(Row, Column));
                 }
             }
-            return Result_Matrix;
+            return (ResultMatrix);
         } else{
             throw new IllegalArgumentException(ColorText.errorFormat("Input Matrices are invalid"));
         }
@@ -562,9 +604,9 @@ public class MatrixOps {
             throw new IllegalArgumentException("");
 
         double[] result_vector = {
-            (vector1[2]*vector2[3]-vector1[3]*vector2[2]),
-            (vector1[3]*vector2[1]-vector1[1]*vector2[3]),
-            (vector1[1]*vector2[2]-vector1[2]*vector2[1])
+            (vector1[2]*vector2[1]-vector1[1]*vector2[2]),
+            (vector1[0]*vector2[2]-vector1[2]*vector2[0]),
+            (vector1[1]*vector2[0]-vector1[0]*vector2[1])
         };
         return result_vector;
     }
@@ -574,13 +616,16 @@ public class MatrixOps {
      * @param matrix the input matrix
      * @return the transposed matrix
      */
-    public static double[][] matrixTransposition(double[][] matrix){
-        double[][] tempMatrix = new double[matrix[0].length][matrix.length];
-        double[] tempRow = new double[tempMatrix[0].length];
-        for(int i = 0; i<matrix.length;i++){
-            tempRow = matrix[i].clone();
-            for(int k = 0; k < tempMatrix.length; k++){
-                tempMatrix[k][i] = tempRow[k];
+    public static Matrix<Double> matrixTransposition(Matrix<Double> matrix){
+        Matrix<Double> tempMatrix = new Matrix<Double>(matrix.getColumnNum(), matrix.getRowNum());
+        Double[] tempRow = new Double[tempMatrix.getColumnNum()];
+        int[] coordinates = {0,0};
+        for(int i = 0; i<matrix.getRowNum();i++){
+            coordinates[0] = i;
+            tempRow = matrix.accessRow(i);
+            for(int j = 0; j < tempMatrix.getRowNum(); j++){
+                coordinates[1] = j;
+                tempMatrix.set(coordinates, tempRow[j]);
             }
         }
         return tempMatrix;
@@ -592,13 +637,16 @@ public class MatrixOps {
      * @param column the column to remove
      * @return the resulting submatrix
      */
-    public static double[][] subMatrix(double[][] matrix, int column) {
-        double[][] tempMatrix = new double[matrix.length - 1][matrix[0].length - 1];
-        for (int i = 1; i < matrix.length; i++) {
+    public static Matrix<Double> subMatrix(Matrix<Double> matrix, int column) {
+        Matrix<Double> tempMatrix = new Matrix<Double>(matrix.getRowNum() - 1, matrix.getColumnNum() - 1);
+        int[] coordinates = {0, 0};
+        for (int i = 1; i < matrix.getRowNum(); i++) {
+            coordinates[0] = i - 1;
             int subCol = 0;
-            for (int j = 0; j < matrix[0].length; j++) {
+            for (int j = 0; j < matrix.getColumnNum(); j++) {
+                coordinates[1] = subCol;
                 if (j == column) continue;
-                tempMatrix[i - 1][subCol] = matrix[i][j];
+                tempMatrix.set(coordinates, matrix.get(new int[] {i, j}));
                 subCol++;
             }
         }
@@ -610,19 +658,19 @@ public class MatrixOps {
      * @param matrix the input square matrix
      * @return the determinant of the matrix
      */
-    public static double determinant(double[][] matrix){
+    public static double determinant(Matrix<Double> matrix){
 		double sum = 0;
-		if(matrix.length != matrix[0].length){
+		if(matrix.getRowNum() != matrix.getColumnNum()){
 			throw new IllegalArgumentException(ColorText.errorFormat("determinent input is not equal"));
 		}
-		int n = matrix.length;
+		int n = matrix.getRowNum();
 		
 		if(n==1){
-			return matrix[0][0];
+			return matrix.get(new int[] {0, 0});
 		}
 		if(n == 2){
-			return (matrix[0][0] * matrix[1][1]-
-			matrix[0][1] * matrix[1][0]);
+			return (matrix.get(new int[] {0, 0}) * matrix.get(new int[] {1, 1})-
+			matrix.get(new int[] {0, 1}) * matrix.get(new int[] {1, 0}));
 		}
         double sign;
         for(int i = 0; i < n; i++){
@@ -631,7 +679,7 @@ public class MatrixOps {
             }else{
                 sign = -1.0;
             }
-            sum += sign* matrix[0][i] * determinant(subMatrix(matrix, i));
+            sum += sign* matrix.get(new int[] {0, i}) * determinant(subMatrix(matrix, i));
         }
         return sum;
 	}
@@ -642,35 +690,36 @@ public class MatrixOps {
      * @param stopwatch if true, measures and prints the time taken for the operation
      * @return the inverse of the matrix
      */
-    public static double[][] inverseMatrix(double[][] Matrix){
-        if(Matrix.length != Matrix[0].length){
+    public static Matrix<Double> inverseMatrix(Matrix<Double> Matrix){
+        if(Matrix.getRowNum() != Matrix.getColumnNum()){
             throw new IllegalArgumentException(ColorText.errorFormat("Not a square matrix"));
         }
         if(determinant(Matrix) == 0){
             throw new IllegalArgumentException(ColorText.errorFormat("Determinent is zero"));
         }
-        int n = Matrix.length;
+        int n = Matrix.getRowNum();
 
         if(n == 2){
             double det = determinant(Matrix);
-            double[][] inverse = {
-                {Matrix[1][1]/det, -Matrix[0][1]/det},
-                {-Matrix[1][0]/det, Matrix[0][0]/det}
+            Double[] data = new Double[] {
+                Matrix.get(new int[] {1, 1})/det, -Matrix.get(new int[] {0, 1})/det,
+                -Matrix.get(new int[] {1, 0})/det, Matrix.get(new int[] {0, 0})/det
             };
+            Matrix<Double> inverse = new Matrix<Double>(2,2, data);
             return inverse;
         }
-        int numRows = Matrix.length;
-        int numCols = Matrix[0].length;
-        double[][] tempMatrix = new double[numRows][numCols];
-        double[][] inverse_Matrix = new double[numRows][numCols];
+        int numRows = Matrix.getRowNum();
+        int numCols = Matrix.getColumnNum();
+        Matrix<Double> tempMatrix = new Matrix<Double>(numRows,numCols);
+        Matrix<Double> inverseMatrix = new Matrix<Double>(numRows,numCols);
         for(int i = 0; i < numRows; i++) {
             for (int k = 0; k < numCols; k++) {
-                tempMatrix[i][k] = Matrix[i][k];
+                tempMatrix.set(new int[] {i, k}, Matrix.get(new int[] {i, k}));
             }
         }
 
         for(int i = 0; i < numRows;i++){
-            inverse_Matrix[i][i] = 1;
+            inverseMatrix.set(new int[] {i, i}, 1.0);
         }
 
 
@@ -680,27 +729,27 @@ public class MatrixOps {
         for (int j = 0; j < numCols && pivotRow < numRows; j++) {
             int maxRow = pivotRow;
             for (int i = pivotRow + 1; i < numRows; i++) {
-                if (Math.abs(tempMatrix[i][j]) > Math.abs(tempMatrix[maxRow][j])) {
+                if (Math.abs(tempMatrix.get(new int[] {i, j})) > Math.abs(tempMatrix.get(new int[] {maxRow, j}))) {
                     maxRow = i;
                 }
             }
 
-            if (Math.abs(tempMatrix[maxRow][j]) > epsilon) { 
-                tempMatrix = switchRows(tempMatrix, pivotRow, maxRow);
-                inverse_Matrix = switchRows(inverse_Matrix, pivotRow, maxRow);
+            if (Math.abs(tempMatrix.get(new int[] {maxRow, j})) > epsilon) { 
+                tempMatrix.switchRows(pivotRow, maxRow);
+                inverseMatrix.switchRows(pivotRow, maxRow);
 
-                double pivotValue = tempMatrix[pivotRow][j];
-                tempMatrix = constantFactor(tempMatrix, pivotRow, 1/pivotValue);
-                inverse_Matrix = constantFactor(inverse_Matrix, pivotRow, 1/pivotValue);
-                tempMatrix = roundMatrix(tempMatrix, epsilon);
-                inverse_Matrix = roundMatrix(inverse_Matrix, epsilon);
+                double pivotValue = tempMatrix.get(new int[] {pivotRow, j});
+                constantFactor(tempMatrix, pivotRow, 1/pivotValue);
+                roundMatrix(tempMatrix, epsilon);
+                constantFactor(inverseMatrix, pivotRow, 1/pivotValue);
+                roundMatrix(inverseMatrix, epsilon);
 
                 for(int i = pivotRow + 1; i < numRows; i++){
-                    double factor = tempMatrix[i][j];
-                    tempMatrix = replacement(tempMatrix, i, pivotRow, -factor);
-                    tempMatrix = roundMatrix(tempMatrix, epsilon);
-                    inverse_Matrix = replacement(inverse_Matrix, i, pivotRow, -factor);
-                    inverse_Matrix = roundMatrix(inverse_Matrix, epsilon);
+                    double factor = tempMatrix.get(new int[] {i, j});
+                    replacement(tempMatrix, i, pivotRow, -factor);
+                    roundMatrix(tempMatrix, epsilon);
+                    replacement(inverseMatrix, i, pivotRow, -factor);
+                    roundMatrix(inverseMatrix, epsilon);
                 }
                 pivotRow++;
             }
@@ -709,112 +758,36 @@ public class MatrixOps {
         for(int i = numRows - 1; i >=0; i--){
             int pivotCol = -1;
             for(int j = 0; j < numCols; j++){
-                if(Math.abs(tempMatrix[i][j] - 1.0) < epsilon){ 
+                if(Math.abs(tempMatrix.get(new int[] {i, j}) - 1.0) < epsilon){ 
                     pivotCol = j;
                     break;
                 }
             }
             if(pivotCol != -1){
                 for(int k = 0; k < i; k++){
-                    double factor = tempMatrix[k][pivotCol];
-                    tempMatrix = replacement(tempMatrix, k, i, -factor);
-                    tempMatrix = roundMatrix(tempMatrix, epsilon);
-                    inverse_Matrix = replacement(inverse_Matrix, k, i, -factor);
-                    inverse_Matrix = roundMatrix(inverse_Matrix, epsilon);
+                    double factor = tempMatrix.get(new int[] {k, pivotCol});
+                    replacement(tempMatrix, k, i, -factor);
+                    roundMatrix(tempMatrix, epsilon);
+                    replacement(inverseMatrix, k, i, -factor);
+                    roundMatrix(inverseMatrix, epsilon);
                 }
             }
         }
         
-        inverse_Matrix = roundMatrix(inverse_Matrix, epsilon);
-        return inverse_Matrix;
+        roundMatrix(inverseMatrix, epsilon);
+        return inverseMatrix;
     }
 
 
-    public static double[][] inverseMatrix(double[][] Matrix,boolean stopwatch){
+    public static Matrix<Double> inverseMatrix(Matrix<Double> Matrix,boolean stopwatch){
         long startTime = System.nanoTime();
         
-        if(Matrix.length != Matrix[0].length){
-            throw new IllegalArgumentException(ColorText.errorFormat("Not a square matrix"));
-        }
-        if(determinant(Matrix) == 0){
-            throw new IllegalArgumentException(ColorText.errorFormat("Determinent is zero"));
-        }
-        int n = Matrix.length;
-
-        if(n == 2){
-            
-        }
-        int numRows = Matrix.length;
-        int numCols = Matrix[0].length;
-        double[][] tempMatrix = new double[numRows][numCols];
-        double[][] inverse_Matrix = new double[numRows][numCols];
-        for(int i = 0; i < numRows; i++) {
-            for (int k = 0; k < numCols; k++) {
-                tempMatrix[i][k] = Matrix[i][k];
-            }
-        }
-
-        for(int i = 0; i < numRows;i++){
-            inverse_Matrix[i][i] = 1;
-        }
-
-
-        int pivotRow = 0;
-
-        for (int j = 0; j < numCols && pivotRow < numRows; j++) {
-            int maxRow = pivotRow;
-            for (int i = pivotRow + 1; i < numRows; i++) {
-                if (Math.abs(tempMatrix[i][j]) > Math.abs(tempMatrix[maxRow][j])) {
-                    maxRow = i;
-                }
-            }
-
-            if (Math.abs(tempMatrix[maxRow][j]) > epsilon) { 
-                tempMatrix = switchRows(tempMatrix, pivotRow, maxRow);
-                inverse_Matrix = switchRows(inverse_Matrix, pivotRow, maxRow);
-
-                double pivotValue = tempMatrix[pivotRow][j];
-                tempMatrix = constantFactor(tempMatrix, pivotRow, 1/pivotValue);
-                inverse_Matrix = constantFactor(inverse_Matrix, pivotRow, 1/pivotValue);
-                tempMatrix = roundMatrix(tempMatrix, epsilon);
-                inverse_Matrix = roundMatrix(inverse_Matrix, epsilon);
-
-                for(int i = pivotRow + 1; i < numRows; i++){
-                    double factor = tempMatrix[i][j];
-                    tempMatrix = replacement(tempMatrix, i, pivotRow, -factor);
-                    tempMatrix = roundMatrix(tempMatrix, epsilon);
-                    inverse_Matrix = replacement(inverse_Matrix, i, pivotRow, -factor);
-                    inverse_Matrix = roundMatrix(inverse_Matrix, epsilon);
-                }
-                pivotRow++;
-            }
-        }
-        
-        for(int i = numRows - 1; i >=0; i--){
-            int pivotCol = -1;
-            for(int j = 0; j < numCols; j++){
-                if(Math.abs(tempMatrix[i][j] - 1.0) < epsilon){ 
-                    pivotCol = j;
-                    break;
-                }
-            }
-            if(pivotCol != -1){
-                for(int k = 0; k < i; k++){
-                    double factor = tempMatrix[k][pivotCol];
-                    tempMatrix = replacement(tempMatrix, k, i, -factor);
-                    tempMatrix = roundMatrix(tempMatrix, epsilon);
-                    inverse_Matrix = replacement(inverse_Matrix, k, i, -factor);
-                    inverse_Matrix = roundMatrix(inverse_Matrix, epsilon);
-                }
-            }
-        }
-        
-        inverse_Matrix = roundMatrix(inverse_Matrix, epsilon);
+        Matrix<Double> inverseMatrix = inverseMatrix(Matrix);
         if(stopwatch){
             long estimatedTime = System.nanoTime() - startTime;
             System.out.println("elapsed time in seconds: "+nanoToSeconds(estimatedTime));
         }
-        return inverse_Matrix;
+        return inverseMatrix;
     }
     // x vector returns y vector where y1 = x1^factor
     /**
@@ -907,13 +880,13 @@ public class MatrixOps {
             return roundedVector;
     }
 
-    public static double[][] hadamardProduct(double[][] A, double[][] B){
-        if(A.length != B.length || A[0].length != B[0].length)
+    public static Matrix<Double> hadamardProduct(Matrix<Double> A, Matrix<Double> B){
+        if(A.getRowNum() != B.getRowNum() || A.getColumnNum() != B.getColumnNum())
             throw new IllegalArgumentException(ColorText.errorFormat("Matrices are not equal length"));
         
-        for(int i = 0; i < A.length; i++){
-            for(int j = 0; j < A[0].length; j++){
-                A[i][j] *= B[i][j];
+        for(int i = 0; i < A.getRowNum(); i++){
+            for(int j = 0; j < A.getColumnNum(); j++){
+                A.set(i, j, A.get(i, j) * B.get(i, j));
             }
         }
         return A;
