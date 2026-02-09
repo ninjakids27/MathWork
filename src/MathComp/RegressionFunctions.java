@@ -63,21 +63,25 @@ public class RegressionFunctions {
         double intercept = (sumY - slope * sumX) / n;
         return new double[]{slope, intercept};
     }
-    public static double[] MLR(double[][] xValues, double[] yValues){
+    public static double[] MLR(Matrix<Double> xValues, double[] yValues){
         // Add a column of ones to xValues for the intercept term
-        int n = xValues.length;
-        int m = xValues[0].length;
-        double[][] xValuesWithIntercept = new double[n][m + 1];
+        int n = xValues.getRowNum();
+        int m = xValues.getColumnNum();
+        Matrix<Double> xValuesWithIntercept = new Matrix<Double>(n, m + 1);
+        int[] coordinates = {0,0};
         for(int i = 0; i < n; i++){
-            xValuesWithIntercept[i][0] = 1; // Intercept term
+            coordinates[0] = i;
+            xValuesWithIntercept.set(coordinates, 1.0); // Intercept term
             for(int j = 0; j < m; j++){
-                xValuesWithIntercept[i][j + 1] = xValues[i][j];
+                coordinates[1] = j;
+                xValuesWithIntercept.set(coordinates, xValues.get(coordinates));
             }
         }
-        double[][] XtX = MatrixOps.matrixMult(MatrixOps.matrixTransposition(xValuesWithIntercept), xValuesWithIntercept);
-        double[][] XtX_inv = MatrixOps.inverseMatrix(XtX);
+        // T-T 
+        Matrix<Double> XtX = MatrixOps.matrixMult(MatrixOps.matrixTransposition(xValuesWithIntercept), xValuesWithIntercept);
+        Matrix<Double> XtXInv = MatrixOps.inverseMatrix(XtX);
         double[] XtY = MatrixOps.matrixVectorMult(MatrixOps.matrixTransposition(xValuesWithIntercept), yValues);
-        double[] coefficients = MatrixOps.matrixVectorMult(XtX_inv, XtY);
+        double[] coefficients = MatrixOps.matrixVectorMult(XtXInv, XtY);
         tolernaceArray(coefficients);
         return coefficients;
     }
@@ -88,7 +92,7 @@ public class RegressionFunctions {
      * @param timer Flag to enable timing
      * @return Coefficients of the regression model
      */
-    public static double[] MLR(double[][] xValues, double[] yValues, boolean timer){
+    public static double[] MLR(Matrix<Double> xValues, double[] yValues, boolean timer){
         long startTime = System.nanoTime();
         double[] coefficients = MLR(xValues, yValues);
         long endTime = System.nanoTime();
@@ -104,14 +108,17 @@ public class RegressionFunctions {
      * @param coefficients the coefficients of the regression model
      * @return the residuals of the model
      */
-    public static double[] residuals(double[][] xValues, double[] yValues, double[] coefficients){
-        int n = xValues.length;
-        int m = xValues[0].length;
-        double[][] xValuesWithIntercept = new double[n][m + 1];
+    public static double[] residuals(Matrix<Double> xValues, double[] yValues, double[] coefficients){
+        int n = xValues.getRowNum();
+        int m = xValues.getColumnNum();
+        Matrix<Double> xValuesWithIntercept = new Matrix<Double>(n, m + 1);
+        int[] coordinates = {0,0};
         for(int i = 0; i < n; i++){
-            xValuesWithIntercept[i][0] = 1; // Intercept term
+            coordinates[0] = i;
+            xValuesWithIntercept.set(coordinates, 1.0); // Intercept term
             for(int j = 0; j < m; j++){
-                xValuesWithIntercept[i][j + 1] = xValues[i][j];
+                coordinates[1] = j;
+                xValuesWithIntercept.set(coordinates, xValues.get(new int[]{i,j}));
             }
         }
         double[] predictedY = MatrixOps.matrixVectorMult(xValuesWithIntercept, coefficients);
@@ -130,10 +137,13 @@ public class RegressionFunctions {
      * @return the coefficients of the polynomial regression
      */
     public static double[] polynomialRegression(double[] xValues, double[] yValues, int degree){
-        double[][] xValuesPoly = new double[xValues.length][degree + 1];
+        Matrix<Double> xValuesPoly = new Matrix<Double>(xValues.length, degree + 1);
+        int[] coordinates = {0,0};
         for(int i =0; i < xValues.length; i++){
+            coordinates[0] = i;
             for(int j = 0; j <= degree; j++){
-                xValuesPoly[i][j] = Math.pow(xValues[i], j);
+                coordinates[1] = j;
+                xValuesPoly.set(coordinates, Math.pow(xValues[i],j));
             }
         }
         double[] coefficients = MLR(xValuesPoly, yValues);

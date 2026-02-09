@@ -1,34 +1,41 @@
 package Runner;
 
 import MathComp.*;
+import MathComp.RegressionFunctions.*;  
 import MLComp.*;
 import MLComp.ActivationFunctions_Folder.*;
 import MLComp.Optimizers_Folder.*;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 public class test {
   @Test
   public void testDeterminent() {
-    double[][] testMatrix = {
-        { 75, 0, 0 },
-        { 0, 1, 0 },
-        { 0, 0, 1 },
-    };
+    Double[] data = 
+    {   75.0, 0.0, 0.0 ,
+         0.0, 1.0, 0.0 ,
+         0.0, 0.0, 1.0 };
+    
+    Matrix<Double> testMatrix = new Matrix<Double>(3, 3, data);
     assertEquals(75, MatrixOps.determinant(testMatrix), 0);
   }
 
   @Test
   public void testMultivariableLinearRegression() {
     // Model: y = 3 + 2*x1 - 1*x2
-    double[][] X = {
-        { 0, 0 },
-        { 1, 0 },
-        { 0, 1 },
-        { 2, 3 },
-        { 4, -1 }
+    
+    Double[] data = {
+        0.0, 0.0, // Row 1
+        1.0, 0.0, // Row 2
+        0.0, 1.0, // Row 3
+        2.0, 3.0, // Row 4
+        4.0, -1.0 // Row 5
     };
+    Matrix<Double> XMatrix = new Matrix<Double>(5, 2,data);
+    
     double[] y = {
         3, // 3 + 2*0 -1*0
         5, // 3 + 2*1 -1*0
@@ -39,7 +46,7 @@ public class test {
 
     // Expect coefficients [intercept, beta1, beta2] = [3, 2, -1]
     // Implement LinearRegression.fit to return this form.
-    double[] coeffs = RegressionFunctions.MLR(X, y);
+    double[] coeffs = RegressionFunctions.MLR(XMatrix, y);
     double[] expected = { 3.0, 2.0, -1.0 };
     assertArrayEquals(expected, coeffs, 0);
   }
@@ -85,9 +92,9 @@ public class test {
     if (buddy == null) {
       throw new IllegalArgumentException(ColorText.errorFormat("Could not load model"));
     }
-    int correct = MLOps.test(buddy, "MNIST_CSV/mnist_test.csv", ActivationFunctions::reLU,
+    int correct = MLOps.test(buddy, "MNIST_CSV//mnist_test.csv", ActivationFunctions::reLU,
         ActivationFunctions::reLUDerivative);
-    assertEquals(8800, correct, 100);
+    assertTrue(correct >= 9500);
   }
 
 
@@ -97,7 +104,7 @@ public class test {
    int[] coordinates = {0,0,0};
    int result  = a.get(coordinates);
    assertEquals(result,  1, 0);
-   coordinates = new int[] {2,2,2};
+   coordinates = new int[] {1,1,1};
    result  = a.get(coordinates);
    assertEquals(result,  8, 0);
  }

@@ -69,7 +69,7 @@ public class MLOps {
             br.close();
             return values;
         } catch (Exception e) {
-            System.out.println("IOException return is garbage");
+            System.out.println(ColorText.errorFormat("IOException return is garbage"));
             return new int[0];
         }
     }
@@ -100,8 +100,7 @@ public class MLOps {
             br.close();
             return values;
         } catch (Exception e) {
-            System.out.println("IOException return is garbage");
-            return new int[0][];
+            throw new RuntimeException("IOException occurred while reading CSV file: " + filename, e);
         }
     }
 
@@ -483,7 +482,7 @@ public class MLOps {
                     deltas[layer][neuron] = delta;
                 }
             }
-
+            // calculate gradients and update weights using the optimizer
             for (int layer = NN.length - 1; layer >= 1; layer--) {
                 for (int neuron = 0; neuron < NN[layer].length; neuron++) {
                     double delta = deltas[layer][neuron];

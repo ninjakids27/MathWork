@@ -13,7 +13,7 @@ public class DrawApp extends JFrame {
     private JLabel predictionLabel;
     private JTextArea confidenceArea;
     private Neuron[][] network;
-    private static final String MODEL_PATH = "Models//Optimus.ser";
+    private static final String PATH = "Models//Optimus.ser";
 
     public DrawApp() {
         setTitle("MNIST Digit Recognizer - Neural Network Demo");
@@ -95,7 +95,7 @@ public class DrawApp extends JFrame {
         rightPanel.add(confPanel, BorderLayout.CENTER);
 
         // Status label
-        JLabel statusLabel = new JLabel("Model: " + MODEL_PATH, SwingConstants.CENTER);
+        JLabel statusLabel = new JLabel("Model: " + PATH, SwingConstants.CENTER);
         statusLabel.setForeground(new Color(150, 150, 150));
         statusLabel.setFont(new Font("Arial", Font.ITALIC, 11));
         rightPanel.add(statusLabel, BorderLayout.SOUTH);
@@ -132,9 +132,9 @@ public class DrawApp extends JFrame {
 
     private void loadModel() {
         try {
-            network = MLOps.loadNN(MODEL_PATH);
+            network = MLOps.loadNN(PATH);
             if (network == null) {
-                confidenceArea.setText("Failed to load model!\nCheck: " + MODEL_PATH);
+                confidenceArea.setText("Failed to load model!\nCheck: " + PATH);
                 predictionLabel.setText("!");
                 predictionLabel.setForeground(Color.RED);
             } else {
