@@ -74,3 +74,28 @@
 
 ### Regression
 - [ ] Fix MLR for the billionth time (P1)
+
+
+## February 2025:
+
+### MatrixOps
+- [ ] Single Value decomposition for compressing images (P1)
+    - [ ] research Single Value Decomposition (P1)
+    - [ ] write notes (P2)
+    - [ ] Implement Eigenvalues and Eigenvectors (P1)
+        - [ ] Research Eigenvalues and Eigenvectors (P1)
+- [ ] Fix linear regression (P1)
+- [x] Implement the Matrix class (P1)
+
+### ML
+- [ ] Implement the Matrix Class
+- [x] Tensor class? do more research in the future and write it up in the notes (~P3)
+- [ ] Write the training method and implement parallel processing using CUDA (P2)
+- [ ] Fix the optimizers since SGD is the only one that works (P1)
+- [ ] Outline a goal and a plan to get to transformers and other types of Artifical Intelligence (P3)
+- [ ] Get text data for tranformer models in the future (use the pile https://pile.eleuther.ai/) (P1)
+- [ ] Implement a data text streamer since I cannot downlod the 800gb file T-T (P1)
+- [ ] Stocks? (P3)
+
+### Regression
+- [ ] Fix MLR for the billionth time (P1)
