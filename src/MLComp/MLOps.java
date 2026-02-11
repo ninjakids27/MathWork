@@ -4,7 +4,7 @@ package MLComp;
 import Runner.ColorText;
 import MLComp.ActivationFunctions_Folder.*;
 import MLComp.Optimizers_Folder.*;
-
+import MathComp.Matrix;
 import static MathComp.MatrixOps.*;
 import java.io.*;
 
@@ -52,8 +52,7 @@ public class MLOps {
      * @return
      */
     public static int[] readCSV(String filename, int dataNum) {
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(filename));
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))){
             int lineNum = 1;
             String line;
             int[] values = new int[785];
@@ -69,8 +68,8 @@ public class MLOps {
             br.close();
             return values;
         } catch (Exception e) {
-            System.out.println(ColorText.errorFormat("IOException return is garbage"));
-            return new int[0];
+            e.printStackTrace();
+            throw new IllegalAccessError(ColorText.errorFormat("Exception error could not get access to the file: "+filename));
         }
     }
 
@@ -321,8 +320,8 @@ public class MLOps {
      * @return the loaded neural network
      */
     public static Neuron[][] loadNN(String filename) {
+        Neuron[][] network = null;
         try {
-            Neuron[][] network = null;
             FileInputStream file = new FileInputStream(filename);
             ObjectInputStream ois = new ObjectInputStream(file);
             network = (Neuron[][]) ois.readObject();
@@ -331,7 +330,7 @@ public class MLOps {
             return network;
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
-            return null;
+            throw new IllegalArgumentException(ColorText.errorFormat("Model could not be loaded"));
         }
     }
 
@@ -418,13 +417,14 @@ public class MLOps {
     }
 
     /**
-     * 
-     * @param NN
-     * @param line
-     * @param filename
-     * @param learningRate
-     * @param activationFunction
+     * Backpropagation algorithm 
+     * @param NN Neural network to train
+     * @param filename Dataset to train it on
+     * @param learningRate 
+     * @param activationFunction 
      * @param activationFunctionDerivative
+     * @param OptimizationFunction
+     * @param epochAmount The size of the data set to train on so a 60k size dataset and you set it to 10k it will train 10k per epoch of training. 
      */
 
     public static void backPropagation(Neuron[][] NN, String filename, double learningRate,

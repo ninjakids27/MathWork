@@ -9,6 +9,20 @@
             "name": "DrawApp",
             "request": "launch",
             "mainClass": "DrawApp",
+            "projectName": "MathWork_1bc06d44"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "Runner.Main",
+            "projectName": "MathWork_1bc06d44"
+        },
+        {
+            "type": "java",
+            "name": "DrawApp",
+            "request": "launch",
+            "mainClass": "DrawApp",
             "projectName": "MathWork_a4c5474a"
         },
         {

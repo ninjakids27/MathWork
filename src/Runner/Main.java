@@ -1,16 +1,19 @@
 package Runner;
-import MathComp.Matrix;
-import MathComp.MatrixOps;
-import java.util.HashSet;
-import MLComp.Neuron;
+
 import MLComp.MLOps;
+import MLComp.Neuron;
+import MLComp.ActivationFunctions_Folder.ActivationFunctions;
+import MLComp.Optimizers_Folder.Optimizers;
 public class Main {
     public static void main(String[] args) {
-        Neuron[][] network = MLOps.loadNN("Models//Optimus.ser");
-        // print the layer number and architecture
-        System.out.println("Layer 0: " + network[0].length + " neurons");
-        System.out.println("Layer 1: " + network[1].length + " neurons");
-        System.out.println("Layer 2: " + network[2].length + " neurons");
-        // print the weights of the first neuron in the first layer
+        Neuron[][] testAI = MLOps.loadNN("Models/Optimus.ser");
+        int coorect = MLOps.test(
+            testAI,
+                "MNIST_CSV//mnist_test.csv",
+                ActivationFunctions::reLU,
+                ActivationFunctions::reLUDerivative
+            );
+
+            System.out.println(((double)coorect/100));
     }
 }

@@ -61,11 +61,21 @@ public class test {
   }
 
   @Test
+  public void testReadCSV(){
+      int[] testArray   = MLOps.readCSV("MNIST_CSV//mnist_test.csv",1);
+      int[] trainArray  = MLOps.readCSV("MNIST_CSV//mnist_train.csv", 1);
+      boolean isTrue = false;
+      MatrixOps.printVector(testArray);
+      MatrixOps.printVector(trainArray);
+      if(testArray.length == 785 && trainArray.length == 785)
+        isTrue = true;
+      assertTrue(isTrue);
+  }
+
+
+  @Test
   public void testSoftmax() {
-    Neuron[][] buddy = MLOps.loadNN("Models//NN784_16_16_10.ser");
-    if (buddy == null) {
-      throw new IllegalArgumentException(ColorText.errorFormat("Could not load model"));
-    }
+    Neuron[][] buddy = MLOps.loadNN("Models//Optimus.ser");
     double[] prob = MLOps.forwardPropagationMNIST(2, "MNIST_CSV/mnist_train.csv", buddy, ActivationFunctions::sigmoid);
     double sum = 0;
     for (double num : prob) {
@@ -89,11 +99,9 @@ public class test {
   @Test
   public void testNeuralNetwork() {
     Neuron[][] buddy = MLOps.loadNN("Models//Optimus.ser");
-    if (buddy == null) {
-      throw new IllegalArgumentException(ColorText.errorFormat("Could not load model"));
-    }
     int correct = MLOps.test(buddy, "MNIST_CSV//mnist_test.csv", ActivationFunctions::reLU,
         ActivationFunctions::reLUDerivative);
+      System.out.println(correct);
     assertTrue(correct >= 9500);
   }
 
