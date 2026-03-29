@@ -1,3 +1,8 @@
+# Update
+Currently I have shifted from this project to another project (M.D) to have my future projects written primarily in C++. So it is unlikely any future developments will occur in this project, because java sucks. 
+
+- o/
+
 # MathWork
 my math work in java that I coded throughout my junior in high school.
 This contains mostly math im interested in and projects done. This is not really a consisstent github
